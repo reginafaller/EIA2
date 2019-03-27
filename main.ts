@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", greeter);
 
 function greeter():void {
-    var promptValue = prompt('name eingeben');
+    let promptValue:string = prompt('name eingeben');
     console.log('herzlich willkommen', promptValue, 'ich habe sie erwartet');
 
 
