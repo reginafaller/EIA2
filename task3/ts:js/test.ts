@@ -201,41 +201,41 @@ let karte32: Karte = {
 	farbe: "schwarz",
 	pic: "../Bilder/kreuz.png",
 }
-document.addEventListener("DOMContentLoaded", HandkartenAnzahl);
+document.addEventListener("DOMContentLoaded", handkartenAnzahl);
 
 
 let alleKarten: Karte[] = [karte1, karte10, karte11, karte12, karte13, karte14, karte15, karte16, karte17, karte18, karte19, karte2, karte20, karte21, karte22, karte23, karte24, karte25, karte26, karte27, karte28, karte29, karte3, karte30, karte31, karte32, karte4, karte5, karte6, karte7, karte8, karte9];
 let hand: Karte[] = [];
 let ablage: Karte[] = [];
 
-function HandkartenAnzahl():void {
+function handkartenAnzahl():void {
 	let base: number = 10;
 	let anzahlHandkarten: string = prompt('wie viele Handkarten mochten sie?');
-	let Anzahl = parseInt(anzahlHandkarten, base)
-	KartenGenerieren(Anzahl);
+	let anzahl = parseInt(anzahlHandkarten, base)
+	kartenGenerieren(anzahl);
 }
 
-function KartenGenerieren(_Anzahl: number):void {
+function kartenGenerieren(_Anzahl: number):void {
 	for (let i: number = 0; i <= _Anzahl - 1; i++) {
 		let random: number = Math.floor(Math.random() * alleKarten.length)
-		ErstelleHandKarte(alleKarten[random]);
+		erstelleHandKarte(alleKarten[random]);
 		hand.push(alleKarten[random]);
 		alleKarten.splice(random, 1);
 	}
-	let StartKarte:number = Math.floor(Math.random() * alleKarten.length)
-	ErstelleAblageKarte(alleKarten[StartKarte]);
-	hand.push(alleKarten[StartKarte]);
-		alleKarten.splice(StartKarte, 1);
+	let startKarte:number = Math.floor(Math.random() * alleKarten.length)
+	erstelleAblageKarte(alleKarten[startKarte]);
+	hand.push(alleKarten[startKarte]);
+		alleKarten.splice(startKarte, 1);
 
 	for (let i:number = 0; i<=alleKarten.length -1; i++){
-		let AblageKarten:number = Math.floor(Math.random() * alleKarten.length);
-		ErstelleZiehStapel(alleKarten[AblageKarten]);
+		let ablageKarten:number = Math.floor(Math.random() * alleKarten.length);
+		erstelleZiehStapel(alleKarten[ablageKarten]);
 	}
 	
 
 }
 
-function ErstelleHandKarte(_c: Karte):void {
+function erstelleHandKarte(_c: Karte):void {
 	let prodCard = document.createElement("div");
 	prodCard.innerHTML =
 		`<div>
@@ -245,7 +245,7 @@ function ErstelleHandKarte(_c: Karte):void {
 	document.getElementById("handkarten").appendChild(prodCard);
 }
 
-function ErstelleAblageKarte(_c:Karte):void{
+function erstelleAblageKarte(_c:Karte):void{
 	let prodCard = document.createElement("div");
 	prodCard.innerHTML =
 		`<div>
@@ -255,7 +255,7 @@ function ErstelleAblageKarte(_c:Karte):void{
 	document.getElementById("ablage").appendChild(prodCard);
 }
 
-function ErstelleZiehStapel (_c:Karte):void{
+function erstelleZiehStapel (_c:Karte):void{
 	let prodCard = document.createElement("div");
 	prodCard.innerHTML =
 		`

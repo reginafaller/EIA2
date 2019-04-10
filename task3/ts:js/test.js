@@ -190,43 +190,42 @@ let karte32 = {
     farbe: "schwarz",
     pic: "../Bilder/kreuz.png",
 };
-document.addEventListener("DOMContentLoaded", HandkartenAnzahl);
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", handkartenAnzahl);
 let alleKarten = [karte1, karte10, karte11, karte12, karte13, karte14, karte15, karte16, karte17, karte18, karte19, karte2, karte20, karte21, karte22, karte23, karte24, karte25, karte26, karte27, karte28, karte29, karte3, karte30, karte31, karte32, karte4, karte5, karte6, karte7, karte8, karte9];
 let hand = [];
 let ablage = [];
-function HandkartenAnzahl() {
+function handkartenAnzahl() {
     let base = 10;
     let anzahlHandkarten = prompt('wie viele Handkarten mochten sie?');
-    let Anzahl = parseInt(anzahlHandkarten, base);
-    KartenGenerieren(Anzahl);
+    let anzahl = parseInt(anzahlHandkarten, base);
+    kartenGenerieren(anzahl);
 }
-function KartenGenerieren(_Anzahl) {
+function kartenGenerieren(_Anzahl) {
     for (let i = 0; i <= _Anzahl - 1; i++) {
         let random = Math.floor(Math.random() * alleKarten.length);
-        ErstelleHandKarte(alleKarten[random]);
+        erstelleHandKarte(alleKarten[random]);
         hand.push(alleKarten[random]);
         alleKarten.splice(random, 1);
     }
-    let StartKarte = Math.floor(Math.random() * alleKarten.length);
-    ErstelleAblageKarte(alleKarten[StartKarte]);
-    hand.push(alleKarten[StartKarte]);
-    alleKarten.splice(StartKarte, 1);
+    let startKarte = Math.floor(Math.random() * alleKarten.length);
+    erstelleAblageKarte(alleKarten[startKarte]);
+    hand.push(alleKarten[startKarte]);
+    alleKarten.splice(startKarte, 1);
     for (let i = 0; i <= alleKarten.length - 1; i++) {
-        let AblageKarten = Math.floor(Math.random() * alleKarten.length);
-        ErstelleZiehStapel(alleKarten[AblageKarten]);
+        let ablageKarten = Math.floor(Math.random() * alleKarten.length);
+        erstelleZiehStapel(alleKarten[ablageKarten]);
     }
 }
-function ErstelleHandKarte(_c) {
+function erstelleHandKarte(_c) {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
-        `<fieldset class="test">
+        `<div>
 	<p> ${_c.zahl}</p>
 	<img src="${_c.pic}" alt="${_c.zeichen}" 
-	</fieldset>`;
+	</div>`;
     document.getElementById("handkarten").appendChild(prodCard);
 }
-function ErstelleAblageKarte(_c) {
+function erstelleAblageKarte(_c) {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
         `<div>
@@ -235,7 +234,7 @@ function ErstelleAblageKarte(_c) {
 	</div>`;
     document.getElementById("ablage").appendChild(prodCard);
 }
-function ErstelleZiehStapel(_c) {
+function erstelleZiehStapel(_c) {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
         `
@@ -243,14 +242,5 @@ function ErstelleZiehStapel(_c) {
 	<img src="${_c.pic}" alt="${_c.zeichen}" 
 	`;
     document.getElementById("ziehstapel").appendChild(prodCard);
-}
-function init() {
-    for (let i = 0; i < hand.length; i++) {
-        let fieldset = document.getElementsByClassName("test")[i];
-        fieldset.addEventListener("click", clickHandler);
-    }
-}
-function clickHandler(_event) {
-    console.log(_event.target);
 }
 //# sourceMappingURL=test.js.map
