@@ -24,6 +24,11 @@
     background-color: rgb(113, 113, 146);
 }
 
+div img {
+    width: 100px;
+    height: 100px;
+}
+
 div div {
     border: 1px solid black;
     width: 120px;
