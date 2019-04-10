@@ -252,6 +252,5 @@ function init() {
 }
 function clickHandler(_event) {
     console.log(_event.target);
-    ablage.push(_event.target);
 }
 //# sourceMappingURL=test.js.map

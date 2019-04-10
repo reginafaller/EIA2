@@ -274,5 +274,4 @@ let fieldset: HTMLFieldSetElement = <HTMLFieldSetElement> document.getElementsBy
 
 function clickHandler (_event:Event):void{
     console.log(_event.target)
-	ablage.push(_event.target)
 }
