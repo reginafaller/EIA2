@@ -268,10 +268,14 @@ function ErstelleZiehStapel (_c:Karte):void{
 
 function init():void{
 	for (let i:number = 0; i< hand.length; i++){
+		
 let fieldset: HTMLFieldSetElement = <HTMLFieldSetElement> document.getElementsByClassName("test")[i];
-        fieldset.addEventListener("click", clickHandler);}
+		fieldset.addEventListener("click", function() {clickHandler(fieldset);});
+	}
 }
 
-function clickHandler (_event:Event):void{
-    console.log(_event.target)
+function clickHandler (_karte:HTMLFieldSetElement):void{
+    console.log(_karte)
 }
+
+//wie kann ich hier die karte ubergeben auf die geklickt wurde??

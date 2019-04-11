@@ -247,10 +247,11 @@ function ErstelleZiehStapel(_c) {
 function init() {
     for (let i = 0; i < hand.length; i++) {
         let fieldset = document.getElementsByClassName("test")[i];
-        fieldset.addEventListener("click", clickHandler);
+        fieldset.addEventListener("click", function () { clickHandler(fieldset); });
     }
 }
-function clickHandler(_event) {
-    console.log(_event.target);
+function clickHandler(_karte) {
+    console.log(_karte);
 }
+//wie kann ich hier die karte ubergeben auf die geklickt wurde??
 //# sourceMappingURL=test.js.map

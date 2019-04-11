@@ -1,3 +1,4 @@
+namespace Task3{
 interface Karte {
 	zahl: string;
 	zeichen: string;
@@ -264,4 +265,4 @@ function erstelleZiehStapel (_c:Karte):void{
 	`;
 	document.getElementById("ziehstapel").appendChild(prodCard);
 
-}
+}}
