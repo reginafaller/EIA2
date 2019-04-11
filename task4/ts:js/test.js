@@ -192,6 +192,7 @@ let karte32 = {
 };
 document.addEventListener("DOMContentLoaded", HandkartenAnzahl);
 document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("keydown", handleKeydown);
 let alleKarten = [karte1, karte10, karte11, karte12, karte13, karte14, karte15, karte16, karte17, karte18, karte19, karte2, karte20, karte21, karte22, karte23, karte24, karte25, karte26, karte27, karte28, karte29, karte3, karte30, karte31, karte32, karte4, karte5, karte6, karte7, karte8, karte9];
 let hand = [];
 let ablage = [];
@@ -204,23 +205,20 @@ function HandkartenAnzahl() {
 function KartenGenerieren(_Anzahl) {
     for (let i = 0; i <= _Anzahl - 1; i++) {
         let random = Math.floor(Math.random() * alleKarten.length);
-        ErstelleHandKarte(alleKarten[random]);
+        ErstelleHandKarte(alleKarten[random], i);
         hand.push(alleKarten[random]);
         alleKarten.splice(random, 1);
     }
     let StartKarte = Math.floor(Math.random() * alleKarten.length);
     ErstelleAblageKarte(alleKarten[StartKarte]);
-    hand.push(alleKarten[StartKarte]);
+    ablage.push(alleKarten[StartKarte]);
     alleKarten.splice(StartKarte, 1);
-    for (let i = 0; i <= alleKarten.length - 1; i++) {
-        let AblageKarten = Math.floor(Math.random() * alleKarten.length);
-        ErstelleZiehStapel(alleKarten[AblageKarten]);
-    }
+    ErstelleZiehStapel();
 }
-function ErstelleHandKarte(_c) {
+function ErstelleHandKarte(_c, _i) {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
-        `<fieldset class="test">
+        `<fieldset class="test" id="${_i}">
 	<p> ${_c.zahl}</p>
 	<img src="${_c.pic}" alt="${_c.zeichen}" 
 	</fieldset>`;
@@ -235,23 +233,88 @@ function ErstelleAblageKarte(_c) {
 	</div>`;
     document.getElementById("ablage").appendChild(prodCard);
 }
-function ErstelleZiehStapel(_c) {
+function ErstelleZiehStapel() {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
-        `
-	<p> ${_c.zahl}</p>
-	<img src="${_c.pic}" alt="${_c.zeichen}" 
-	`;
+        `<fieldset class="ziehen">
+	</fieldset>`;
     document.getElementById("ziehstapel").appendChild(prodCard);
 }
 function init() {
     for (let i = 0; i < hand.length; i++) {
         let fieldset = document.getElementsByClassName("test")[i];
-        fieldset.addEventListener("click", function () { clickHandler(fieldset); });
+        fieldset.addEventListener("click", clickHandler);
+    }
+    let ziehStapel = document.getElementsByClassName("ziehen")[0];
+    ziehStapel.addEventListener("click", zieheKarte);
+}
+function zieheKarte(_event) {
+    if (alleKarten.length > 0) {
+        let random = Math.floor(Math.random() * alleKarten.length);
+        hand.push(alleKarten[random]);
+        alleKarten.splice(random, 1);
+        document.getElementById("handkarten").innerHTML = '';
+        for (let i = 0; i < hand.length; i++) {
+            ErstelleHandKartenNeu(hand[i], i);
+        }
+        init();
+    }
+    else {
+        console.log('no more cards :(');
     }
 }
-function clickHandler(_karte) {
-    console.log(_karte);
+function clickHandler(_event) {
+    let clickedCard = _event.target;
+    let cardId = clickedCard.id;
+    let cardIdNumber = Number(cardId);
+    let karteInAblage = hand[cardIdNumber];
+    ablage.push(hand[cardIdNumber]);
+    hand.splice(cardIdNumber, 1);
+    ErstelleAblageKarte(karteInAblage);
+    document.getElementById("handkarten").innerHTML = '';
+    for (let i = 0; i < hand.length; i++) {
+        ErstelleHandKartenNeu(hand[i], i);
+    }
+    init();
 }
-//wie kann ich hier die karte ubergeben auf die geklickt wurde??
+function ErstelleHandKartenNeu(_c, _i) {
+    let prodCard = document.createElement("div");
+    prodCard.innerHTML =
+        `<fieldset class="test" id="${_i}">
+	<p> ${_c.zahl}</p>
+	<img src="${_c.pic}" alt="${_c.zeichen}" 
+	</fieldset>`;
+    document.getElementById("handkarten").appendChild(prodCard);
+}
+function handleKeydown(_event) {
+    if (_event.keyCode == 32) {
+        if (alleKarten.length > 0) {
+            let random = Math.floor(Math.random() * alleKarten.length);
+            hand.push(alleKarten[random]);
+            alleKarten.splice(random, 1);
+            document.getElementById("handkarten").innerHTML = '';
+            for (let i = 0; i < hand.length; i++) {
+                ErstelleHandKartenNeu(hand[i], i);
+            }
+            init();
+        }
+        else {
+            console.log('no more cards :(');
+        }
+    }
+}
+function sortSign(_k) {
+    document.getElementById("handkarten").innerHTML = '';
+    var sortedArray = [{ type: karte1, zeichen: 1 },
+        { type: karte2, zeichen: 2 },
+        { type: karte3, zeichen: 3 },
+        { type: karte4, zeichen: 4 },
+        { type: karte5, zeichen: 5 },
+        { type: karte6, zeichen: 6 },
+        { type: karte7, zeichen: 7 },
+        { type: karte8, zeichen: 8 },
+        { type: karte9, zeichen: 9 },];
+    sortedArray.sort(function (a, b) { return a.zeichen - b.zeichen; });
+    console.log(sortedArray);
+}
 //# sourceMappingURL=test.js.map
