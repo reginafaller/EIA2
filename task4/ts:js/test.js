@@ -190,32 +190,33 @@ let karte32 = {
     farbe: "schwarz",
     pic: "../Bilder/kreuz.png",
 };
-document.addEventListener("DOMContentLoaded", HandkartenAnzahl);
+document.addEventListener("DOMContentLoaded", handkartenAnzahl);
 document.addEventListener("DOMContentLoaded", init);
 document.addEventListener("keydown", handleKeydown);
 let alleKarten = [karte1, karte10, karte11, karte12, karte13, karte14, karte15, karte16, karte17, karte18, karte19, karte2, karte20, karte21, karte22, karte23, karte24, karte25, karte26, karte27, karte28, karte29, karte3, karte30, karte31, karte32, karte4, karte5, karte6, karte7, karte8, karte9];
 let hand = [];
 let ablage = [];
-function HandkartenAnzahl() {
+function handkartenAnzahl() {
     let base = 10;
     let anzahlHandkarten = prompt('wie viele Handkarten mochten sie?');
     let Anzahl = parseInt(anzahlHandkarten, base);
-    KartenGenerieren(Anzahl);
+    kartenGenerieren(Anzahl);
 }
-function KartenGenerieren(_Anzahl) {
+function kartenGenerieren(_Anzahl) {
     for (let i = 0; i <= _Anzahl - 1; i++) {
         let random = Math.floor(Math.random() * alleKarten.length);
-        ErstelleHandKarte(alleKarten[random], i);
+        erstelleHandKarte(alleKarten[random], i);
         hand.push(alleKarten[random]);
         alleKarten.splice(random, 1);
     }
     let StartKarte = Math.floor(Math.random() * alleKarten.length);
-    ErstelleAblageKarte(alleKarten[StartKarte]);
+    erstelleAblageKarte(alleKarten[StartKarte]);
     ablage.push(alleKarten[StartKarte]);
     alleKarten.splice(StartKarte, 1);
-    ErstelleZiehStapel();
+    erstelleZiehStapel();
+    erstelleButton();
 }
-function ErstelleHandKarte(_c, _i) {
+function erstelleHandKarte(_c, _i) {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
         `<fieldset class="test" id="${_i}">
@@ -224,7 +225,7 @@ function ErstelleHandKarte(_c, _i) {
 	</fieldset>`;
     document.getElementById("handkarten").appendChild(prodCard);
 }
-function ErstelleAblageKarte(_c) {
+function erstelleAblageKarte(_c) {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
         `<div>
@@ -233,12 +234,18 @@ function ErstelleAblageKarte(_c) {
 	</div>`;
     document.getElementById("ablage").appendChild(prodCard);
 }
-function ErstelleZiehStapel() {
+function erstelleZiehStapel() {
     let prodCard = document.createElement("div");
     prodCard.innerHTML =
         `<fieldset class="ziehen">
 	</fieldset>`;
     document.getElementById("ziehstapel").appendChild(prodCard);
+}
+function erstelleButton() {
+    let prodButton = document.createElement("div");
+    prodButton.innerHTML =
+        `<fieldset class"click"><p>klick here to sort</p></fieldset>`;
+    document.getElementById("button").appendChild(prodButton);
 }
 function init() {
     for (let i = 0; i < hand.length; i++) {
@@ -247,6 +254,11 @@ function init() {
     }
     let ziehStapel = document.getElementsByClassName("ziehen")[0];
     ziehStapel.addEventListener("click", zieheKarte);
+    let button = document.getElementsByClassName("click")[0];
+    button.addEventListener("click", buttonGedruckt);
+}
+function buttonGedruckt(_event) {
+    console.log(_event);
 }
 function zieheKarte(_event) {
     if (alleKarten.length > 0) {
@@ -270,7 +282,7 @@ function clickHandler(_event) {
     let karteInAblage = hand[cardIdNumber];
     ablage.push(hand[cardIdNumber]);
     hand.splice(cardIdNumber, 1);
-    ErstelleAblageKarte(karteInAblage);
+    erstelleAblageKarte(karteInAblage);
     document.getElementById("handkarten").innerHTML = '';
     for (let i = 0; i < hand.length; i++) {
         ErstelleHandKartenNeu(hand[i], i);
@@ -302,19 +314,5 @@ function handleKeydown(_event) {
             console.log('no more cards :(');
         }
     }
-}
-function sortSign(_k) {
-    document.getElementById("handkarten").innerHTML = '';
-    var sortedArray = [{ type: karte1, zeichen: 1 },
-        { type: karte2, zeichen: 2 },
-        { type: karte3, zeichen: 3 },
-        { type: karte4, zeichen: 4 },
-        { type: karte5, zeichen: 5 },
-        { type: karte6, zeichen: 6 },
-        { type: karte7, zeichen: 7 },
-        { type: karte8, zeichen: 8 },
-        { type: karte9, zeichen: 9 },];
-    sortedArray.sort(function (a, b) { return a.zeichen - b.zeichen; });
-    console.log(sortedArray);
 }
 //# sourceMappingURL=test.js.map

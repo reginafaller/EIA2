@@ -201,39 +201,39 @@ let karte32: Karte = {
 	farbe: "schwarz",
 	pic: "../Bilder/kreuz.png",
 }
-document.addEventListener("DOMContentLoaded", HandkartenAnzahl);
-document.addEventListener("DOMContentLoaded", init)
+document.addEventListener("DOMContentLoaded", handkartenAnzahl);
+document.addEventListener("DOMContentLoaded", init);
 document.addEventListener("keydown", handleKeydown);
-
 
 
 let alleKarten: Karte[] = [karte1, karte10, karte11, karte12, karte13, karte14, karte15, karte16, karte17, karte18, karte19, karte2, karte20, karte21, karte22, karte23, karte24, karte25, karte26, karte27, karte28, karte29, karte3, karte30, karte31, karte32, karte4, karte5, karte6, karte7, karte8, karte9];
 let hand: Karte[] = [];
 let ablage: Karte[] = [];
 
-function HandkartenAnzahl(): void {
+function handkartenAnzahl(): void {
 	let base: number = 10;
 	let anzahlHandkarten: string = prompt('wie viele Handkarten mochten sie?');
 	let Anzahl = parseInt(anzahlHandkarten, base)
-	KartenGenerieren(Anzahl);
+	kartenGenerieren(Anzahl);
 }
 
-function KartenGenerieren(_Anzahl: number): void {
+function kartenGenerieren(_Anzahl: number): void {
 	for (let i: number = 0; i <= _Anzahl - 1; i++) {
 		let random: number = Math.floor(Math.random() * alleKarten.length)
-		ErstelleHandKarte(alleKarten[random], i);
+		erstelleHandKarte(alleKarten[random], i);
 		hand.push(alleKarten[random]);
 		alleKarten.splice(random, 1);
 	}
 	let StartKarte: number = Math.floor(Math.random() * alleKarten.length)
-	ErstelleAblageKarte(alleKarten[StartKarte]);
+	erstelleAblageKarte(alleKarten[StartKarte]);
 	ablage.push(alleKarten[StartKarte]);
 	alleKarten.splice(StartKarte, 1);
 
-	ErstelleZiehStapel()
+	erstelleZiehStapel()
+	erstelleButton()
 }
 
-function ErstelleHandKarte(_c: Karte, _i: number): void {
+function erstelleHandKarte(_c: Karte, _i: number): void {
 	let prodCard = document.createElement("div");
 	prodCard.innerHTML =
 		`<fieldset class="test" id="${_i}">
@@ -244,7 +244,7 @@ function ErstelleHandKarte(_c: Karte, _i: number): void {
 
 }
 
-function ErstelleAblageKarte(_c: Karte): void {
+function erstelleAblageKarte(_c: Karte): void {
 	let prodCard = document.createElement("div");
 	prodCard.innerHTML =
 		`<div>
@@ -254,7 +254,7 @@ function ErstelleAblageKarte(_c: Karte): void {
 	document.getElementById("ablage").appendChild(prodCard);
 }
 
-function ErstelleZiehStapel(): void {
+function erstelleZiehStapel(): void {
 	let prodCard = document.createElement("div");
 	prodCard.innerHTML =
 		`<fieldset class="ziehen">
@@ -263,18 +263,32 @@ function ErstelleZiehStapel(): void {
 
 }
 
+function erstelleButton():void {
+	let prodButton = document.createElement("div");
+	prodButton.innerHTML =
+	`<fieldset class"click"><p>klick here to sort</p></fieldset>`;
+	document.getElementById("button").appendChild(prodButton);
+}
+
 function init(): void {
-
-
 	for (let i: number = 0; i < hand.length; i++) {
 
 		let fieldset: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementsByClassName("test")[i];
 		fieldset.addEventListener("click", clickHandler);
 	}
-
 	let ziehStapel: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementsByClassName("ziehen")[0];
 	ziehStapel.addEventListener("click", zieheKarte);
+
+	let button: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementsByClassName("click")[0];
+	button.addEventListener("click", buttonGedruckt);
+
 }
+
+
+function buttonGedruckt(_event: Event) {
+	console.log(_event)
+}
+
 
 function zieheKarte(_event: MouseEvent): void {
 	if (alleKarten.length > 0) {
@@ -299,7 +313,7 @@ function clickHandler(_event: MouseEvent): void {
 	let karteInAblage: Karte = hand[cardIdNumber];
 	ablage.push(hand[cardIdNumber]);
 	hand.splice(cardIdNumber, 1);
-	ErstelleAblageKarte(karteInAblage);
+	erstelleAblageKarte(karteInAblage);
 	document.getElementById("handkarten").innerHTML = '';
 	for (let i: number = 0; i < hand.length; i++) {
 		ErstelleHandKartenNeu(hand[i], i)
@@ -335,19 +349,3 @@ function handleKeydown(_event: KeyboardEvent): void {
 	}
 }
 
-function sortSign (_k:Karte){
-	document.getElementById("handkarten").innerHTML = '';
-	var sortedArray = [{type:karte1, zeichen:1},
-						{type:karte2, zeichen:2},
-						{type:karte3, zeichen:3},
-						{type:karte4, zeichen:4},
-						{type:karte5, zeichen:5},
-						{type:karte6, zeichen:6},
-						{type:karte7, zeichen:7},
-						{type:karte8, zeichen:8},
-						{type:karte9, zeichen:9},];
-
-	sortedArray.sort(function(a,b){return a.zeichen - b.zeichen});
-	console.log (sortedArray)
-	
-}

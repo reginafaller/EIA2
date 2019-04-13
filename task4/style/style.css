@@ -66,9 +66,9 @@ div div {
     left: 20px;
 }
 
-#button {
+
+#button fieldset{
     position: absolute;
-    left: 50px;
-    top: 450px;
-    font-size: 2em;
+    left: 500px;
+    top: 250px;
 }
