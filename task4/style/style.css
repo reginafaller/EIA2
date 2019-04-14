@@ -67,8 +67,9 @@ div div {
 }
 
 
-#button fieldset{
+#button {
     position: absolute;
     left: 500px;
     top: 250px;
+    font-size: 2em;
 }
