@@ -265,7 +265,6 @@ function sortiereKarten(_a:Karte, _b:Karte): number {
 	return 0;
 }
 
-
 function handkartenAnzahl(): void {
 	let base: number = 10;
 	let anzahlHandkarten: string = prompt('wie viele Handkarten mochten sie?');
