@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <script src="../ts:js/test.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Eisdealer</h1>
+        <div class="Preis">
+        <p>Warenkorb</p>
+        <p id="price">0</p>
+        <p class="dollar">$</p>
+        </div>
+    </header>
+    <fieldset>
+        <legend>Eis Konfigurieren</legend>
+        <h2>Eissorten</h2>
+        <input type="checkbox" name="schoko" value="1" id="check1" />
+        <label for="check1">Schoko</label>
+        <input type="checkbox" name="vanille" value="1" id="check2" />
+        <label for="check2">Vanille</label>
+        <input type="checkbox" name="zitrone" value="1.2" id="check3" />
+        <label for="check3">Zitrone</label>
+        <input type="checkbox" name="himbeer" value="1.2" id="check2" />
+        <label for="check2">Himbeer</label>
+        <input type="checkbox" name="nuss" value="1.5" id="check3" />
+        <label for="check3">Nuss</label>
+        <h2>Sahne</h2>
+        <input type="radio" name="ohne Sahne" value="0" id="radio1" />
+        <label for="radio1">Ohne</label>
+        <input type="radio" name="laktosefreie Sahne" value="1.2" id="radio2" />
+        <label for="radio2">Laktosefrei</label>
+        <input type="radio" name="Sahne" value="1" id="radio3" />
+        <label for="radio3">Sahne</label>
+        <h2>Anrichtung</h2>
+        <input type="radio" name="in Waffel" value="1.5" id="radio4" />
+        <label for="radio1">Waffel</label>
+        <input type="radio" name="im Becher" value="1" id="radio5" />
+        <label for="radio2">Becher</label>
+        <h2>Extras</h2>
+        <input type="checkbox" name="chocolate chunks" value="0.8" id="check6" />
+        <label for="check6">chocolate chunks</label>
+        <input type="checkbox" name="cookie dough" value="0.8" id="check7" />
+        <label for="check7">cookie dough</label>
+        <input type="checkbox" name="blueberries" value="1" id="check8" />
+        <label for="check8">blueberries</label>
+        <h2>Sauces</h2>
+        <p>Schoko</p>
+        <input type="range" name="schoko" min="0" max="1" step="0.1" value="0" />
+        <p>Caramell</p>
+        <input type="range" name="caramell" min="0" max="1" step="0.1" value="0" />
+
+    </fieldset>
+    <fieldset>
+        <legend>Lieferdaten</legend>
+        <p>Lieferoption</p>
+        <input type="text" name="Datalist" list="options" placeholder="Lieferoption" />
+        <datalist id="options">
+            <option value="Abholung"> </option>
+            <option value="Lieferung"> </option>
+        </datalist>
+        <p>Name</p>
+        <input type="text" name="Text" placeholder="type here" required />
+        <p>Vorname</p>
+        <input type="text" name="Text" placeholder="type here" required />
+        <p>Adresse</p>
+        <input type="text" name="Text" placeholder="type here" required />
+        <p>Postleitzahl</p>
+        <input type="text" name="Pattern" pattern="[0-9]{5}" placeholder="use RegEx" />
+        <p>Mail</p>
+        <input type="email" name="Mail" placeholder="place @ between" />
+    </fieldset>
+    <footer>
+        <button id="bestellen">bestellen</button>
+        <h3>Ihre Bestellung:</h3>
+        <ul>
+        </ul>
+    </footer>
+</body>
+
+</html>
