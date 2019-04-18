@@ -7,15 +7,12 @@ namespace L04_FormElements {
 
         for (let i: number = 0; i < fieldsets.length; i++) {
             let fieldset: HTMLFieldSetElement = fieldsets[i];
-            fieldset.addEventListener("change", handleChange);
+            fieldset.addEventListener("change", berechnePreis);
         }
     }
 
     let n: number = 0;
 
-    function handleChange(_event: Event): void {
-        berechnePreis(_event)
-    }
 
     function button() {
         let button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("bestellen");
