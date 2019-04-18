@@ -32,7 +32,7 @@ namespace L04_FormElements {
                 fehltArray.push(feldName)
             }
         } if (fehltArray.length == 0) {
-            alert("danke");
+            alert("danke fur ihre Bestellung");
         } else { alert(`bitte ${fehltArray} ausfullen`); }
     }
 

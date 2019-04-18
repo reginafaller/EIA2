@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <script src="../ts:js/test.js"></script>
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
 </head>
 
 <body>
@@ -53,10 +54,13 @@
         <label for="check8">blueberries</label>
         <h2>Sauces</h2>
         <p>Schoko</p>
+        <p class="sliderBeschriftung">0 Liter</p>
         <input type="range" name="sauce" min="0" max="1" step="0.1" value="0" id="10" class="Liter Schoko Sauce"/>
+        <p class="sliderBeschriftung">1 Liter</p>
         <p>Caramell</p>
+        <p class="sliderBeschriftung">0 Liter</p>
         <input type="range" name="sauce" min="0" max="1" step="0.1" value="0" id="10" class="Liter Caramell Sauce"/>
-
+        <p class="sliderBeschriftung">1 Liter</p>
     </fieldset>
     <fieldset>
         <legend>Lieferdaten</legend>
@@ -78,10 +82,12 @@
         <input type="email" name="Mail" value="" placeholder="Email" />
     </fieldset>
     <footer>
+        <div>
         <button id="bestellen">bestellen</button>
         <h3>Ihre Bestellung:</h3>
         <ul id="Bestellung">
         </ul>
+        </div>
     </footer>
 </body>
 
