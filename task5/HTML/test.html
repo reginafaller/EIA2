@@ -22,65 +22,65 @@
     <fieldset>
         <legend>Eis Konfigurieren</legend>
         <h2>Eissorten</h2>
-        <input type="checkbox" name="schoko" value="1" id="check1" />
+        <input type="checkbox" name="schoko" value="1" id="check1" class="1 Kugel Schoko"/>
         <label for="check1">Schoko</label>
-        <input type="checkbox" name="vanille" value="1" id="check2" />
+        <input type="checkbox" name="vanille" value="1" id="check2" class="1 Kugel Vanille"/>
         <label for="check2">Vanille</label>
-        <input type="checkbox" name="zitrone" value="1.2" id="check3" />
+        <input type="checkbox" name="zitrone" value="1.2" id="check3" class="1 Kugel Zitrone"/>
         <label for="check3">Zitrone</label>
-        <input type="checkbox" name="himbeer" value="1.2" id="check2" />
+        <input type="checkbox" name="himbeer" value="1.2" id="check2" class="1 Kugel Himbeer"/>
         <label for="check2">Himbeer</label>
-        <input type="checkbox" name="nuss" value="1.5" id="check3" />
+        <input type="checkbox" name="nuss" value="1.5" id="check3" class="1 Kugel Nuss"/>
         <label for="check3">Nuss</label>
         <h2>Sahne</h2>
-        <input type="radio" name="ohne Sahne" value="0" id="radio1" />
+        <input type="radio" name="Sahne" value="0" id="radio1" class="Keine Sahne"/>
         <label for="radio1">Ohne</label>
-        <input type="radio" name="laktosefreie Sahne" value="1.2" id="radio2" />
+        <input type="radio" name="Sahne" value="1.2" id="radio2" class="Laktosefreie Sahne"/>
         <label for="radio2">Laktosefrei</label>
-        <input type="radio" name="Sahne" value="1" id="radio3" />
+        <input type="radio" name="Sahne" value="1" id="radio3" class="Sahne"/>
         <label for="radio3">Sahne</label>
         <h2>Anrichtung</h2>
-        <input type="radio" name="in Waffel" value="1.5" id="radio4" />
+        <input type="radio" name="anrichtung" value="1.5" id="radio4" class="In Waffel"/>
         <label for="radio1">Waffel</label>
-        <input type="radio" name="im Becher" value="1" id="radio5" />
+        <input type="radio" name="anrichtung" value="1" id="radio5" class="Im Becher"/>
         <label for="radio2">Becher</label>
         <h2>Extras</h2>
-        <input type="checkbox" name="chocolate chunks" value="0.8" id="check6" />
+        <input type="checkbox" name="chocolate chunks" value="0.8" id="check6" class="topping: chocolate chunks"/>
         <label for="check6">chocolate chunks</label>
-        <input type="checkbox" name="cookie dough" value="0.8" id="check7" />
+        <input type="checkbox" name="cookie dough" value="0.8" id="check7" class="topping: cookie dough"/>
         <label for="check7">cookie dough</label>
-        <input type="checkbox" name="blueberries" value="1" id="check8" />
+        <input type="checkbox" name="blueberries" value="1" id="check8" class="topping: blueberries"/>
         <label for="check8">blueberries</label>
         <h2>Sauces</h2>
         <p>Schoko</p>
-        <input type="range" name="schoko" min="0" max="1" step="0.1" value="0" />
+        <input type="range" name="sauce" min="0" max="1" step="0.1" value="0" id="10" class="Liter Schoko Sauce"/>
         <p>Caramell</p>
-        <input type="range" name="caramell" min="0" max="1" step="0.1" value="0" />
+        <input type="range" name="sauce" min="0" max="1" step="0.1" value="0" id="10" class="Liter Caramell Sauce"/>
 
     </fieldset>
     <fieldset>
         <legend>Lieferdaten</legend>
         <p>Lieferoption</p>
-        <input type="text" name="Datalist" list="options" placeholder="Lieferoption" />
+        <input type="text" name="Lieferoption" list="options" value="" placeholder="Lieferoption" />
         <datalist id="options">
             <option value="Abholung"> </option>
             <option value="Lieferung"> </option>
         </datalist>
         <p>Name</p>
-        <input type="text" name="Text" placeholder="type here" required />
+        <input type="text" name="Name" value="" placeholder="type here" required />
         <p>Vorname</p>
-        <input type="text" name="Text" placeholder="type here" required />
+        <input type="text" name="Vorname" value="" placeholder="type here" required />
         <p>Adresse</p>
-        <input type="text" name="Text" placeholder="type here" required />
+        <input type="text" name="Adresse" value="" placeholder="type here" required />
         <p>Postleitzahl</p>
-        <input type="text" name="Pattern" pattern="[0-9]{5}" placeholder="use RegEx" />
+        <input type="text" name="Postleitzahl" value="" pattern="[0-9]{5}" placeholder="PLZ" />
         <p>Mail</p>
-        <input type="email" name="Mail" placeholder="place @ between" />
+        <input type="email" name="Mail" value="" placeholder="Email" />
     </fieldset>
     <footer>
         <button id="bestellen">bestellen</button>
         <h3>Ihre Bestellung:</h3>
-        <ul>
+        <ul id="Bestellung">
         </ul>
     </footer>
 </body>
