@@ -1,0 +1,96 @@
+@media only screen and (max-width: 450px){
+.Preis{
+    position: absolute;
+    margin: 10px;
+    top: 0;
+    right: 10px;
+}
+#price{
+    display: inline-block;
+}
+.dollar{
+    display: inline-block;
+}
+header p {
+    line-height: 10px
+}
+header{
+    background-color: rgba(166, 9, 187, 0.5);
+    padding: 10px;
+    margin: 10px;
+}
+
+footer{
+    background-color: rgba(36, 148, 163, 0.527);
+    padding: 10px;
+    margin: 10px;
+}
+
+#bestellen{
+    bottom: 25px;
+    right: 10px;
+}
+    
+}
+
+* {
+    font-family: 'Pacifico', cursive;
+}
+
+
+
+.sliderBeschriftung{
+    display: inline-block;
+}
+
+label{
+    font-size: 2em;
+}
+
+@media only screen and (min-width: 450px){
+    header{
+        background-color: rgba(166, 9, 187, 0.5);
+        width: 70%;
+        left:0;
+        padding: 20px;
+    }
+    
+    h1{
+        font-size: 2em;
+    }
+    .Preis{
+    position: absolute;
+    margin: 10px;
+    top: 0;
+    right: 50%;
+}
+    footer{
+    position: absolute;
+    width: 25%;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: rgba(36, 148, 163, 0.527);
+}
+fieldset{
+    width: 70%;
+    left: 0;
+    margin-top: 50px;
+}
+
+#bestellen{
+    font-size: 2em;
+    background-color: rgba(166, 9, 187, 0.5);
+}
+footer div{
+    margin: 25px;
+}
+#price{
+    display: inline-block;
+}
+.dollar{
+    display: inline-block;
+}
+
+
+}
