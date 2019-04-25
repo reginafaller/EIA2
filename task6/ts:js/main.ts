@@ -6,10 +6,10 @@ namespace L04_AssocArraysAndExport {
         console.log(data);
         displayHomoVar(data)
         let fieldsets: HTMLCollectionOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
-
+        
         for (let i: number = 0; i < fieldsets.length; i++) {
             let fieldset: HTMLFieldSetElement = fieldsets[i];
-            fieldset.addEventListener("change", berechnePreis);
+            fieldset.addEventListener("change", berechnePreis)
         }
     }
     
@@ -20,21 +20,27 @@ namespace L04_AssocArraysAndExport {
             for (let i:number = 0; i<speicher.length; i++){
                 erstelleBoxen(speicher[i]);
             }
-        }}
+        }} 
 
     function erstelleBoxen(_a:HeteroPredefined):void{
         let checkbox: HTMLInputElement = document.createElement("input");
         let label: HTMLLabelElement = document.createElement("label");
         label.setAttribute("for", _a.id);
-        label.innerText = _a.name;
+        
         
         checkbox.setAttribute("type",_a.type);
+        checkbox.setAttribute("alt",_a.price.toString());
+        checkbox.setAttribute("min", _a.min.toString());
+        checkbox.setAttribute("max", _a.max.toString());
         checkbox.setAttribute("name",_a.name);
         checkbox.setAttribute("value",_a.value.toString());
         checkbox.setAttribute("id",_a.id);
         checkbox.setAttribute("class",_a.class);
         checkbox.appendChild(label);
-        document.getElementById("eisKonfig").appendChild(checkbox);
+        
+        label.innerText = _a.name;
+        document.getElementById("eisKonfig").appendChild(label);
+        label.appendChild(checkbox);
     }
 
 
@@ -70,6 +76,14 @@ namespace L04_AssocArraysAndExport {
                 bezeichung.innerHTML = `<p>${input[i].className}</p>`
                 document.getElementById("Bestellung").appendChild(bezeichung)
 
+            }
+            if(input[i].type == "number" && Number(input[i].value) > 0){
+                let preis: number = Number(input[i].alt);
+                let value: number = Number(input[i].value);
+                n += preis * value;
+                let bezeichung = document.createElement("li");
+                bezeichung.innerHTML = `<p>${value} Kugel ${input[i].name}</p>`
+                document.getElementById("Bestellung").appendChild(bezeichung);
             }
             if (input[i].name == "sauce") {
                 let stellungSlider: number = Number(input[i].value)

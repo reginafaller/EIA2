@@ -23,14 +23,18 @@ var L04_AssocArraysAndExport;
         let checkbox = document.createElement("input");
         let label = document.createElement("label");
         label.setAttribute("for", _a.id);
-        label.innerText = _a.name;
         checkbox.setAttribute("type", _a.type);
+        checkbox.setAttribute("alt", _a.price.toString());
+        checkbox.setAttribute("min", _a.min.toString());
+        checkbox.setAttribute("max", _a.max.toString());
         checkbox.setAttribute("name", _a.name);
         checkbox.setAttribute("value", _a.value.toString());
         checkbox.setAttribute("id", _a.id);
         checkbox.setAttribute("class", _a.class);
         checkbox.appendChild(label);
-        document.getElementById("eisKonfig").appendChild(checkbox);
+        label.innerText = _a.name;
+        document.getElementById("eisKonfig").appendChild(label);
+        label.appendChild(checkbox);
     }
     let n = 0;
     function button() {
@@ -64,6 +68,14 @@ var L04_AssocArraysAndExport;
                 n += preis;
                 let bezeichung = document.createElement("li");
                 bezeichung.innerHTML = `<p>${input[i].className}</p>`;
+                document.getElementById("Bestellung").appendChild(bezeichung);
+            }
+            if (input[i].type == "number" && Number(input[i].value) > 0) {
+                let preis = Number(input[i].alt);
+                let value = Number(input[i].value);
+                n += preis * value;
+                let bezeichung = document.createElement("li");
+                bezeichung.innerHTML = `<p>${value} Kugel ${input[i].name}</p>`;
                 document.getElementById("Bestellung").appendChild(bezeichung);
             }
             if (input[i].name == "sauce") {
