@@ -3,7 +3,7 @@ namespace L04_AssocArraysAndExport {
     document.addEventListener("DOMContentLoaded", button)
 
     function init(_event: Event): void {
-        console.log(data);
+       // console.log(data);
         displayHomoVar(data)
         let fieldsets: HTMLCollectionOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
         
@@ -14,19 +14,24 @@ namespace L04_AssocArraysAndExport {
     }
     
     function displayHomoVar(_homoVar: HomogenousArray): void {
+        
         for (let array in _homoVar){
             let speicher: HeteroPredefined[] = _homoVar[array];
-
+            console.log(array)
+            let div:HTMLDivElement= document.createElement("div");
+            div.innerHTML = `<h2>${array}</h2>`;
+            document.getElementById("eisKonfig").appendChild(div);
             for (let i:number = 0; i<speicher.length; i++){
                 erstelleBoxen(speicher[i]);
             }
-        }} 
+        }
+        
+    } 
 
     function erstelleBoxen(_a:HeteroPredefined):void{
         let checkbox: HTMLInputElement = document.createElement("input");
         let label: HTMLLabelElement = document.createElement("label");
         label.setAttribute("for", _a.id);
-        
         
         checkbox.setAttribute("type",_a.type);
         checkbox.setAttribute("alt",_a.price.toString());
@@ -41,6 +46,7 @@ namespace L04_AssocArraysAndExport {
         label.innerText = _a.name;
         document.getElementById("eisKonfig").appendChild(label);
         label.appendChild(checkbox);
+       
     }
 
 

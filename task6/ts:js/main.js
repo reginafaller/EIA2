@@ -3,7 +3,7 @@ var L04_AssocArraysAndExport;
     window.addEventListener("load", init);
     document.addEventListener("DOMContentLoaded", button);
     function init(_event) {
-        console.log(L04_AssocArraysAndExport.data);
+        // console.log(data);
         displayHomoVar(L04_AssocArraysAndExport.data);
         let fieldsets = document.getElementsByTagName("fieldset");
         for (let i = 0; i < fieldsets.length; i++) {
@@ -14,6 +14,10 @@ var L04_AssocArraysAndExport;
     function displayHomoVar(_homoVar) {
         for (let array in _homoVar) {
             let speicher = _homoVar[array];
+            console.log(array);
+            let div = document.createElement("div");
+            div.innerHTML = `<h2>${array}</h2>`;
+            document.getElementById("eisKonfig").appendChild(div);
             for (let i = 0; i < speicher.length; i++) {
                 erstelleBoxen(speicher[i]);
             }
