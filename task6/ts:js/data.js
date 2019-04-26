@@ -9,13 +9,13 @@ var L04_AssocArraysAndExport;
             { sorte: "eis", type: "number", name: "nuss", step: 1, min: 0, max: 3, value: 0, id: "check5", price: 1, class: "1 Kugel Nuss" }
         ],
         "sahne": [
-            { sorte: "sahne", type: "radio", name: "Keine Sahne", value: 0, id: "radio1", class: "Keine Sahne", step: 0, min: 0, max: 0, price: 0 },
-            { sorte: "sahne", type: "radio", name: "Laktosefreie Sahne", value: 1.2, id: "radio2", class: "Laktosefreie Sahne", step: 0, min: 0, max: 0, price: 0 },
-            { sorte: "sahne", type: "radio", name: "Sahne", value: 1, id: "radio3", class: "Sahne", step: 0, min: 0, max: 0, price: 0 }
+            { sorte: "sahne", type: "radio", name: "Keine Sahne", value: 0, id: "radio", class: "Keine Sahne", step: 0, min: 0, max: 0, price: 0 },
+            { sorte: "sahne", type: "radio", name: "Laktosefreie Sahne", value: 1.2, id: "radio", class: "Laktosefreie Sahne", step: 0, min: 0, max: 0, price: 0 },
+            { sorte: "sahne", type: "radio", name: "Sahne", value: 1, id: "radio", class: "Sahne", step: 0, min: 0, max: 0, price: 0 }
         ],
         "Anrichtung": [
-            { sorte: "anricht", type: "radio", name: "In Waffel", value: 1.5, id: "radio4", class: "In Waffel", step: 0, min: 0, max: 0, price: 0 },
-            { sorte: "anricht", type: "radio", name: "Im Becher", value: 1, id: "radio5", class: "Im Becher", step: 0, min: 0, max: 0, price: 0 },
+            { sorte: "anricht", type: "radio", name: "In Waffel", value: 1.5, id: "radio2", class: "In Waffel", step: 0, min: 0, max: 0, price: 0 },
+            { sorte: "anricht", type: "radio", name: "Im Becher", value: 1, id: "radio2", class: "Im Becher", step: 0, min: 0, max: 0, price: 0 },
         ],
         "Extras": [
             { sorte: "extra", type: "checkbox", name: "chocolate chunks", value: 0.8, id: "check6", class: "topping: chocolate chunks", step: 0, min: 0, max: 0, price: 0 },

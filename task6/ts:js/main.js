@@ -3,7 +3,6 @@ var L04_AssocArraysAndExport;
     window.addEventListener("load", init);
     document.addEventListener("DOMContentLoaded", button);
     function init(_event) {
-        // console.log(data);
         displayHomoVar(L04_AssocArraysAndExport.data);
         let fieldsets = document.getElementsByTagName("fieldset");
         for (let i = 0; i < fieldsets.length; i++) {
@@ -31,9 +30,9 @@ var L04_AssocArraysAndExport;
         checkbox.setAttribute("alt", _a.price.toString());
         checkbox.setAttribute("min", _a.min.toString());
         checkbox.setAttribute("max", _a.max.toString());
-        checkbox.setAttribute("name", _a.name);
+        checkbox.setAttribute("name", _a.id);
         checkbox.setAttribute("value", _a.value.toString());
-        checkbox.setAttribute("id", _a.id);
+        checkbox.setAttribute("id", _a.name);
         checkbox.setAttribute("class", _a.class);
         checkbox.appendChild(label);
         label.innerText = _a.name;
