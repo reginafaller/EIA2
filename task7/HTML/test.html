@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <script src="../ts:js/main.js"></script>
+    <script src="../ts:js/data.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
+</head>
+
+<body>
+    <header>
+        <h1>Eisdealer</h1>
+        <div class="Preis">
+        <p>Warenkorb</p>
+        <p id="price">0</p>
+        <p class="dollar">$</p>
+        </div>
+    </header>
+    <fieldset id="eisKonfig">
+        <legend>Eis Konfigurieren</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Lieferdaten</legend>
+        <p>Lieferoption</p>
+        <input type="text" name="Lieferoption" list="options" value="" placeholder="Lieferoption" />
+        <datalist id="options">
+            <option value="Abholung"> </option>
+            <option value="Lieferung"> </option>
+        </datalist>
+        <p>Name</p>
+        <input type="text" name="Name" value="" placeholder="type here" required />
+        <p>Vorname</p>
+        <input type="text" name="Vorname" value="" placeholder="type here" required />
+        <p>Adresse</p>
+        <input type="text" name="Adresse" value="" placeholder="type here" required />
+        <p>Postleitzahl</p>
+        <input type="text" name="Postleitzahl" value="" pattern="[0-9]{5}" placeholder="PLZ" />
+        <p>Mail</p>
+        <input type="email" name="Mail" value="" placeholder="Email" />
+    </fieldset>
+    <footer>
+        <div>
+        <button id="bestellen">bestellen</button>
+        <h3>Ihre Bestellung:</h3>
+        <ul id="Bestellung">
+        </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
