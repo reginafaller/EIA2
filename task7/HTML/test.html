@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
-    <script src="../ts:js/main.js"></script>
-    <script src="../ts:js/data.js"></script>
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
+	<title>SendData</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="SendData.css" type="text/css" media="screen"/>
+	<script src="SendData.js" type="text/javascript" charset="utf-8"></script>
 </head>
-
 <body>
-    <header>
-        <h1>Eisdealer</h1>
-        <div class="Preis">
-        <p>Warenkorb</p>
-        <p id="price">0</p>
-        <p class="dollar">$</p>
-        </div>
-    </header>
-    <fieldset id="eisKonfig">
-        <legend>Eis Konfigurieren</legend>
-    </fieldset>
-    <fieldset>
-        <legend>Lieferdaten</legend>
-        <p>Lieferoption</p>
-        <input type="text" name="Lieferoption" list="options" value="" placeholder="Lieferoption" />
-        <datalist id="options">
-            <option value="Abholung"> </option>
-            <option value="Lieferung"> </option>
-        </datalist>
-        <p>Name</p>
-        <input type="text" name="Name" value="" placeholder="type here" required />
-        <p>Vorname</p>
-        <input type="text" name="Vorname" value="" placeholder="type here" required />
-        <p>Adresse</p>
-        <input type="text" name="Adresse" value="" placeholder="type here" required />
-        <p>Postleitzahl</p>
-        <input type="text" name="Postleitzahl" value="" pattern="[0-9]{5}" placeholder="PLZ" />
-        <p>Mail</p>
-        <input type="email" name="Mail" value="" placeholder="Email" />
-    </fieldset>
-    <footer>
-        <div>
-        <button id="bestellen">bestellen</button>
-        <h3>Ihre Bestellung:</h3>
-        <ul id="Bestellung">
-        </ul>
-        </div>
-    </footer>
-</body>
+	<!--  - ->
+	<form action="https://eia2-testserver.herokuapp.com" method="get">
+	<!--  -->
+	<form action="http://localhost:8100" method="get">
+	<!--  - ->
+	<form action="SendData.html" method="get">
+	<!--  -->
+		<fieldset id="radio">
+			<legend> Choose color with radio buttons </legend>
+			<input type="radio" name="color" value="red" id="red" />
+			<label for="red">Red</label>
+			<input type="radio" name="color" value="green" id="green"/>
+			<label for="green">Green</label>
+			<input type="radio" name="color" value="blue" id="blue"/>
+			<label for="blue">Blue</label>
+		</fieldset>
+		
+		<fieldset id="checkboxes">
+			<legend> Choose one or more </legend>
+			<input type="checkbox" name="break" id="breakfast" value="yes">
+			<label for="breakfast">Breakfast</label>
+			<input type="checkbox" name="lunch" id="lunch" value="lunch">
+			<label for="lunch">Lunch</label>
+			<input type="checkbox" name="dinner" id="dinner">
+			<label for="dinner">Dinner</label>
+		</fieldset>
+		<input type="text" name="text" value="type here"/>
+		
+		<button type="submit">Submit</button>
+		<!--  -->
+	</form>
+	<hr>
+	<fieldset id="div">
+			<legend> Pick color with divs </legend>
+			<div></div>
+			<div></div>
+			<div></div>
+		</fieldset>
+	
 
+</body>
 </html>
