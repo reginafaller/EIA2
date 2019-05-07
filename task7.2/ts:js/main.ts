@@ -42,10 +42,13 @@ namespace L04_AssocArraysAndExport {
         checkbox.setAttribute("id",_a.id);
         checkbox.setAttribute("class",_a.class);
         checkbox.appendChild(label);
-        
+
         label.innerText = _a.name;
         document.getElementById("eisKonfig").appendChild(label);
         label.appendChild(checkbox);
+        if(_a.type == "radio"){
+            checkbox.setAttribute("name", _a.id)
+        }
        
     }
 
@@ -76,7 +79,7 @@ namespace L04_AssocArraysAndExport {
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         for (let i: number = 0; i < input.length; i++) {
             if (input[i].checked == true) {
-                let preis: number = Number(input[i].value)
+                let preis: number = Number(input[i].alt)
                 n += preis;
                 let bezeichung = document.createElement("li");
                 bezeichung.innerHTML = `<p>${input[i].className}</p>`

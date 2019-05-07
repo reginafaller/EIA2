@@ -38,6 +38,9 @@ var L04_AssocArraysAndExport;
         label.innerText = _a.name;
         document.getElementById("eisKonfig").appendChild(label);
         label.appendChild(checkbox);
+        if (_a.type == "radio") {
+            checkbox.setAttribute("name", _a.id);
+        }
     }
     let n = 0;
     function button() {
@@ -67,7 +70,7 @@ var L04_AssocArraysAndExport;
         let input = document.getElementsByTagName("input");
         for (let i = 0; i < input.length; i++) {
             if (input[i].checked == true) {
-                let preis = Number(input[i].value);
+                let preis = Number(input[i].alt);
                 n += preis;
                 let bezeichung = document.createElement("li");
                 bezeichung.innerHTML = `<p>${input[i].className}</p>`;
