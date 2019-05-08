@@ -3,24 +3,11 @@ var L04_AssocArraysAndExport;
     window.addEventListener("load", init);
     let address = "https://fallerr.herokuapp.com";
     function init(_event) {
-        setupColorDivs();
+        sendRequestWithCustomData(_event);
     }
-    function setupColorDivs() {
-        let colors = ["red", "green", "blue"];
-        let divs = document.getElementsByTagName("div");
-        for (let i = 0; i < divs.length; i++) {
-            divs[i].style.backgroundColor = colors[i];
-            divs[i].addEventListener("click", handleClickOnDiv);
-        }
-    }
-    function handleClickOnDiv(_event) {
-        let style = _event.target.style;
-        console.log(style.backgroundColor);
-        sendRequestWithCustomData(style.backgroundColor);
-    }
-    function sendRequestWithCustomData(_color) {
+    function sendRequestWithCustomData(_event) {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", address + "?color=" + _color, true);
+        xhr.open("GET", address, true);
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
     }
