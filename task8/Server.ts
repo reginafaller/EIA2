@@ -1,7 +1,7 @@
 import * as Http from "http"; // kreiert ein http objekt in meinem code, der interpreter sucht nach moglichen importen von http modulen und sie an des http objekt in meinem code anhangen
 import * as Url from "url";
 
-namespace L05_Server { // namespace offnen 
+namespace L04_AssocArraysAndExport  { // namespace offnen 
 
 
 	console.log("Starting server"); // gibt in der konsole aus: starting server 
@@ -27,9 +27,8 @@ namespace L05_Server { // namespace offnen
 		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 		for (let key in url.query)
 			_response.write(key + ":" + url.query[key] + "<br/>");
-			
-		_response.write(_request.url); //infos werden in die URL geschrieben 
 
+		
 		_response.end(); //signalisiert dem server das alle antworten gesendet wurden und die nachricht vollstandig ist 
 	}
 }

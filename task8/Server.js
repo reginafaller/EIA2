@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http"); // kreiert ein http objekt in meinem code, der interpreter sucht nach moglichen importen von http modulen und sie an des http objekt in meinem code anhangen
 const Url = require("url");
-var L05_Server;
-(function (L05_Server) {
+var L04_AssocArraysAndExport;
+(function (L04_AssocArraysAndExport) {
     console.log("Starting server"); // gibt in der konsole aus: starting server 
     let port = Number(process.env.PORT); // env.Port ist gleich 4444, mit Port sagt man dem web server, auf welches port er horen soll
     if (!port) // falls der prot nicht gefunden wird, nimm diese altervative
@@ -22,8 +22,7 @@ var L05_Server;
         let url = Url.parse(_request.url, true);
         for (let key in url.query)
             _response.write(key + ":" + url.query[key] + "<br/>");
-        _response.write(_request.url); //infos werden in die URL geschrieben 
         _response.end(); //signalisiert dem server das alle antworten gesendet wurden und die nachricht vollstandig ist 
     }
-})(L05_Server || (L05_Server = {}));
+})(L04_AssocArraysAndExport || (L04_AssocArraysAndExport = {}));
 //# sourceMappingURL=Server.js.map

@@ -1,6 +1,6 @@
 namespace L04_AssocArraysAndExport {
 window.addEventListener("load", init);
-    let address: string = "https://fallerr.herokuapp.com";
+    let address: string = "http://localhost:8100";
 
 
     function init(_event:Event){
@@ -19,6 +19,7 @@ window.addEventListener("load", init);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
+            console.log(xhr.responseURL)
         }
     }
 }
