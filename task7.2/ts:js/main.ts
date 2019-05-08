@@ -41,14 +41,14 @@ namespace L04_AssocArraysAndExport {
         checkbox.setAttribute("value",_a.value.toString());
         checkbox.setAttribute("id",_a.id);
         checkbox.setAttribute("class",_a.class);
+
         checkbox.appendChild(label);
 
-        label.innerText = _a.name;
+        label.innerText = _a.id;
         document.getElementById("eisKonfig").appendChild(label);
         label.appendChild(checkbox);
-        if(_a.type == "radio"){
-            checkbox.setAttribute("name", _a.id)
-        }
+
+        console.log(_a.class)
        
     }
 
@@ -82,7 +82,7 @@ namespace L04_AssocArraysAndExport {
                 let preis: number = Number(input[i].alt)
                 n += preis;
                 let bezeichung = document.createElement("li");
-                bezeichung.innerHTML = `<p>${input[i].className}</p>`
+                bezeichung.innerHTML = `<p>${input[i].name}</p>`
                 document.getElementById("Bestellung").appendChild(bezeichung)
 
             }
@@ -100,7 +100,7 @@ namespace L04_AssocArraysAndExport {
                 n += stellungSlider * preisSlider;
                 if (stellungSlider > 0) {
                     let bezeichung = document.createElement("li");
-                    bezeichung.innerHTML = `<p>${stellungSlider} ${input[i].className}</p>`
+                    bezeichung.innerHTML = `<p>${stellungSlider} ${input[i].name}</p>`
                     document.getElementById("Bestellung").appendChild(bezeichung)
                 }
             }
