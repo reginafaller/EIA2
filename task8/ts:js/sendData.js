@@ -2,6 +2,7 @@ var L04_AssocArraysAndExport;
 (function (L04_AssocArraysAndExport) {
     window.addEventListener("load", button);
     let address = "https://fallerr.herokuapp.com/";
+    //let address:string = "http://localhost:8100";
     function button(_event) {
         let button = document.getElementById("sendOrder");
         button.addEventListener("click", sendRequestWithCustomData);

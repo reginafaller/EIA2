@@ -16,7 +16,6 @@ var L04_AssocArraysAndExport;
         console.log("Listening"); //gibt auf der console listening aus 
     }
     function handleRequest(_request, _response) {
-        console.log("I hear voices!"); // gibt auf der konsole aus i hear voices
         _response.setHeader("content-type", "text/html; charset=utf-8"); //response bekommt einen header, welcher sich in der wartescghlange befindet und noch nicht an den client gesendet wurde 
         _response.setHeader("Access-Control-Allow-Origin", "*"); //header wird wieder ausgelesen, diesmal wird alles ausgelesen 
         let url = Url.parse(_request.url, true);
@@ -26,4 +25,4 @@ var L04_AssocArraysAndExport;
         _response.end(); //signalisiert dem server das alle antworten gesendet wurden und die nachricht vollstandig ist 
     }
 })(L04_AssocArraysAndExport || (L04_AssocArraysAndExport = {}));
-//# sourceMappingURL=Server.js.map
+//# sourceMappingURL=Server8.js.map

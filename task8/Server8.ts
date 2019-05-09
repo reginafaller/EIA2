@@ -19,8 +19,6 @@ namespace L04_AssocArraysAndExport  { // namespace offnen
 	}
 
 	function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void { //die funktion wird aufgerufen und erwartet zwei ubergabeparameter, _request fordert eine info und _response antwortet darauf
-		console.log("I hear voices!"); // gibt auf der konsole aus i hear voices
-
 		_response.setHeader("content-type", "text/html; charset=utf-8"); //response bekommt einen header, welcher sich in der wartescghlange befindet und noch nicht an den client gesendet wurde 
 		_response.setHeader("Access-Control-Allow-Origin", "*"); //header wird wieder ausgelesen, diesmal wird alles ausgelesen 
 		
