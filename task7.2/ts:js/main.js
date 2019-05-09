@@ -31,7 +31,7 @@ var L04_AssocArraysAndExport;
         checkbox.setAttribute("min", _a.min.toString());
         checkbox.setAttribute("max", _a.max.toString());
         checkbox.setAttribute("name", _a.name);
-        checkbox.setAttribute("value", _a.value.toString());
+        checkbox.setAttribute("value", _a.value);
         checkbox.setAttribute("id", _a.id);
         checkbox.setAttribute("class", _a.class);
         checkbox.appendChild(label);
