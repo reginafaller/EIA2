@@ -1,6 +1,6 @@
 namespace L04_AssocArraysAndExport {
 window.addEventListener("load", button);
-    let address: string = "http://localhost:8100/";
+    let address: string = "https://fallerr.herokuapp.com/";
 
     function button(_event:Event) {
         let button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("sendOrder");
