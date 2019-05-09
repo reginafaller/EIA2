@@ -9,7 +9,7 @@ var L04_AssocArraysAndExport;
             { sorte: "eis", type: "number", name: "nuss", step: 1, min: 0, max: 3, value: "0", id: "nuss", price: 1, class: "1 Kugel Nuss" }
         ],
         "sahne": [
-            { sorte: "sahne", type: "radio", name: "sahne", value: "ohne", id: "ohne", class: "sahne", step: 0, min: 0, max: 0, price: 0 },
+            { sorte: "sahne", type: "radio", name: "sahne", value: "ohne", id: "ohne", class: "ohne", step: 0, min: 0, max: 0, price: 0 },
             { sorte: "sahne", type: "radio", name: "sahne", value: "Sahne", id: "sahne", class: "sahne", step: 0, min: 0, max: 0, price: 1 },
             { sorte: "sahne", type: "radio", name: "sahne", value: "laktosefreie Sahne", id: "laktosefreie Sahne", class: "Sahne", step: 0, min: 0, max: 0, price: 1.2 }
         ],

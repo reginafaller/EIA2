@@ -6,13 +6,10 @@ var L04_FormElements;
         let fieldsets = document.getElementsByTagName("fieldset");
         for (let i = 0; i < fieldsets.length; i++) {
             let fieldset = fieldsets[i];
-            fieldset.addEventListener("change", handleChange);
+            fieldset.addEventListener("change", berechnePreis);
         }
     }
     let n = 0;
-    function handleChange(_event) {
-        berechnePreis(_event);
-    }
     function button() {
         let button = document.getElementById("bestellen");
         button.addEventListener("click", validate);
@@ -28,7 +25,7 @@ var L04_FormElements;
             }
         }
         if (fehltArray.length == 0) {
-            alert("danke");
+            alert("danke fur ihre Bestellung");
         }
         else {
             alert(`bitte ${fehltArray} ausfullen`);

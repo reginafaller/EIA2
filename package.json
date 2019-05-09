@@ -3,9 +3,9 @@
 	"version": "1.0.0",
 	"description": "Minimal server just bouncing the URL",
 	"author": "Jirka, adapted by Lukas",
-	"main": "Server8.js",
+	"main": "Server.js",
 	"scripts": {
-		"start": "node Server8.js"
+		"start": "node Server.js"
 	},
 	"engines": {
 		"node": "8.11.3"

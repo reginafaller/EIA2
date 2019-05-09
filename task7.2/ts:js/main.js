@@ -71,7 +71,7 @@ var L04_AssocArraysAndExport;
                 let preis = Number(input[i].alt);
                 n += preis;
                 let bezeichung = document.createElement("li");
-                bezeichung.innerHTML = `<p>${input[i].name}</p>`;
+                bezeichung.innerHTML = `<p>${input[i].id}</p>`;
                 document.getElementById("Bestellung").appendChild(bezeichung);
             }
             if (input[i].type == "number" && Number(input[i].value) > 0) {

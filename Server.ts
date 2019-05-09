@@ -1,6 +1,9 @@
 import * as Http from "http"; // kreiert ein http objekt in meinem code, der interpreter sucht nach moglichen importen von http modulen und sie an des http objekt in meinem code anhangen
+import * as Url from "url";
 
-namespace L05_Server { // namespace offnen 
+namespace L04_AssocArraysAndExport  { // namespace offnen 
+
+
 	console.log("Starting server"); // gibt in der konsole aus: starting server 
 	let port: number = Number(process.env.PORT); // env.Port ist gleich 4444, mit Port sagt man dem web server, auf welches port er horen soll
 	if (!port) // falls der prot nicht gefunden wird, nimm diese altervative
@@ -16,13 +19,14 @@ namespace L05_Server { // namespace offnen
 	}
 
 	function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void { //die funktion wird aufgerufen und erwartet zwei ubergabeparameter, _request fordert eine info und _response antwortet darauf
-		console.log("I hear voices!"); // gibt auf der konsole aus i hear voices
-
 		_response.setHeader("content-type", "text/html; charset=utf-8"); //response bekommt einen header, welcher sich in der wartescghlange befindet und noch nicht an den client gesendet wurde 
 		_response.setHeader("Access-Control-Allow-Origin", "*"); //header wird wieder ausgelesen, diesmal wird alles ausgelesen 
-
-		_response.write(_request.url); //infos werden in die URL geschrieben 
-
+		
+		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+		for (let key in url.query)
+			_response.write(key + ":" + url.query[key] + "<br/>");
+			console.log(url.query);
+		
 		_response.end(); //signalisiert dem server das alle antworten gesendet wurden und die nachricht vollstandig ist 
 	}
 }
