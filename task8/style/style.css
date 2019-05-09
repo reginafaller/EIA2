@@ -46,6 +46,15 @@ label{
     font-size: 16px;
 }
 
+#serverBestellung{
+    background-color: rgb(244, 184, 250);
+    left: 30%;
+    right: 30%;
+    top: 30%;
+    z-index: 5;
+    position: absolute;
+
+}
 @media only screen and (min-width: 450px){
     header{
         background-color: rgba(166, 9, 187, 0.5);
