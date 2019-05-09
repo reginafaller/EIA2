@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <script src="../ts:js/main.js"></script>
     <script src="../ts:js/data.js"></script>
-    <script src="../Server.js"></script>
     <script src="../ts:js/sendData.js"></script>
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
@@ -24,6 +23,7 @@
         <p class="dollar">$</p>
         </div>
     </header>
+    <div id="serverBestellung"></div>
     <fieldset id="eisKonfig">
         <legend>Eis Konfigurieren</legend>
     </fieldset>
@@ -49,6 +49,7 @@
     <footer>
         <div>
         <button type="submit" id="bestellen">bestellen</button>
+        <button type="button" id="sendOrder">BestelleAsyncron</button>
         <h3>Ihre Bestellung:</h3>
         <ul id="Bestellung">
         </ul>

@@ -23,11 +23,11 @@ namespace L04_AssocArraysAndExport  { // namespace offnen
 
 		_response.setHeader("content-type", "text/html; charset=utf-8"); //response bekommt einen header, welcher sich in der wartescghlange befindet und noch nicht an den client gesendet wurde 
 		_response.setHeader("Access-Control-Allow-Origin", "*"); //header wird wieder ausgelesen, diesmal wird alles ausgelesen 
-
+		
 		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 		for (let key in url.query)
 			_response.write(key + ":" + url.query[key] + "<br/>");
-
+			console.log(url.query);
 		
 		_response.end(); //signalisiert dem server das alle antworten gesendet wurden und die nachricht vollstandig ist 
 	}

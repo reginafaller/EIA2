@@ -22,6 +22,7 @@ var L04_AssocArraysAndExport;
         let url = Url.parse(_request.url, true);
         for (let key in url.query)
             _response.write(key + ":" + url.query[key] + "<br/>");
+        console.log(url.query);
         _response.end(); //signalisiert dem server das alle antworten gesendet wurden und die nachricht vollstandig ist 
     }
 })(L04_AssocArraysAndExport || (L04_AssocArraysAndExport = {}));
