@@ -70,7 +70,7 @@ namespace L04_AssocArraysAndExport {
         } else { alert(`bitte ${fehltArray} ausfullen`); }
     }
 
-    function berechnePreis(_event: Event): void {
+    function berechnePreis(_event: Event):void {
         n = 0;
         document.getElementById("Bestellung").innerHTML = '';
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
@@ -98,5 +98,6 @@ namespace L04_AssocArraysAndExport {
                 document.getElementById("Bestellung").appendChild(bezeichung);
             }
         } document.getElementById("price").innerHTML = n.toFixed(2).toString();
+    
     }
 }
