@@ -1,14 +1,22 @@
 var DBClient;
 (function (DBClient) {
     window.addEventListener("load", init);
-    let serverAddress = "http://localhost:8100/";
+    let serverAddress = "https://fallerr.herokuapp.com/";
     // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
     function init(_event) {
         console.log("Init");
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
+        let findButton = document.getElementById("find");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+        findButton.addEventListener("click", filter);
+    }
+    function filter(_event) {
+        let input = document.getElementById("daten");
+        let query = "command=filter";
+        query += "&suche=" + input.value;
+        sendRequest(query, handleFindResponse);
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");

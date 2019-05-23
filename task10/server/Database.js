@@ -55,4 +55,16 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
+function find(_matrikel, _callback) {
+    let cursor = students.find();
+    cursor.toArray(prepareAnswer);
+    function prepareAnswer(_e, studentArray) {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            // stringify creates a json-string, passed it back to _callback
+            _callback(JSON.stringify(studentArray));
+    }
+}
+exports.find = find;
 //# sourceMappingURL=Database.js.map
