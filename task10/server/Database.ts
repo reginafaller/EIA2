@@ -15,8 +15,9 @@ let students: Mongo.Collection;
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
     // databaseURL = "mongodb+srv://username:password@hostname:port/database";
-    databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
-    databaseName = "eia2";
+    //databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
+    databaseURL = "mongodb+srv://Regina:12345@reginashood-msrks.mongodb.net/students";
+    databaseName = "students";
 }
 
 // try to connect to database, then activate callback "handleConnect" 
@@ -61,7 +62,7 @@ export function findAll(_callback: Function): void {
     }
 }
 
-export function find(_matrikel:string, _callback:Function){
+export function find(_matrikel:number, _callback:Function){
     let cursor: Mongo.Cursor = students.find();
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
