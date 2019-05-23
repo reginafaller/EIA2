@@ -6,7 +6,7 @@
 
 import * as Http from "http";
 import * as Url from "url";
-import * as Database from "./task10/server/Database";
+import * as Database from "./Database";
 
 console.log("Server starting");
 
@@ -44,10 +44,10 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
         case "refresh":
             Database.findAll(findCallback);
             break;
-        case "find":
+        case "filter":
             let find:number = parseInt(query["suche"]);
-            Database.find(find, findCallback)
-            respond(_response,"found")
+            Database.find(find, findCallback);
+            break;
         default:
             respond(_response, "unknown command: " + command);
             break;

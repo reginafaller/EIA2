@@ -7,7 +7,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
-const Database = require("./task10/server/Database");
+const Database = require("./Database");
 console.log("Server starting");
 let port = Number(process.env.PORT);
 if (!port)
@@ -36,10 +36,10 @@ function handleRequest(_request, _response) {
         case "refresh":
             Database.findAll(findCallback);
             break;
-        case "find":
+        case "filter":
             let find = parseInt(query["suche"]);
             Database.find(find, findCallback);
-            respond(_response, "found");
+            break;
         default:
             respond(_response, "unknown command: " + command);
             break;
