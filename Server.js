@@ -7,7 +7,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
-const Database = require("../EIA2-Alle/task10/server/Database");
+const Database = require("./task10/server/Database");
 console.log("Server starting");
 let port = Number(process.env.PORT);
 if (!port)
