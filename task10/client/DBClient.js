@@ -1,8 +1,8 @@
 var DBClient;
 (function (DBClient) {
     window.addEventListener("load", init);
-    let serverAddress = "https://fallerr.herokuapp.com/";
-    // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
+    // let serverAddress: string = "https://fallerr.herokuapp.com/";
+    let serverAddress = "http://localhost:8100";
     function init(_event) {
         console.log("Init");
         let insertButton = document.getElementById("insert");
@@ -48,8 +48,8 @@ var DBClient;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            //let responseAsJson: JSON = JSON.parse(xhr.response);
+            //console.log(responseAsJson);
         }
     }
 })(DBClient || (DBClient = {}));

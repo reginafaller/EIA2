@@ -1,7 +1,7 @@
 namespace DBClient {
     window.addEventListener("load", init);
-    let serverAddress: string = "https://fallerr.herokuapp.com/";
-    // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
+    // let serverAddress: string = "https://fallerr.herokuapp.com/";
+    let serverAddress: string = "http://localhost:8100";
 
     function init(_event: Event): void {
         console.log("Init");
@@ -52,10 +52,10 @@ namespace DBClient {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+            let output : HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
-            let responseAsJson: JSON = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            //let responseAsJson: JSON = JSON.parse(xhr.response);
+            //console.log(responseAsJson);
         }
     }
 }
