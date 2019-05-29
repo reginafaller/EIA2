@@ -13,6 +13,9 @@ function init() {
     Koralle(500, 700);
     fisch3(250, 250);
     fisch3(600, 600);
+    krabbe(500, 660);
+    krabbe(200, 660);
+    krabbe(850, 660);
     for (let i = 0; i < 50; i++) {
         let x = Math.random() * canvas.width;
         let y = 695;
@@ -121,5 +124,41 @@ function bubbles(_x, _y) {
     bubble.arc(_x, _y, 10, 0, Math.PI * 2);
     crc.fillStyle = "rgba(240, 255, 255, 0.5)";
     crc.fill(bubble);
+}
+function krabbe(_x, _y) {
+    let bauch = new Path2D();
+    bauch.moveTo(_x, _y);
+    bauch.arc(_x, _y, 30, 0, 8);
+    crc.fillStyle = "red";
+    crc.fill(bauch);
+    let augen = new Path2D();
+    augen.moveTo(_x + 10, _y - 28);
+    augen.lineTo(_x + 15, _y - 50);
+    augen.arc(_x + 15, _y - 50, 5, 0, 8);
+    augen.moveTo(_x - 10, _y - 28);
+    augen.lineTo(_x - 15, _y - 50);
+    augen.arc(_x - 15, _y - 50, 5, 0, 8);
+    crc.lineWidth = 5;
+    crc.strokeStyle = "red";
+    crc.stroke(augen);
+    let arm = new Path2D();
+    arm.moveTo(_x + 30, _y - 10);
+    arm.lineTo(_x + 50, _y - 20);
+    arm.arc(_x + 50, _y - 20, 10, Math.PI * 2, Math.PI * 1.5);
+    arm.closePath();
+    arm.moveTo(_x - 30, _y - 10);
+    arm.lineTo(_x - 50, _y - 20);
+    arm.arc(_x - 50, _y - 20, 10, Math.PI * 1.5, Math.PI);
+    arm.closePath();
+    crc.stroke(arm);
+    crc.fill(arm);
+    let feet = new Path2D();
+    feet.moveTo(_x + 10, _y + 28);
+    feet.lineTo(_x + 30, _y + 40);
+    feet.moveTo(_x - 10, _y + 28);
+    feet.lineTo(_x - 30, _y + 40);
+    crc.stroke(feet);
+    crc.strokeStyle = "black";
+    crc.lineWidth = 1;
 }
 //# sourceMappingURL=canvas.js.map
