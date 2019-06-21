@@ -1,6 +1,12 @@
 var fisch;
 (function (fisch) {
     class Fisch {
+        constructor() {
+            this.x = Math.random() * fisch.crc.canvas.width;
+            this.y = Math.random() * fisch.crc.canvas.height;
+            this.dx = Math.random() * 10 - 5;
+            this.dy = Math.random() * 10 - 5;
+        }
         draw() {
             let fisch3 = new Path2D();
             fisch3.moveTo(this.x, this.y);
@@ -16,14 +22,14 @@ var fisch;
             fisch.crc.fillStyle = "yellow";
             fisch.crc.fill(fisch3);
         }
-        update(_x, _y) {
-            this.move(_x, _y);
+        update() {
+            this.move();
             this.draw();
         }
-        move(_x, _y) {
+        move() {
             if (this.x <= 0 || this.x >= 1000 || this.y <= 0 || this.y >= 700) {
-                this.x = _x;
-                this.y = _y;
+                this.x = 500;
+                this.y = 300;
             }
             this.x += this.dx;
             this.y += this.dy;

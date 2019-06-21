@@ -37,13 +37,13 @@ var fisch;
             fisch.crc.strokeStyle = "black";
             fisch.crc.lineWidth = 1;
         }
-        update(_dx) {
-            this.move(_dx);
+        update() {
+            this.move();
             this.draw();
         }
-        move(_dx) {
+        move() {
             if (this.x <= 0 || this.x >= 1000) {
-                this.dx = this.dx * _dx;
+                this.dx = this.dx * -1;
             }
             this.x += this.dx;
             this.y += this.dy;

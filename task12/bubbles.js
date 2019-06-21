@@ -8,13 +8,13 @@ var fisch;
             fisch.crc.fillStyle = "rgba(240, 255, 255, 0.5)";
             fisch.crc.fill(bubble);
         }
-        update(_y) {
-            this.move(_y);
+        update() {
+            this.move();
             this.draw();
         }
-        move(_y) {
+        move() {
             if (this.y <= 0) {
-                this.y = _y;
+                this.y = 600;
             }
             this.x += this.dx;
             this.y += this.dy;

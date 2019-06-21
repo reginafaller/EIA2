@@ -28,21 +28,9 @@ var fisch;
             kies(x, y, z);
         }
         imageData = fisch.crc.getImageData(0, 0, canvas.width, canvas.height);
-        fisch3(250, 250);
-        fisch3(600, 600);
         for (let i = 0; i < 5; i++) {
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            let dx = Math.random() * 10 - 5;
-            let dy = Math.random() * 10 - 5;
-            let fish;
-            fish = new fisch.Fisch();
-            fish.x = x;
-            fish.y = y;
-            fish.dx = dx;
-            fish.dy = dy;
+            let fish = new fisch.Fisch();
             fishArray.push(fish);
-            fish.draw();
         }
         for (let i = 0; i < 5; i++) {
             let x = Math.random() * canvas.width;
@@ -93,44 +81,17 @@ var fisch;
         fisch.crc.clearRect(0, 0, canvas.width, canvas.height);
         fisch.crc.putImageData(imageData, 0, 0);
         for (let i = 0; i < fishArray.length; i++) {
-            fishArray[i].update(fishArray[i].x, fishArray[i].y);
-            if (fishArray[i].x <= 0 || fishArray[i].x >= 1000 || fishArray[i].y <= 0 || fishArray[i].y >= 700) {
-                fishArray[i].update(500, 350);
-            }
+            fishArray[i].update();
         }
         for (let i = 0; i < fishArray2.length; i++) {
-            fishArray2[i].update(fishArray2[i].x);
-            if (fishArray2[i].x <= 0) {
-                fishArray2[i].update(1000);
-            }
+            fishArray2[i].update();
         }
         for (let i = 0; i < crabArray.length; i++) {
-            crabArray[i].update(crabArray[i].dx);
-            if (crabArray[i].x <= 0 || crabArray[i].x >= 1000) {
-                crabArray[i].update(-1);
-            }
+            crabArray[i].update();
         }
         for (let i = 0; i < bubbleArray.length; i++) {
-            bubbleArray[i].update(bubbleArray[i].y);
-            if (bubbleArray[i].y <= 0) {
-                bubbleArray[i].update(600);
-            }
+            bubbleArray[i].update();
         }
-    }
-    function fisch3(_x, _y) {
-        let fisch3 = new Path2D();
-        fisch3.moveTo(_x, _y);
-        fisch3.quadraticCurveTo(_x + 100, _y - 10, _x + 150, _y - 100);
-        fisch3.quadraticCurveTo(_x + 150, _y, _x + 250, _y - 50);
-        fisch3.moveTo(_x, _y);
-        fisch3.quadraticCurveTo(_x + 120, _y + 30, _x + 150, _y + 80);
-        fisch3.quadraticCurveTo(_x + 150, _y + 50, _x + 160, _y + 40);
-        fisch3.quadraticCurveTo(_x + 200, _y, _x + 270, _y + 100);
-        fisch3.quadraticCurveTo(_x + 250, _y + 50, _x + 225, _y + 20);
-        fisch3.quadraticCurveTo(_x + 235, _y - 20, _x + 250, _y - 50);
-        fisch.crc.stroke(fisch3);
-        fisch.crc.fillStyle = "yellow";
-        fisch.crc.fill(fisch3);
     }
     function kies(_x, _y, _z) {
         let stein = new Path2D();

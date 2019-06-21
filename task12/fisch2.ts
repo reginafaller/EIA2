@@ -1,10 +1,11 @@
 namespace fisch{
-    export class Fisch2{
+    export class Fisch2 extends Fisch{
         x: number;
         y: number;
         dx: number;
         dy: number;
 
+        
         draw():void{
             let fish: Path2D= new Path2D();
             fish.moveTo(this.x,this.y);
@@ -19,11 +20,7 @@ namespace fisch{
             crc.fill(fish);
             crc.stroke(fish);
         }
-        update(_x:number):void {
-            this.move(_x);
-            this.draw();
-        }
-        move(_x:number):void{
+        move():void{
             if(this.x <=0){
                 this.x = 1000;
             }

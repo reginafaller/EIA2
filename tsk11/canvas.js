@@ -40,6 +40,7 @@ function init() {
         let y = Math.random() * canvas.height;
         fish2(x, y);
     }
+    nemo(600, 100);
 }
 function fisch3(_x, _y) {
     let fisch3 = new Path2D();
@@ -124,6 +125,32 @@ function bubbles(_x, _y) {
     bubble.arc(_x, _y, 10, 0, Math.PI * 2);
     crc.fillStyle = "rgba(240, 255, 255, 0.5)";
     crc.fill(bubble);
+}
+function nemo(_x, _y) {
+    crc.scale(0.5, 0.5);
+    let bauch = new Path2D();
+    bauch.moveTo(_x, _y);
+    bauch.quadraticCurveTo(_x - 75, _y - 100, _x - 200, _y - 30);
+    bauch.quadraticCurveTo(_x - 230, _y - 60, _x - 250, _y - 60);
+    bauch.quadraticCurveTo(_x - 275, _y - 45, _x - 250, _y - 30);
+    bauch.quadraticCurveTo(_x - 275, _y - 15, _x - 250, _y);
+    bauch.quadraticCurveTo(_x - 275, _y + 15, _x - 250, _y + 30);
+    bauch.quadraticCurveTo(_x - 275, _y + 45, _x - 250, _y + 60);
+    bauch.quadraticCurveTo(_x - 230, _y + 60, _x - 200, _y + 30);
+    bauch.quadraticCurveTo(_x - 75, _y + 100, _x, _y);
+    crc.fillStyle = "#FF6037";
+    crc.fill(bauch);
+    crc.stroke(bauch);
+    let auge = new Path2D();
+    auge.moveTo(_x, _y);
+    auge.arc(_x - 50, _y - 20, 8, 0, 10);
+    crc.fillStyle = "white";
+    crc.fill(auge);
+    let pupille = new Path2D();
+    pupille.moveTo(_x, _y);
+    pupille.arc(_x - 50, _y - 20, 5, 0, 10);
+    crc.fillStyle = "black";
+    crc.fill(pupille);
 }
 function krabbe(_x, _y) {
     let bauch = new Path2D();

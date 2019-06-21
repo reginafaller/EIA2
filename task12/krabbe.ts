@@ -43,13 +43,13 @@ namespace fisch{
     crc.strokeStyle = "black"
     crc.lineWidth=1;
         }
-        update(_dx:number):void {
-            this.move(_dx);
+        update():void {
+            this.move();
             this.draw();
         }
-        move(_dx:number):void{
+        move():void{
             if(this.x <= 0 || this.x >= 1000){
-                this.dx = this.dx * _dx;
+                this.dx = this.dx * -1;
             }
             this.x += this.dx;
             this.y += this.dy;

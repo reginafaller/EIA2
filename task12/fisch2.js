@@ -1,6 +1,6 @@
 var fisch;
 (function (fisch) {
-    class Fisch2 {
+    class Fisch2 extends fisch.Fisch {
         draw() {
             let fish = new Path2D();
             fish.moveTo(this.x, this.y);
@@ -15,11 +15,7 @@ var fisch;
             fisch.crc.fill(fish);
             fisch.crc.stroke(fish);
         }
-        update(_x) {
-            this.move(_x);
-            this.draw();
-        }
-        move(_x) {
+        move() {
             if (this.x <= 0) {
                 this.x = 1000;
             }
