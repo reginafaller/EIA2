@@ -1,6 +1,12 @@
 var fisch;
 (function (fisch) {
     class Bubble {
+        constructor() {
+            this.x = Math.random() * fisch.crc.canvas.width;
+            this.y = Math.random() * fisch.crc.canvas.height;
+            this.dx = 0;
+            this.dy = Math.random() * -5;
+        }
         draw() {
             let bubble = new Path2D();
             bubble.moveTo(this.x, this.y);
@@ -8,13 +14,13 @@ var fisch;
             fisch.crc.fillStyle = "rgba(240, 255, 255, 0.5)";
             fisch.crc.fill(bubble);
         }
-        update(_y) {
-            this.move(_y);
+        update() {
+            this.move();
             this.draw();
         }
-        move(_y) {
+        move() {
             if (this.y <= 0) {
-                this.y = _y;
+                this.y = 600;
             }
             this.x += this.dx;
             this.y += this.dy;

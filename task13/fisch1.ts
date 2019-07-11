@@ -6,7 +6,6 @@ namespace fisch {
         dy: number;
 
         constructor() {
-            //super()
             this.x = Math.random() * crc.canvas.width;
             this.y = Math.random() * crc.canvas.height;
             this.dx = Math.random() * 10 - 5;

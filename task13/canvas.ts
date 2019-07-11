@@ -59,7 +59,6 @@ namespace fisch {
         for (let i: number = 0; i < fishArray.length; i++) {
             fishArray[i].update();
         }
-
     }
 
     function kies(_x: number, _y: number, _z: string) {

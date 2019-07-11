@@ -1,20 +1,28 @@
 var fisch;
 (function (fisch) {
-    class Fisch {
-        draw() {
-            //crc.scale(this.a,this.b);
+    class FischS {
+        constructor(_color) {
+            this.x = Math.floor(Math.random() * fisch.crc.canvas.width);
+            this.y = Math.floor(Math.random() * fisch.crc.canvas.height);
+            this.dx = Math.floor(Math.random() * -3);
+            this.dy = Math.floor(Math.random() * 5 - 2);
+            this.a = Math.floor(Math.random() * 3) + 1;
+            this.color = _color;
+        }
+        draw(_x, _y, _i) {
+            fisch.crc.beginPath();
             let bauch = new Path2D();
-            //crc.setTransform(this.a,0,0,this.b,0,0);
             bauch.moveTo(this.x, this.y);
-            bauch.quadraticCurveTo(this.x + 12.5, this.y - 17, this.x + 33, this.y - 5);
-            bauch.quadraticCurveTo(this.x + 38, this.y - 10, this.x + 42, this.y - 10);
-            bauch.quadraticCurveTo(this.x + 46, this.y - 7.5, this.x + 42, this.y - 5);
-            bauch.quadraticCurveTo(this.x + 46, this.y - 2.5, this.x + 42, this.y);
-            bauch.quadraticCurveTo(this.x + 46, this.y + 2.5, this.x + 42, this.y + 5);
-            bauch.quadraticCurveTo(this.x + 46, this.y + 7.5, this.x + 42, this.y + 10);
-            bauch.quadraticCurveTo(this.x + 38, this.y + 10, this.x + 33, this.y + 5);
-            bauch.quadraticCurveTo(this.x + 12.5, this.y + 17, this.x, this.y);
-            fisch.crc.fillStyle = "purple";
+            bauch.quadraticCurveTo(this.x + (12.5) * this.a, this.y - (17) * this.a, this.x + (33) * this.a, this.y - (5) * this.a);
+            bauch.quadraticCurveTo(this.x + (38) * this.a, this.y - (10) * this.a, this.x + (42) * this.a, this.y - (10) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y - (7.5) * this.a, this.x + (42) * this.a, this.y - (5) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y - (2.5) * this.a, this.x + (42) * this.a, this.y);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y + (2.5) * this.a, this.x + (42) * this.a, this.y + (5) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y + (7.5) * this.a, this.x + (42) * this.a, this.y + (10) * this.a);
+            bauch.quadraticCurveTo(this.x + (38) * this.a, this.y + (10) * this.a, this.x + (33) * this.a, this.y + (5) * this.a);
+            bauch.quadraticCurveTo(this.x + (12.5) * this.a, this.y + (17) * this.a, this.x, this.y);
+            bauch.closePath();
+            fisch.crc.fillStyle = this.color;
             fisch.crc.fill(bauch);
             fisch.crc.stroke(bauch);
             let auge = new Path2D();
@@ -27,21 +35,21 @@ var fisch;
             pupille.arc(this.x + 8, this.y - 3, 1.5, 0, 10);
             fisch.crc.fillStyle = "black";
             fisch.crc.fill(pupille);
-            //crc.setTransform(1,0,0,1,0,0);
+            fisch.eat(bauch, _x, _y, _i);
         }
-        update(_x, _y) {
-            this.move(_x, _y);
-            this.draw();
+        update(_x, _y, _i) {
+            this.move();
+            this.draw(_x, _y, _i);
         }
-        move(_x, _y) {
+        move() {
             if (this.x <= 0 || this.x >= 1000 || this.y <= 0 || this.y >= 700) {
-                this.x = _x;
-                this.y = _y;
+                this.x = 1000;
+                this.y = Math.floor(Math.random() * fisch.crc.canvas.height);
             }
             this.x += this.dx;
             this.y += this.dy;
         }
     }
-    fisch.Fisch = Fisch;
+    fisch.FischS = FischS;
 })(fisch || (fisch = {}));
 //# sourceMappingURL=fisch1.js.map

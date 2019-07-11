@@ -23,8 +23,9 @@ namespace fisch {
             crc.stroke(fish);
         }
         move(): void {
-            if (this.x <= 0) {
-                this.x = 1000;
+            if (this.x <= 0 || this.x >= 1000 || this.y <= 0 || this.y >= 700) {
+                this.x = 500;
+                this.y = 300;
             }
             this.x += this.dx;
             this.y += this.dy;

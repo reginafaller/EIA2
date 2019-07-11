@@ -2,7 +2,6 @@ var fisch;
 (function (fisch) {
     class Fisch {
         constructor() {
-            //super()
             this.x = Math.random() * fisch.crc.canvas.width;
             this.y = Math.random() * fisch.crc.canvas.height;
             this.dx = Math.random() * 10 - 5;
