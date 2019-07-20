@@ -90,7 +90,7 @@ var fisch;
     }
     function eat() {
         for (let i = 0; i <= fishArray.length; i++) {
-            if (fishArray[i].x > nemo.x - 20 && fishArray[i].x < nemo.x + 20 && fishArray[i].y > nemo.y - 20 && fishArray[i].y < nemo.y + 20) {
+            if (fishArray[i].x > nemo.x - 10 && fishArray[i].x < nemo.x + 10 && fishArray[i].y > nemo.y - 10 && fishArray[i].y < nemo.y + 10) {
                 if (nemo.a >= fishArray[i].a) {
                     updateScore(50);
                     fishArray.splice(i, 1);

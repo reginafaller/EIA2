@@ -6,7 +6,16 @@ var fisch;
             this.y = Math.floor(Math.random() * fisch.crc.canvas.height);
             this.dx = Math.floor(Math.random() * -3);
             this.dy = Math.floor(Math.random() * 5 - 2);
-            this.a = Math.floor(Math.random() * 4) + 0.5;
+            let w = Math.random() * 10;
+            if (w <= 5) {
+                this.a = 1;
+            }
+            if (w > 5 && w <= 8) {
+                this.a = 2;
+            }
+            if (w > 8) {
+                this.a = 3;
+            }
             this.color = _color;
         }
         draw(_x, _y, _i) {
