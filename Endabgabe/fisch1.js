@@ -6,11 +6,10 @@ var fisch;
             this.y = Math.floor(Math.random() * fisch.crc.canvas.height);
             this.dx = Math.floor(Math.random() * -3);
             this.dy = Math.floor(Math.random() * 5 - 2);
-            this.a = Math.floor(Math.random() * 3) + 1;
+            this.a = Math.floor(Math.random() * 4) + 0.5;
             this.color = _color;
         }
         draw(_x, _y, _i) {
-            fisch.crc.beginPath();
             let bauch = new Path2D();
             bauch.moveTo(this.x, this.y);
             bauch.quadraticCurveTo(this.x + (12.5) * this.a, this.y - (17) * this.a, this.x + (33) * this.a, this.y - (5) * this.a);
@@ -35,7 +34,7 @@ var fisch;
             pupille.arc(this.x + 8, this.y - 3, 1.5, 0, 10);
             fisch.crc.fillStyle = "black";
             fisch.crc.fill(pupille);
-            fisch.eat(bauch, _x, _y, _i);
+            //eat(bauch,_x,_y,_i);
         }
         update(_x, _y, _i) {
             this.move();

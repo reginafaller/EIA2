@@ -46,7 +46,7 @@ var fisch;
             fisch.crc.stroke(feet);
             fisch.crc.strokeStyle = "black";
             fisch.crc.lineWidth = 1;
-            fisch.eat(bauch, _x, _y, _i);
+            //eat(bauch,_x,_y,_i);
         }
         update(_x, _y, _i) {
             this.move();

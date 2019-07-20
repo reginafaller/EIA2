@@ -1,13 +1,8 @@
 "use strict";
-/**
- * Simple server managing between client and database
- * @author: Jirka Dell'Oro-Friedl
- * @adapted: Lukas Scheuerle
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
-const Database = require("./task10/server/Database");
+const Database = require("./Endabgabe_copy/database");
 console.log("Server starting");
 let port = Number(process.env.PORT);
 if (!port)
@@ -25,32 +20,26 @@ function handleRequest(_request, _response) {
     let command = query["command"];
     switch (command) {
         case "insert":
-            let student = {
+            let newScore = {
                 name: query["name"],
-                firstname: query["firstname"],
-                matrikel: parseInt(query["matrikel"])
+                score: query["score"]
             };
-            Database.insert(student);
+            Database.insert(newScore);
             respond(_response, "storing data");
             break;
-        case "refresh":
+        case "find":
             Database.findAll(findCallback);
-            break;
-        case "filter":
-            let find = parseInt(query["suche"]);
-            Database.find(find, findCallback);
             break;
         default:
             respond(_response, "unknown command: " + command);
             break;
     }
-    // findCallback is an inner function so that _response is in scope
     function findCallback(json) {
         respond(_response, json);
     }
 }
 function respond(_response, _text) {
-    //console.log("Preparing response: " + _text);
+    console.log("Preparing response: " + _text);
     _response.setHeader("Access-Control-Allow-Origin", "*");
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.write(_text);

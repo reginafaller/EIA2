@@ -6,7 +6,7 @@ var fisch;
             this.y = Math.floor(Math.random() * fisch.crc.canvas.height);
             this.dx = 2;
             this.dy = 0;
-            this.a = 1;
+            this.a = 2;
         }
         draw() {
             let bauch = new Path2D();

@@ -3,21 +3,22 @@ var fisch;
     document.addEventListener("DOMContentLoaded", init);
     document.addEventListener("keydown", lol);
     let serverAddress = "http://localhost:8100";
+    //import { insert } from "./database";
+    //export let crc: CanvasRenderingContext2D;
     let canvas;
     let fishArray = [];
-    let nemoArray = [];
-    let crabArray = [];
+    let nemo;
     let bubbleArray = [];
     let fps = 30;
     let imageData;
     let dead = false;
     function lol(_event) {
         if (_event.keyCode == 38) {
-            nemoArray[0].update(nemoArray[0].x, -20, 1);
+            nemo.update(nemo.x, -20, 1);
             _event.preventDefault();
         }
         if (_event.keyCode == 40) {
-            nemoArray[0].update(nemoArray[0].x, 20, 1);
+            nemo.update(nemo.x, 20, 1);
             _event.preventDefault();
         }
     }
@@ -41,6 +42,7 @@ var fisch;
             kies(x, y, z);
         }
         imageData = fisch.crc.getImageData(0, 0, canvas.width, canvas.height);
+        nemo = new fisch.Nemo();
         for (let i = 0; i < 10; i++) {
             let w = Math.random() * 3;
             let randomColor;
@@ -59,16 +61,12 @@ var fisch;
         }
         for (let i = 0; i < 5; i++) {
             let crabColor = "red";
-            let crab = new fisch.Krabbe(crabColor);
-            fishArray.push(crab);
+            //let crab: Krabbe = new Krabbe(crabColor);
+            //fishArray.push(crab);
         }
         for (let i = 0; i < 20; i++) {
             let blub = new fisch.Bubble();
             bubbleArray.push(blub);
-        }
-        for (let i = 0; i < 1; i++) {
-            let nemo = new fisch.Nemo();
-            nemoArray.push(nemo);
         }
         update();
     }
@@ -80,124 +78,101 @@ var fisch;
         fisch.crc.clearRect(0, 0, canvas.width, canvas.height);
         fisch.crc.putImageData(imageData, 0, 0);
         for (let i = 0; i < fishArray.length; i++) {
-            fishArray[i].update(nemoArray[0].x, nemoArray[0].y, i);
+            fishArray[i].update(nemo.x, nemo.y, i);
         }
         for (let i = 0; i < bubbleArray.length; i++) {
             bubbleArray[i].update();
         }
-        for (let i = 0; i < nemoArray.length; i++) {
-            nemoArray[i].update(nemoArray[i].x, 0, 1);
-            if (nemoArray[i].x >= 1200) {
-                nemoArray[i].update(0, 0, 1);
+        nemo.update(nemo.x, 0, 1);
+        if (nemo.x >= 1200) {
+            nemo.update(0, 0, 1);
+        }
+        eatNew();
+    }
+    function eatNew() {
+        for (let i = 0; i <= fishArray.length; i++) {
+            if (fishArray[i].x > nemo.x - 20 && fishArray[i].x < nemo.x + 20 && fishArray[i].y > nemo.y - 20 && fishArray[i].y < nemo.y + 20) {
+                console.log("hi");
             }
         }
-    }
-    function eat(_bauch, _x, _y, _i) {
-        if (fisch.crc.isPointInPath(_bauch, _x, _y) == true) {
-            if (nemoArray[0].a >= fishArray[_i].a) {
-                updateScore(50);
-                fishArray.splice(_i, 1);
-                let w = Math.random() * 3;
-                let randomColor;
-                if (w <= 1) {
-                    randomColor = "blue";
-                }
-                if (w > 1 && w <= 2) {
-                    randomColor = "purple";
-                }
-                if (w > 2) {
-                    randomColor = "red";
-                }
-                let fishSmall = new fisch.FischS(randomColor);
-                fishArray.push(fishSmall);
+        let score = 0;
+        function updateScore(_points) {
+            score += _points;
+            document.getElementById("points").innerHTML = score.toString();
+            if (nemo.a < 2 && score >= 250) {
+                nemo.update(0, 0, 1.5);
             }
-            if (nemoArray[0].a < fishArray[_i].a) {
-                console.log(nemoArray, fishArray[_i], _bauch);
-                dead = true;
-                let playerName = prompt('name eingeben');
-                insert(playerName);
-                find();
+            if (nemo.a < 3 && score >= 500) {
+                nemo.update(0, 0, 1.3);
             }
         }
-    }
-    fisch.eat = eat;
-    let score = 0;
-    function updateScore(_points) {
-        score += _points;
-        document.getElementById("points").innerHTML = score.toString();
-        if (nemoArray[0].a < 2 && score >= 250) {
-            nemoArray[0].update(0, 0, 2);
+        function kies(_x, _y, _z) {
+            let stein = new Path2D();
+            stein.moveTo(_x, _y);
+            stein.arc(_x, _y, 10, 0, 10);
+            fisch.crc.fillStyle = _z;
+            fisch.crc.fill(stein);
+            fisch.crc.stroke(stein);
         }
-        if (nemoArray[0].a < 3 && score >= 500) {
-            nemoArray[0].update(0, 0, 1.5);
+        function Koralle(_x, _y) {
+            let koralle = new Path2D();
+            koralle.moveTo(_x, _y);
+            koralle.lineTo(_x + 40, _y);
+            koralle.quadraticCurveTo(_x - 10, _y - 50, _x + 40, _y - 100);
+            koralle.bezierCurveTo(_x + 100, _y - 135, _x + 95, _y - 140, _x + 40, _y - 120);
+            koralle.bezierCurveTo(_x + 100, _y - 235, _x + 95, _y - 240, _x + 20, _y - 120);
+            koralle.bezierCurveTo(_x - 100, _y - 235, _x - 95, _y - 240, _x - 20, _y - 120);
+            koralle.bezierCurveTo(_x - 100, _y - 115, _x - 95, _y - 120, _x - 10, _y - 100);
+            koralle.quadraticCurveTo(_x - 30, _y - 50, _x, _y);
+            fisch.crc.fillStyle = "rgb(172, 64, 52)";
+            fisch.crc.fill(koralle);
+            fisch.crc.stroke(koralle);
         }
-    }
-    function kies(_x, _y, _z) {
-        let stein = new Path2D();
-        stein.moveTo(_x, _y);
-        stein.arc(_x, _y, 10, 0, 10);
-        fisch.crc.fillStyle = _z;
-        fisch.crc.fill(stein);
-        fisch.crc.stroke(stein);
-    }
-    function Koralle(_x, _y) {
-        let koralle = new Path2D();
-        koralle.moveTo(_x, _y);
-        koralle.lineTo(_x + 40, _y);
-        koralle.quadraticCurveTo(_x - 10, _y - 50, _x + 40, _y - 100);
-        koralle.bezierCurveTo(_x + 100, _y - 135, _x + 95, _y - 140, _x + 40, _y - 120);
-        koralle.bezierCurveTo(_x + 100, _y - 235, _x + 95, _y - 240, _x + 20, _y - 120);
-        koralle.bezierCurveTo(_x - 100, _y - 235, _x - 95, _y - 240, _x - 20, _y - 120);
-        koralle.bezierCurveTo(_x - 100, _y - 115, _x - 95, _y - 120, _x - 10, _y - 100);
-        koralle.quadraticCurveTo(_x - 30, _y - 50, _x, _y);
-        fisch.crc.fillStyle = "rgb(172, 64, 52)";
-        fisch.crc.fill(koralle);
-        fisch.crc.stroke(koralle);
-    }
-    function Pflanze(_x, _y) {
-        let pflanze = new Path2D();
-        pflanze.moveTo(_x, _y);
-        pflanze.quadraticCurveTo(_x + 60, _y - 100, _x + 10, _y - 200);
-        pflanze.quadraticCurveTo(_x - 50, _y - 300, _x, _y - 400);
-        pflanze.moveTo(_x, _y);
-        pflanze.lineTo(_x - 40, _y);
-        pflanze.quadraticCurveTo(_x + 30, _y - 100, _x - 20, _y - 200);
-        pflanze.quadraticCurveTo(_x - 50, _y - 300, _x, _y - 400);
-        fisch.crc.fillStyle = "green";
-        fisch.crc.fill(pflanze);
-        fisch.crc.stroke(pflanze);
-    }
-    function insert(_name) {
-        let query = "command=insert";
-        query += "&name=" + _name;
-        query += "&score=" + score;
-        console.log(query);
-        sendRequest(query, handleInsertResponse);
-    }
-    function sendRequest(_query, _callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", serverAddress + "?" + _query, true);
-        xhr.addEventListener("readystatechange", _callback);
-        xhr.send();
-    }
-    function handleInsertResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
+        function Pflanze(_x, _y) {
+            let pflanze = new Path2D();
+            pflanze.moveTo(_x, _y);
+            pflanze.quadraticCurveTo(_x + 60, _y - 100, _x + 10, _y - 200);
+            pflanze.quadraticCurveTo(_x - 50, _y - 300, _x, _y - 400);
+            pflanze.moveTo(_x, _y);
+            pflanze.lineTo(_x - 40, _y);
+            pflanze.quadraticCurveTo(_x + 30, _y - 100, _x - 20, _y - 200);
+            pflanze.quadraticCurveTo(_x - 50, _y - 300, _x, _y - 400);
+            fisch.crc.fillStyle = "green";
+            fisch.crc.fill(pflanze);
+            fisch.crc.stroke(pflanze);
         }
-    }
-    function find() {
-        let query = "command=find";
-        sendRequest(query, handleFindResponse);
-    }
-    function handleFindResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            let SpielerListe = JSON.parse(xhr.response);
-            for (let i = 0; i <= SpielerListe.length; i++) {
-                let SpielerName = SpielerListe[i].name;
-                let SpielerScore = SpielerListe[i].score;
-                document.getElementById("output").innerHTML = "Name: " + SpielerName + " Score: " + SpielerScore;
+        function insert(_name) {
+            let query = "command=insert";
+            query += "&name=" + _name;
+            query += "&score=" + score;
+            console.log(query);
+            sendRequest(query, handleInsertResponse);
+        }
+        function sendRequest(_query, _callback) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", serverAddress + "?" + _query, true);
+            xhr.addEventListener("readystatechange", _callback);
+            xhr.send();
+        }
+        function handleInsertResponse(_event) {
+            let xhr = _event.target;
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                alert(xhr.response);
+            }
+        }
+        function find() {
+            let query = "command=find";
+            sendRequest(query, handleFindResponse);
+        }
+        function handleFindResponse(_event) {
+            let xhr = _event.target;
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let SpielerListe = JSON.parse(xhr.response);
+                for (let i = 0; i <= SpielerListe.length; i++) {
+                    let SpielerName = SpielerListe[i].name;
+                    let SpielerScore = SpielerListe[i].score;
+                    document.getElementById("output").innerHTML = "Name: " + SpielerName + " Score: " + SpielerScore;
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ namespace fisch{
             pupille.arc(this.x+8,this.y-3,1.5,0,10);
             crc.fillStyle= "black";
             crc.fill(pupille);
-            eat(bauch,_x,_y,_i);
+            //eat(bauch,_x,_y,_i);
             
         }
         update(_x:number,_y:number, _i:number):void {

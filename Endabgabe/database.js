@@ -44,4 +44,4 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
-//# sourceMappingURL=database.js.map
+//# sourceMappingURL=Database.js.map

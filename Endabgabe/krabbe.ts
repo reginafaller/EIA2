@@ -56,7 +56,7 @@ namespace fisch {
 
             crc.strokeStyle = "black"
             crc.lineWidth = 1;
-            eat(bauch,_x,_y,_i);
+            //eat(bauch,_x,_y,_i);
         }
         update(_x:number,_y:number, _i:number):void {
             this.move();

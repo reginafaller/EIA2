@@ -1,8 +1,8 @@
 var DBClient;
 (function (DBClient) {
     window.addEventListener("load", init);
-    let serverAddress = "https://fallerr.herokuapp.com/";
-    //let serverAddress: string = "http://localhost:8100";
+    //let serverAddress: string = "https://fallerr.herokuapp.com/";
+    let serverAddress = "http://localhost:8100";
     function init(_event) {
         console.log("Init");
         let insertButton = document.getElementById("insert");

@@ -4,10 +4,11 @@ namespace fisch {
     let serverAddress: string = "http://localhost:8100";
     //import { insert } from "./database";
 
-    export let crc: CanvasRenderingContext2D;
+    //export let crc: CanvasRenderingContext2D;
     let canvas: HTMLCanvasElement;
     let fishArray: FischS[] = [];
-    let nemoArray: Nemo[] = [];
+    let nemo: Nemo;
+    
     let bubbleArray: Bubble[] = [];
     let fps: number = 30;
     let imageData: ImageData;
@@ -16,11 +17,11 @@ namespace fisch {
 
     function lol(_event: KeyboardEvent) {
         if (_event.keyCode == 38) {
-            nemoArray[0].update(nemoArray[0].x, -20, 1);
+            nemo.update(nemo.x, -20, 1);
             _event.preventDefault();
         }
         if (_event.keyCode == 40) {
-            nemoArray[0].update(nemoArray[0].x, 20, 1);
+            nemo.update(nemo.x, 20, 1);
             _event.preventDefault();
         }
     }
@@ -46,6 +47,8 @@ namespace fisch {
         }
         imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 
+        nemo = new Nemo();
+
         for (let i: number = 0; i < 10; i++) {
             let w: number = Math.random() * 3;
             let randomColor: string;
@@ -65,17 +68,12 @@ namespace fisch {
 
         for (let i: number = 0; i < 5; i++) {
             let crabColor: string = "red"
-            let crab: Krabbe = new Krabbe(crabColor);
-            fishArray.push(crab);
+            //let crab: Krabbe = new Krabbe(crabColor);
+            //fishArray.push(crab);
         }
         for (let i: number = 0; i < 20; i++) {
             let blub: Bubble = new Bubble();
             bubbleArray.push(blub);
-        }
-
-        for (let i: number = 0; i < 1; i++) {
-            let nemo: Nemo = new Nemo();
-            nemoArray.push(nemo);
         }
         update();
 
@@ -87,61 +85,40 @@ namespace fisch {
         crc.clearRect(0, 0, canvas.width, canvas.height);
         crc.putImageData(imageData, 0, 0);
         for (let i: number = 0; i < fishArray.length; i++) {
-            fishArray[i].update(nemoArray[0].x, nemoArray[0].y, i);
+            fishArray[i].update(nemo.x, nemo.y, i);
         }
         for (let i: number = 0; i < bubbleArray.length; i++) {
             bubbleArray[i].update();
         }
-        for (let i: number = 0; i < nemoArray.length; i++) {
-            nemoArray[i].update(nemoArray[i].x, 0, 1);
-            if (nemoArray[i].x >= 1200) {
-                nemoArray[i].update(0, 0, 1);
-            }
+            nemo.update(nemo.x, 0, 1);
+            if (nemo.x >= 1200) {
+                nemo.update(0, 0, 1);
+            
+        }
+        eatNew();
+    }
+
+    function eatNew(){
+        for(let i:number = 0; i <= fishArray.length;i++){
+            if(fishArray[i].x > nemo.x - 20 && fishArray[i].x < nemo.x + 20 && fishArray[i].y > nemo.y - 20 && fishArray[i].y < nemo.y + 20){
+             console.log("hi");   
         }
     }
 
-    export function eat(_bauch: Path2D, _x: number, _y: number, _i: number) {
-        if (crc.isPointInPath(_bauch, _x, _y) == true) {
-            if (nemoArray[0].a >= fishArray[_i].a) {
-                updateScore(50)
-                fishArray.splice(_i, 1);
 
-                let w: number = Math.random() * 3;
-                let randomColor: string;
-                if (w <= 1) {
-                    randomColor = "blue"
-                }
-                if (w > 1 && w <= 2) {
-                    randomColor = "purple"
-                }
-                if (w > 2) {
-                    randomColor = "red"
-                }
-                let fishSmall: FischS = new FischS(randomColor);
-                fishArray.push(fishSmall);
 
-            }
-            if (nemoArray[0].a < fishArray[_i].a) {
-                console.log(nemoArray, fishArray[_i], _bauch);
-                dead = true;
-                let playerName: string = prompt('name eingeben');
-                insert(playerName);
-                find()
-            }
-
-        }
-    }
+     
 
     let score: number = 0;
     function updateScore(_points: number) {
 
         score += _points;
         document.getElementById("points").innerHTML = score.toString();
-        if (nemoArray[0].a < 2 && score >= 250) {
-            nemoArray[0].update(0, 0, 1.5);
+        if (nemo.a < 2 && score >= 250) {
+            nemo.update(0, 0, 1.5);
         }
-        if (nemoArray[0].a < 3 && score >= 500) {
-            nemoArray[0].update(0, 0, 1.3);
+        if (nemo.a < 3 && score >= 500) {
+            nemo.update(0, 0, 1.3);
         }
     }
 
@@ -221,5 +198,4 @@ namespace fisch {
                 document.getElementById("output").innerHTML = "Name: " + SpielerName + " Score: " + SpielerScore;
             }
         }
-    }
-}
+    }}}
