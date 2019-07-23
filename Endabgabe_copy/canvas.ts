@@ -61,7 +61,6 @@ namespace fisch {
             }
             let fishSmall: FischS = new FischS(randomColor);
             fishArray.push(fishSmall);
-            console.log(fishArray[i]);
         }
         nemo = new Nemo();
 
