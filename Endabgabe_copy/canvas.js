@@ -55,7 +55,6 @@ var fisch;
             }
             let fishSmall = new fisch.FischS(randomColor);
             fishArray.push(fishSmall);
-            console.log(fishArray[i]);
         }
         nemo = new fisch.Nemo();
         for (let i = 0; i < 5; i++) {
@@ -78,6 +77,7 @@ var fisch;
         fisch.crc.putImageData(imageData, 0, 0);
         for (let i = 0; i < fishArray.length; i++) {
             fishArray[i].update(nemo.x, nemo.y, i);
+            eat(fishArray[i], i);
         }
         for (let i = 0; i < bubbleArray.length; i++) {
             bubbleArray[i].update();
@@ -86,34 +86,32 @@ var fisch;
         if (nemo.x >= 1200) {
             nemo.update(0, 0, 1);
         }
-        eat();
+        //eat();
     }
-    function eat() {
-        for (let i = 0; i <= fishArray.length; i++) {
-            if (fishArray[i].x > nemo.x - 10 && fishArray[i].x < nemo.x + 10 && fishArray[i].y > nemo.y - 10 && fishArray[i].y < nemo.y + 10) {
-                if (nemo.a >= fishArray[i].a) {
-                    updateScore(50);
-                    fishArray.splice(i, 1);
-                    let w = Math.random() * 3;
-                    let randomColor;
-                    if (w <= 1) {
-                        randomColor = "blue";
-                    }
-                    if (w > 1 && w <= 2) {
-                        randomColor = "purple";
-                    }
-                    if (w > 2) {
-                        randomColor = "red";
-                    }
-                    let fishSmall = new fisch.FischS(randomColor);
-                    fishArray.push(fishSmall);
+    function eat(fish, _i) {
+        if (fish.x > nemo.x - 10 && fish.x < nemo.x + 10 && fish.y > nemo.y - 10 && fish.y < nemo.y + 10) {
+            if (nemo.a >= fish.a) {
+                updateScore(50);
+                fishArray.splice(_i, 1);
+                let w = Math.random() * 3;
+                let randomColor;
+                if (w <= 1) {
+                    randomColor = "blue";
                 }
-                if (nemo.a < fishArray[i].a) {
-                    dead = true;
-                    let playerName = prompt('name eingeben');
-                    insert(playerName);
-                    find();
+                if (w > 1 && w <= 2) {
+                    randomColor = "purple";
                 }
+                if (w > 2) {
+                    randomColor = "red";
+                }
+                let fishSmall = new fisch.FischS(randomColor);
+                fishArray.push(fishSmall);
+            }
+            if (nemo.a < fish.a) {
+                dead = true;
+                let playerName = prompt('name eingeben');
+                insert(playerName);
+                find();
             }
         }
     }

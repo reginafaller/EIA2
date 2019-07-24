@@ -84,6 +84,7 @@ namespace fisch {
         crc.putImageData(imageData, 0, 0);
         for (let i: number = 0; i < fishArray.length; i++) {
             fishArray[i].update(nemo.x, nemo.y, i);
+            eat(fishArray[i], i)
         }
         for (let i: number = 0; i < bubbleArray.length; i++) {
             bubbleArray[i].update();
@@ -93,18 +94,17 @@ namespace fisch {
             nemo.update(0, 0, 1);
 
         }
-        eat();
+        //eat();
     }
 
 
 
 
-    function eat() {
-        for(let i:number =0; i<= fishArray.length; i++){
-        if(fishArray[i].x > nemo.x - 10 && fishArray[i].x < nemo.x + 10 && fishArray[i].y > nemo.y - 10 && fishArray[i].y < nemo.y + 10) {
-            if (nemo.a >= fishArray[i].a) {
+    function eat(fish:FischS, _i:number) {
+        if(fish.x > nemo.x - 10 && fish.x < nemo.x + 10 && fish.y > nemo.y - 10 && fish.y < nemo.y + 10) {
+            if (nemo.a >= fish.a) {
                 updateScore(50)
-                fishArray.splice(i, 1);
+                fishArray.splice(_i, 1);
 
                 let w: number = Math.random() * 3;
                 let randomColor: string;
@@ -121,14 +121,14 @@ namespace fisch {
                 fishArray.push(fishSmall);
 
             }
-            if (nemo.a < fishArray[i].a) {
+            if (nemo.a < fish.a) {
                 dead = true;
                 let playerName: string = prompt('name eingeben');
                 insert(playerName);
                 find()
             }
 
-        }}
+        }
     }
 
     let score: number = 0;
