@@ -7,20 +7,20 @@ namespace fisch {
         a: number;
         color: string;
 
-        constructor(_color: string) {
+        constructor(_color: string, _t:number) {
             this.x = Math.floor(Math.random() * crc.canvas.width);
             this.y = Math.floor(Math.random() * crc.canvas.height);
             this.dx = Math.floor(Math.random() * -3);
             this.dy = Math.floor(Math.random() * 5 - 2);
             let w: number = Math.random() * 10;
             if (w <= 5) {
-                this.a = 1
+                this.a = 1 * _t
             }
             if (w > 5 && w <= 8) {
-                this.a = 2
+                this.a = 2 * _t
             }
             if (w > 8) {
-                this.a = 3
+                this.a = 3 * _t
             }
             this.color = _color;
         }
@@ -28,26 +28,26 @@ namespace fisch {
         draw(_x: number, _y: number, _i: number): void {
             let bauch: Path2D = new Path2D();
             bauch.moveTo(this.x, this.y);
-            bauch.quadraticCurveTo(this.x + (12.5) * this.a, this.y - (17) * this.a, this.x + (33) * this.a, this.y - (5) * this.a);
-            bauch.quadraticCurveTo(this.x + (38) * this.a, this.y - (10) * this.a, this.x + (42) * this.a, this.y - (10) * this.a);
-            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y - (7.5) * this.a, this.x + (42) * this.a, this.y - (5) * this.a);
-            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y - (2.5) * this.a, this.x + (42) * this.a, this.y);
-            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y + (2.5) * this.a, this.x + (42) * this.a, this.y + (5) * this.a);
-            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y + (7.5) * this.a, this.x + (42) * this.a, this.y + (10) * this.a);
-            bauch.quadraticCurveTo(this.x + (38) * this.a, this.y + (10) * this.a, this.x + (33) * this.a, this.y + (5) * this.a);
-            bauch.quadraticCurveTo(this.x + (12.5) * this.a, this.y + (17) * this.a, this.x, this.y);
+            bauch.quadraticCurveTo(this.x + (15) * this.a, this.y - (20) * this.a, this.x + (40) * this.a, this.y - (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y - (12) * this.a, this.x + (50) * this.a, this.y - (12) * this.a);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y - (9) * this.a, this.x + (50) * this.a, this.y - (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y - (3) * this.a, this.x + (50) * this.a, this.y);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y + (3) * this.a, this.x + (50) * this.a, this.y + (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y + (9) * this.a, this.x + (50) * this.a, this.y + (12) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y + (12) * this.a, this.x + (40) * this.a, this.y + (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (15) * this.a, this.y + (20) * this.a, this.x, this.y);
             bauch.closePath();
             crc.fillStyle = this.color;
             crc.fill(bauch);
             crc.stroke(bauch);
             let auge: Path2D = new Path2D();
             auge.moveTo(this.x, this.y);
-            auge.arc(this.x + 8, this.y - 3, 3, 0, 10);
+            auge.arc(this.x + (10)*this.a, this.y - (4)*this.a, 1.5*this.a, 0, 10);
             crc.fillStyle = "white";
             crc.fill(auge);
             let pupille: Path2D = new Path2D();
             pupille.moveTo(this.x, this.y);
-            pupille.arc(this.x + 8, this.y - 3, 1.5, 0, 10);
+            pupille.arc(this.x + (10)*this.a, this.y - (4)*this.a, (1)*this.a, 0, 10);
             crc.fillStyle = "black";
             crc.fill(pupille);
 

@@ -59,7 +59,7 @@ namespace fisch {
             if (w > 2) {
                 randomColor = "red"
             }
-            let fishSmall: FischS = new FischS(randomColor);
+            let fishSmall: FischS = new FischS(randomColor, 1);
             fishArray.push(fishSmall);
         }
         nemo = new Nemo();
@@ -67,7 +67,7 @@ namespace fisch {
         for (let i: number = 0; i < 5; i++) {
             let crabColor: string = "red"
             let crab: Krabbe = new Krabbe(crabColor);
-            crabArray.push(crab);
+            fishArray.push(crab);
         }
         for (let i: number = 0; i < 20; i++) {
             let blub: Bubble = new Bubble();
@@ -94,7 +94,6 @@ namespace fisch {
             nemo.update(0, 0, 1);
 
         }
-        //eat();
     }
 
 
@@ -105,6 +104,7 @@ namespace fisch {
             if (nemo.a >= fish.a) {
                 updateScore(50)
                 fishArray.splice(_i, 1);
+                console.log(nemo.a);
 
                 let w: number = Math.random() * 3;
                 let randomColor: string;
@@ -117,7 +117,14 @@ namespace fisch {
                 if (w > 2) {
                     randomColor = "red"
                 }
-                let fishSmall: FischS = new FischS(randomColor);
+                if (nemo.a >= 3){
+                    fishArray.splice(0,5);
+                    for(let i:number = 0; i<=5; i++){
+                    let fishSmall: FischS = new FischS(randomColor, 2);
+                    fishArray.push(fishSmall);
+                    }
+                }
+                let fishSmall: FischS = new FischS(randomColor, 1);
                 fishArray.push(fishSmall);
 
             }
@@ -136,8 +143,8 @@ namespace fisch {
 
         score += _points;
         document.getElementById("points").innerHTML = score.toString();
-        if (nemo.a < 2 && score >= 250) {
-            nemo.update(0, 0, 1.5);
+        if (nemo.a < 2 && score >= 200) {
+            nemo.update(0, 0, 2);
         }
         if (nemo.a < 3 && score >= 500) {
             nemo.update(0, 0, 1.3);

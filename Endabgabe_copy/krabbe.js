@@ -2,7 +2,7 @@ var fisch;
 (function (fisch) {
     class Krabbe extends fisch.FischS {
         constructor(_color) {
-            super(_color);
+            super(_color, 1);
             this.x = Math.random() * fisch.crc.canvas.width;
             this.y = 660;
             this.dx = Math.random() * -5;

@@ -9,7 +9,7 @@ namespace fisch {
         color:string;
 
         constructor(_color:string){
-            super(_color)
+            super(_color,1)
             this.x = Math.random() * crc.canvas.width;
             this.y = 660;
             this.dx = Math.random() * -5;

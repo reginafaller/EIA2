@@ -53,14 +53,14 @@ var fisch;
             if (w > 2) {
                 randomColor = "red";
             }
-            let fishSmall = new fisch.FischS(randomColor);
+            let fishSmall = new fisch.FischS(randomColor, 1);
             fishArray.push(fishSmall);
         }
         nemo = new fisch.Nemo();
         for (let i = 0; i < 5; i++) {
             let crabColor = "red";
             let crab = new fisch.Krabbe(crabColor);
-            crabArray.push(crab);
+            fishArray.push(crab);
         }
         for (let i = 0; i < 20; i++) {
             let blub = new fisch.Bubble();
@@ -86,13 +86,13 @@ var fisch;
         if (nemo.x >= 1200) {
             nemo.update(0, 0, 1);
         }
-        //eat();
     }
     function eat(fish, _i) {
         if (fish.x > nemo.x - 10 && fish.x < nemo.x + 10 && fish.y > nemo.y - 10 && fish.y < nemo.y + 10) {
             if (nemo.a >= fish.a) {
                 updateScore(50);
                 fishArray.splice(_i, 1);
+                console.log(nemo.a);
                 let w = Math.random() * 3;
                 let randomColor;
                 if (w <= 1) {
@@ -104,7 +104,14 @@ var fisch;
                 if (w > 2) {
                     randomColor = "red";
                 }
-                let fishSmall = new fisch.FischS(randomColor);
+                if (nemo.a >= 3) {
+                    fishArray.splice(0, 5);
+                    for (let i = 0; i <= 5; i++) {
+                        let fishSmall = new fisch.FischS(randomColor, 2);
+                        fishArray.push(fishSmall);
+                    }
+                }
+                let fishSmall = new fisch.FischS(randomColor, 1);
                 fishArray.push(fishSmall);
             }
             if (nemo.a < fish.a) {
@@ -119,8 +126,8 @@ var fisch;
     function updateScore(_points) {
         score += _points;
         document.getElementById("points").innerHTML = score.toString();
-        if (nemo.a < 2 && score >= 250) {
-            nemo.update(0, 0, 1.5);
+        if (nemo.a < 2 && score >= 200) {
+            nemo.update(0, 0, 2);
         }
         if (nemo.a < 3 && score >= 500) {
             nemo.update(0, 0, 1.3);
