@@ -7,7 +7,6 @@ namespace fisch {
     export let crc: CanvasRenderingContext2D;
     let canvas: HTMLCanvasElement;
     let fishArray: FischS[] = [];
-    let crabArray: Krabbe[] = [];
     let nemo: Nemo;
     let bubbleArray: Bubble[] = [];
     let fps: number = 30;
@@ -100,7 +99,7 @@ namespace fisch {
 
 
     function eat(fish:FischS, _i:number) {
-        if(fish.x > nemo.x - 10 && fish.x < nemo.x + 10 && fish.y > nemo.y - 10 && fish.y < nemo.y + 10) {
+        if(fish.x > nemo.x - 15 && fish.x < nemo.x + 15 && fish.y > nemo.y - 15 && fish.y < nemo.y + 15) {
             if (nemo.a >= fish.a) {
                 updateScore(50)
                 fishArray.splice(_i, 1);
