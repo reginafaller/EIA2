@@ -49,11 +49,10 @@ namespace L04_AssocArraysAndExport {
         
     }
 
-
     let n: number = 0;
     function button() {
         let button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("bestellen");
-        button.addEventListener("click", validate)
+        button.addEventListener("click", validate);
     }
 
     function validate(_event: Event): void {

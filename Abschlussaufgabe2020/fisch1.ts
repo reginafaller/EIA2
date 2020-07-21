@@ -1,0 +1,71 @@
+namespace art {
+    export class FischS {
+        x: number;
+        y: number;
+        dx: number;
+        dy: number;
+        a: number;
+        color: string;
+
+        constructor(_color: string, _t:number) {
+            this.x = Math.floor(Math.random() * crc.canvas.width);
+            this.y = Math.floor(Math.random() * crc.canvas.height);
+            this.dx = Math.floor(Math.random() * -3);
+            this.dy = Math.floor(Math.random() * 5 - 2);
+            let w: number = Math.random() * 10;
+            if (w <= 5) {
+                this.a = 1 * _t
+            }
+            if (w > 5 && w <= 8) {
+                this.a = 2 * _t
+            }
+            if (w > 8) {
+                this.a = 3 * _t
+            }
+            this.color = _color;
+        }
+
+        draw(_x: number, _y: number, _i: number): void {
+            let bauch: Path2D = new Path2D();
+            bauch.moveTo(this.x, this.y);
+            bauch.quadraticCurveTo(this.x + (15) * this.a, this.y - (20) * this.a, this.x + (40) * this.a, this.y - (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y - (12) * this.a, this.x + (50) * this.a, this.y - (12) * this.a);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y - (9) * this.a, this.x + (50) * this.a, this.y - (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y - (3) * this.a, this.x + (50) * this.a, this.y);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y + (3) * this.a, this.x + (50) * this.a, this.y + (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (55) * this.a, this.y + (9) * this.a, this.x + (50) * this.a, this.y + (12) * this.a);
+            bauch.quadraticCurveTo(this.x + (46) * this.a, this.y + (12) * this.a, this.x + (40) * this.a, this.y + (6) * this.a);
+            bauch.quadraticCurveTo(this.x + (15) * this.a, this.y + (20) * this.a, this.x, this.y);
+            bauch.closePath();
+            crc.fillStyle = this.color;
+            crc.fill(bauch);
+            crc.stroke(bauch);
+            let auge: Path2D = new Path2D();
+            auge.moveTo(this.x, this.y);
+            auge.arc(this.x + (10)*this.a, this.y - (4)*this.a, 1.5*this.a, 0, 10);
+            crc.fillStyle = "white";
+            crc.fill(auge);
+            let pupille: Path2D = new Path2D();
+            pupille.moveTo(this.x, this.y);
+            pupille.arc(this.x + (10)*this.a, this.y - (4)*this.a, (1)*this.a, 0, 10);
+            crc.fillStyle = "black";
+            crc.fill(pupille);
+
+        }
+        update(_x: number, _y: number, _i: number): void {
+            this.move();
+            this.draw(_x, _y, _i);
+        }
+        move(): void {
+            if (this.x <= 0 || this.x >= 1000 || this.y <= 0 || this.y >= 700) {
+                this.x = 1000;
+                this.y = Math.floor(Math.random() * crc.canvas.height);
+            }
+            this.x += this.dx;
+            this.y += this.dy;
+        }
+
+
+
+    }
+}

@@ -1,7 +1,7 @@
 
 import * as Http from "http";
 import * as Url from "url";
-import * as Database from "./Endabgabe_copy/database";
+//import * as Database from "./Endabgabe_copy/database";
 
 console.log("Server starting");
 
@@ -32,11 +32,11 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
                 name: query["name"],
                 score: query["score"]
             };
-            Database.insert(newScore);
+            //Database.insert(newScore);
             respond(_response, "storing data");
             break;
         case "find":
-            Database.findAll(findCallback);
+            //Database.findAll(findCallback);
             break;
         default:
             respond(_response, "unknown command: " + command);
