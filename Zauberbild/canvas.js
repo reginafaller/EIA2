@@ -81,7 +81,7 @@ var art;
         art.crc.save();
         changeBackgroundColor = true;
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
-        insert(bildName);
+        insert(bildName, art.crc);
     }
     function restoreCanvas() {
         art.crc.restore();
@@ -268,9 +268,10 @@ var art;
         }
         farbZaehler += 1;
     }
-    function insert(_name) {
+    function insert(_name, _crc) {
         let query = "command=insert";
         query += "&name=" + _name;
+        query += "&picture" + _crc;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }

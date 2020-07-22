@@ -91,7 +91,7 @@ namespace art {
         crc.save();
         changeBackgroundColor = true;
         crc.clearRect(0,0,CanvasWidth, CanvasHeight);
-        insert(bildName);
+        insert(bildName, crc);
     }
 
     function restoreCanvas(){
@@ -295,9 +295,10 @@ namespace art {
         farbZaehler += 1;
     }
 
-    function insert(_name: string): void {
+    function insert(_name: string, _crc: CanvasRenderingContext2D): void {
         let query: string = "command=insert";
         query += "&name=" + _name;
+        query += "&picture" + _crc;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
