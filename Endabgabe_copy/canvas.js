@@ -5,7 +5,6 @@ var fisch;
     let serverAddress = "https://fallerr.herokuapp.com/";
     let canvas;
     let fishArray = [];
-    let crabArray = [];
     let nemo;
     let bubbleArray = [];
     let fps = 30;
@@ -88,7 +87,7 @@ var fisch;
         }
     }
     function eat(fish, _i) {
-        if (fish.x > nemo.x - 10 && fish.x < nemo.x + 10 && fish.y > nemo.y - 10 && fish.y < nemo.y + 10) {
+        if (fish.x > nemo.x - 15 && fish.x < nemo.x + 15 && fish.y > nemo.y - 15 && fish.y < nemo.y + 15) {
             if (nemo.a >= fish.a) {
                 updateScore(50);
                 fishArray.splice(_i, 1);

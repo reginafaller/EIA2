@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
-const Database = require("./Endabgabe_copy/database");
+//import * as Database from "./Endabgabe_copy/database";
 console.log("Server starting");
 let port = Number(process.env.PORT);
 if (!port)
@@ -24,11 +24,11 @@ function handleRequest(_request, _response) {
                 name: query["name"],
                 score: query["score"]
             };
-            Database.insert(newScore);
+            //Database.insert(newScore);
             respond(_response, "storing data");
             break;
         case "find":
-            Database.findAll(findCallback);
+            //Database.findAll(findCallback);
             break;
         default:
             respond(_response, "unknown command: " + command);
