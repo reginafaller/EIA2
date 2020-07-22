@@ -80,11 +80,23 @@ namespace art {
         addCube.addEventListener("click", addNewCube);
         let saveImage: HTMLImageElement = <HTMLImageElement>document.getElementById("save");
         saveImage.addEventListener("click", saveCanvasImage);
+        let restoreC: HTMLButtonElement = <HTMLButtonElement>document.getElementById("restore");
+        restoreC.addEventListener("click", restoreCanvas);
     }
 
     function saveCanvasImage(){
         let bildName: string = prompt('wie soll ihr Bild heißen?');
+        canvas = document.getElementsByTagName("canvas")[0];
+        crc = canvas.getContext("2d");
+        crc.save();
+        changeBackgroundColor = true;
+        crc.clearRect(0,0,CanvasWidth, CanvasHeight);
         insert(bildName);
+    }
+
+    function restoreCanvas(){
+        crc.restore();
+        changeBackgroundColor = false;
     }
 
     function ObjekteBearbeiten() {

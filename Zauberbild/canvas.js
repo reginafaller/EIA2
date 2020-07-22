@@ -71,10 +71,21 @@ var art;
         addCube.addEventListener("click", addNewCube);
         let saveImage = document.getElementById("save");
         saveImage.addEventListener("click", saveCanvasImage);
+        let restoreC = document.getElementById("restore");
+        restoreC.addEventListener("click", restoreCanvas);
     }
     function saveCanvasImage() {
         let bildName = prompt('wie soll ihr Bild heißen?');
+        canvas = document.getElementsByTagName("canvas")[0];
+        art.crc = canvas.getContext("2d");
+        art.crc.save();
+        changeBackgroundColor = true;
+        art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
         insert(bildName);
+    }
+    function restoreCanvas() {
+        art.crc.restore();
+        changeBackgroundColor = false;
     }
     function ObjekteBearbeiten() {
         ObjektBearbeiten = true;
