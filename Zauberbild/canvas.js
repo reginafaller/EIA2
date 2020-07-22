@@ -271,7 +271,7 @@ var art;
     function insert(_name, _crc) {
         let query = "command=insert";
         query += "&name=" + _name;
-        query += "&picture" + _crc;
+        query += "&picture=" + _crc;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
