@@ -19,7 +19,6 @@ function handleRequest(_request, _response) {
     let query = Url.parse(_request.url, true).query;
     let command = query["command"];
     switch (command) {
-        case "insert":
         case "find":
             Database.findAll(findCallback);
             break;

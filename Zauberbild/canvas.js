@@ -271,12 +271,13 @@ var art;
     function insert(_name, _crc) {
         let query = "command=insert";
         query += "&name=" + _name;
-        query += "&picture=" + _crc;
+        //query += "&picture=" + _crc;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
     function sendRequest(_query, _callback) {
         let xhr = new XMLHttpRequest();
+        console.log("here2");
         xhr.open("GET", serverAddress + "?" + _query, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
@@ -289,18 +290,13 @@ var art;
     }
     function find() {
         let query = "command=find";
-        //sendRequest(query, handleFindResponse);
+        sendRequest(query, handleFindResponse);
     }
-    //function handleFindResponse(_event: ProgressEvent): void {
-    //    let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
-    //    if (xhr.readyState == XMLHttpRequest.DONE) {
-    //        let SpielerListe: Player[] = JSON.parse(xhr.response);
-    //        for (let i: number = 0; i <= SpielerListe.length; i++) {
-    //            let SpielerName: string = SpielerListe[i].name;
-    //            let SpielerScore: string = SpielerListe[i].score;
-    //            document.getElementById("output").innerHTML = "Name: " + SpielerName + " Score: " + SpielerScore;
-    //        }
-    //    }
-    //}
+    function handleFindResponse(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("ich bin fertisch");
+        }
+    }
 })(art || (art = {}));
 //# sourceMappingURL=canvas.js.map

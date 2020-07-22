@@ -30,8 +30,6 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
     let command: string = query["command"];
 
     switch (command) {
-        case "insert":
-        
         case "find":
             Database.findAll(findCallback);
             break;
