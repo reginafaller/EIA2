@@ -1,6 +1,6 @@
 import * as Http from "http";
 import * as Url from "url";
-import * as Database from "../Zauberbild/database";
+import * as Database from "./database";
 
 console.log("Server starting");
 
