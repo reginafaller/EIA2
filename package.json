@@ -3,9 +3,9 @@
 	"version": "1.0.0",
 	"description": "Abschlussaufgabe 2020",
 	"author": "Regina Faller",
-	"main": "Server.js",
+	"main": "server.js",
 	"scripts": {
-		"start": "node Server.js"
+		"start": "node Zauberbild/server.js"
 	},
 	"engines": {
 		"node": "8.11.3",
