@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
-const Database = require("../Zauberbild/database");
+const Database = require("./database");
 console.log("Server starting");
 let port = Number(process.env.PORT);
 if (!port)
