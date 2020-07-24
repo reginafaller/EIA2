@@ -20,13 +20,11 @@ function handleRequest(_request, _response) {
     let command = query["command"];
     switch (command) {
         case "insert":
-            let newScore = {
-                name: query["name"],
-                score: query["score"]
+            let canvasImage = {
+                name: query["name"]
             };
-            Database.insert("newScore");
+            Database.insert("canvasImage");
             respond(_response, "storing data");
-            break;
         case "find":
             Database.findAll(findCallback);
             break;

@@ -1,9 +1,16 @@
-
 import * as Http from "http";
 import * as Url from "url";
 import * as Database from "../EIA2-Alle/Zauberbild/database";
 
 console.log("Server starting");
+
+interface AssocStringString {
+    [key: string]: string;
+}
+interface Image {
+    name: string;
+
+}
 
 let port: number = Number(process.env.PORT);
 if (!port)
@@ -28,13 +35,11 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     switch (command) {
         case "insert":
-            let newScore: Player = {
-                name: query["name"],
-                score: query["score"]
-            };
-            Database.insert("newScore");
-            respond(_response, "storing data");
-            break;
+            let canvasImage: Image = {
+                name: query["name"]
+            }
+            Database.insert("canvasImage");
+            respond(_response,"storing data");
         case "find":
             Database.findAll(findCallback);
             break;

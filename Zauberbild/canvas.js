@@ -4,7 +4,7 @@ var art;
     document.addEventListener("mousedown", changeColor);
     document.addEventListener("mousemove", MoveObject);
     document.addEventListener("mouseup", SetPosition);
-    let serverAddress = "https://fallerr.herokuapp.com/";
+    art.serverAddress = "https://fallerr.herokuapp.com/";
     let canvas;
     let CircleArray = [];
     let NeutralArray = [];
@@ -81,7 +81,7 @@ var art;
         art.crc.save();
         changeBackgroundColor = true;
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
-        insert(bildName, art.crc);
+        art.insert(bildName, art.crc);
     }
     function restoreCanvas() {
         art.crc.restore();
@@ -267,36 +267,6 @@ var art;
             NewPosition[i].update(0, 0, "red", false);
         }
         farbZaehler += 1;
-    }
-    function insert(_name, _crc) {
-        let query = "command=insert";
-        query += "&name=" + _name;
-        //query += "&picture=" + _crc;
-        console.log(query);
-        sendRequest(query, handleInsertResponse);
-    }
-    function sendRequest(_query, _callback) {
-        let xhr = new XMLHttpRequest();
-        console.log("here2");
-        xhr.open("GET", serverAddress + "?" + _query, true);
-        xhr.addEventListener("readystatechange", _callback);
-        xhr.send();
-    }
-    function handleInsertResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
-        }
-    }
-    function find() {
-        let query = "command=find";
-        sendRequest(query, handleFindResponse);
-    }
-    function handleFindResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log("ich bin fertisch");
-        }
     }
 })(art || (art = {}));
 //# sourceMappingURL=canvas.js.map
