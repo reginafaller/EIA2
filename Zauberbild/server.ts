@@ -9,7 +9,6 @@ interface AssocStringString {
 }
 interface Image {
     name: string;
-
 }
 
 let port: number = Number(process.env.PORT);
@@ -20,7 +19,6 @@ let server: Http.Server = Http.createServer();
 server.addListener("listening", handleListen);
 server.addListener("request", handleRequest);
 server.listen(port);
-
 
 
 function handleListen(): void {

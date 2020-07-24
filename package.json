@@ -1,8 +1,8 @@
 {
 	"name": "miniserver",
 	"version": "1.0.0",
-	"description": "Minimal server just bouncing the URL",
-	"author": "Jirka, adapted by Lukas",
+	"description": "Abschlussaufgabe 2020",
+	"author": "Regina Faller",
 	"main": "Server.js",
 	"scripts": {
 		"start": "node Server.js"
