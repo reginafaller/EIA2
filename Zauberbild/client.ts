@@ -13,7 +13,7 @@ namespace art{
         BackgroundColor: string;
 
     }
-   
+   export let ElementNum: number = 0;
     //export let NeutralArray: kreis[] = [];
     //let NewPosition: kreis[] = [];
    // export let AnimatedColor: kreis[] = [];
@@ -27,8 +27,9 @@ namespace art{
                 x: AnimatedLeftRight[i].x,
                 y: AnimatedLeftRight[i].y,
                 array: "AnimatedLeftRight",
-                arrayPos: i,
+                arrayPos: ElementNum,
             }
+            ElementNum += 1;
             query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i: number = 0; i < CircleArray.length; i++) {
@@ -37,8 +38,9 @@ namespace art{
                 x: CircleArray[i].x,
                 y: CircleArray[i].y,
                 array: "CircleArray",
-                arrayPos: i,
+                arrayPos: ElementNum,
             }
+            ElementNum += 1;
             query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i: number = 0; i < NeutralArray.length; i++) {
@@ -47,8 +49,9 @@ namespace art{
                 x: NeutralArray[i].x,
                 y: NeutralArray[i].y,
                 array: "NeutralArray",
-                arrayPos: i,
+                arrayPos: ElementNum,
             }
+            ElementNum += 1;
             query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i: number = 0; i < AnimatedColor.length; i++) {
@@ -57,8 +60,9 @@ namespace art{
                 x: AnimatedColor[i].x,
                 y: AnimatedColor[i].y,
                 array: "AnimatedColor",
-                arrayPos: i,
+                arrayPos: ElementNum,
             }
+            ElementNum += 1;
             query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         

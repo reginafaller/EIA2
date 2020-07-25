@@ -20,14 +20,19 @@ function handleRequest(_request, _response) {
     let command = query["command"];
     switch (command) {
         case "insert":
-            let canvasElements = {
-                type: query["Type"],
-                x: query["X"],
-                y: query["y"],
-                array: query["Array"],
-                arrayPos: query["Element"],
-            };
-            Database.insert("canvasImage");
+            let ElementNumString = query["Anzahl"];
+            let ElementNum = parseInt(ElementNumString);
+            for (let i = 0; i < ElementNum; i++) {
+                let canvasElements = {
+                    type: ElementNum + query["Type"],
+                    x: ElementNum + query["X"],
+                    y: ElementNum + query["y"],
+                    array: ElementNum + query["Array"],
+                    arrayPos: ElementNum + query["Element"],
+                };
+                console.log(canvasElements);
+            }
+            Database.insert("canvasElenents");
             respond(_response, "storing data");
         case "find":
             Database.findAll(findCallback);

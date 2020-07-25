@@ -30,14 +30,20 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     switch (command) {
         case "insert":
+        let ElementNumString: string = query["Anzahl"];
+        let ElementNum: number = parseInt(ElementNumString);
+        for(let i: number = 0; i < ElementNum; i++) {
             let canvasElements: AnimatedElement = {
-                type: query["Type"],
-                x: query["X"],
-                y: query["y"],
-                array: query["Array"],
-                arrayPos: query["Element"],
+                type: ElementNum + query["Type"],
+                x: ElementNum + query["X"],
+                y: ElementNum + query["y"],
+                array: ElementNum + query["Array"],
+                arrayPos: ElementNum + query["Element"],
             }
-            Database.insert("canvasImage");
+            console.log(canvasElements);
+        }   
+            
+            Database.insert("canvasElenents");
             respond(_response,"storing data");
         case "find":
             Database.findAll(findCallback);

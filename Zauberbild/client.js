@@ -1,5 +1,6 @@
 var art;
 (function (art) {
+    art.ElementNum = 0;
     //export let NeutralArray: kreis[] = [];
     //let NewPosition: kreis[] = [];
     // export let AnimatedColor: kreis[] = [];
@@ -12,8 +13,9 @@ var art;
                 x: art.AnimatedLeftRight[i].x,
                 y: art.AnimatedLeftRight[i].y,
                 array: "AnimatedLeftRight",
-                arrayPos: i,
+                arrayPos: art.ElementNum,
             };
+            art.ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i = 0; i < art.CircleArray.length; i++) {
@@ -22,8 +24,9 @@ var art;
                 x: art.CircleArray[i].x,
                 y: art.CircleArray[i].y,
                 array: "CircleArray",
-                arrayPos: i,
+                arrayPos: art.ElementNum,
             };
+            art.ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i = 0; i < art.NeutralArray.length; i++) {
@@ -32,8 +35,9 @@ var art;
                 x: art.NeutralArray[i].x,
                 y: art.NeutralArray[i].y,
                 array: "NeutralArray",
-                arrayPos: i,
+                arrayPos: art.ElementNum,
             };
+            art.ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i = 0; i < art.AnimatedColor.length; i++) {
@@ -42,8 +46,9 @@ var art;
                 x: art.AnimatedColor[i].x,
                 y: art.AnimatedColor[i].y,
                 array: "AnimatedColor",
-                arrayPos: i,
+                arrayPos: art.ElementNum,
             };
+            art.ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         console.log(query);
