@@ -6,6 +6,7 @@ var art;
             this.y = Math.floor(Math.random() * art.crc.canvas.height);
             this.color = "red";
             this.ChangeColor = false;
+            this.type = "circle";
         }
         draw() {
             let kreis = new Path2D();

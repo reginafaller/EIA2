@@ -8,12 +8,12 @@ namespace art {
 
     export let crc: CanvasRenderingContext2D;
     let canvas: HTMLCanvasElement;
-    let CircleArray: kreis[] = [];
-    let NeutralArray: kreis[] = [];
+    export let CircleArray: kreis[] = [];
+    export let NeutralArray: kreis[] = [];
     export let SwitchColor: string = "green";
-    let AnimatedLeftRight: kreis[] = [];
+    export let AnimatedLeftRight: kreis[] = [];
     let NewPosition: kreis[] = [];
-    let AnimatedColor: kreis[] = [];
+    export let AnimatedColor: kreis[] = [];
     let fps: number = 30;
     let farbZaehler: number = 0;
     let isMoving: boolean = false;

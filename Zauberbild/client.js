@@ -1,9 +1,51 @@
 var art;
 (function (art) {
+    //export let NeutralArray: kreis[] = [];
+    //let NewPosition: kreis[] = [];
+    // export let AnimatedColor: kreis[] = [];
     function insert(_name, _crc) {
         let query = "command=insert";
         query += "&name=" + _name;
-        //query += "&picture=" + _crc;
+        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
+            let Element = {
+                type: art.AnimatedLeftRight[i].type,
+                x: art.AnimatedLeftRight[i].x,
+                y: art.AnimatedLeftRight[i].y,
+                array: "AnimatedLeftRight",
+                arrayPos: i,
+            };
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i = 0; i < art.CircleArray.length; i++) {
+            let Element = {
+                type: art.CircleArray[i].type,
+                x: art.CircleArray[i].x,
+                y: art.CircleArray[i].y,
+                array: "CircleArray",
+                arrayPos: i,
+            };
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i = 0; i < art.NeutralArray.length; i++) {
+            let Element = {
+                type: art.NeutralArray[i].type,
+                x: art.NeutralArray[i].x,
+                y: art.NeutralArray[i].y,
+                array: "NeutralArray",
+                arrayPos: i,
+            };
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i = 0; i < art.AnimatedColor.length; i++) {
+            let Element = {
+                type: art.AnimatedColor[i].type,
+                x: art.AnimatedColor[i].x,
+                y: art.AnimatedColor[i].y,
+                array: "AnimatedColor",
+                arrayPos: i,
+            };
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }

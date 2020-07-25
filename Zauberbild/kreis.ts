@@ -6,12 +6,14 @@ namespace art {
         Xbewegung: number;
         Ybewegung: number;
         ChangeColor: boolean;
+        type: string;
 
         constructor() {
             this.x = Math.floor(Math.random() * crc.canvas.width) +100;
             this.y = Math.floor(Math.random() * crc.canvas.height);
             this.color = "red";
             this.ChangeColor = false;
+            this.type = "circle";
         }
 
         draw(): void {

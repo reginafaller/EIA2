@@ -4,6 +4,7 @@ namespace art {
 
         constructor() {
             super();
+            this.type = "cube";
         }
 
         draw(): void {

@@ -3,6 +3,7 @@ var art;
     class cube extends art.kreis {
         constructor() {
             super();
+            this.type = "cube";
         }
         draw() {
             let cube = new Path2D();

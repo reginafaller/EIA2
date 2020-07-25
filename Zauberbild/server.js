@@ -20,8 +20,12 @@ function handleRequest(_request, _response) {
     let command = query["command"];
     switch (command) {
         case "insert":
-            let canvasImage = {
-                name: query["name"]
+            let canvasElements = {
+                type: query["Type"],
+                x: query["X"],
+                y: query["y"],
+                array: query["Array"],
+                arrayPos: query["Element"],
             };
             Database.insert("canvasImage");
             respond(_response, "storing data");

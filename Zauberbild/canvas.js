@@ -6,12 +6,12 @@ var art;
     document.addEventListener("mouseup", SetPosition);
     art.serverAddress = "https://fallerr.herokuapp.com/";
     let canvas;
-    let CircleArray = [];
-    let NeutralArray = [];
+    art.CircleArray = [];
+    art.NeutralArray = [];
     art.SwitchColor = "green";
-    let AnimatedLeftRight = [];
+    art.AnimatedLeftRight = [];
     let NewPosition = [];
-    let AnimatedColor = [];
+    art.AnimatedColor = [];
     let fps = 30;
     let farbZaehler = 0;
     let isMoving = false;
@@ -29,18 +29,18 @@ var art;
     art.CanvasHeight = 600;
     function MoveObject(_event) {
         if (isMoving) {
-            NeutralArray[0].update(0, 0, "red", true);
+            art.NeutralArray[0].update(0, 0, "red", true);
             art.clientX = _event.x;
             art.clientY = _event.y;
         }
     }
     function SetPosition(_event) {
         if (isMoving) {
-            NeutralArray[0].update(0, 0, "red", true);
+            art.NeutralArray[0].update(0, 0, "red", true);
             art.clientX = _event.x;
             art.clientY = _event.y;
-            CircleArray.push(NeutralArray[0]);
-            NeutralArray.splice(0);
+            art.CircleArray.push(art.NeutralArray[0]);
+            art.NeutralArray.splice(0);
             isMoving = false;
             ObjektBearbeiten = false;
             update();
@@ -125,12 +125,12 @@ var art;
     }
     function addNewCircle() {
         let Kreis = new art.kreis();
-        CircleArray.push(Kreis);
+        art.CircleArray.push(Kreis);
         Kreis.update(0, 0, "red", false);
     }
     function addNewCube() {
         let Cube = new art.cube();
-        CircleArray.push(Cube);
+        art.CircleArray.push(Cube);
         Cube.update(0, 0, "red", false);
     }
     function ChangeBackground() {
@@ -159,56 +159,56 @@ var art;
         art.clientX = _event.clientX;
         art.clientY = _event.clientY;
         //Durch alle automatisch platzierten Objekte
-        for (let i = 0; i < CircleArray.length; i++) {
-            let currentX = CircleArray[i].x;
-            let currentY = CircleArray[i].y;
+        for (let i = 0; i < art.CircleArray.length; i++) {
+            let currentX = art.CircleArray[i].x;
+            let currentY = art.CircleArray[i].y;
             if (art.clientX < currentX + 40 && art.clientX > currentX - 40 && art.clientY < currentY + 40 && art.clientY > currentY - 40) {
-                if (NeutralArray.length > 0) {
-                    CircleArray.push(NeutralArray[0]);
-                    NeutralArray.splice(0, 1);
+                if (art.NeutralArray.length > 0) {
+                    art.CircleArray.push(art.NeutralArray[0]);
+                    art.NeutralArray.splice(0, 1);
                 }
-                NeutralArray.push(CircleArray[i]);
-                CircleArray.splice(i, 1);
+                art.NeutralArray.push(art.CircleArray[i]);
+                art.CircleArray.splice(i, 1);
                 ObjekteBearbeiten();
             }
         }
         //Durch alle mit Bewegung
-        for (let i = 0; i < AnimatedLeftRight.length; i++) {
-            let currentX = AnimatedLeftRight[i].x;
-            let currentY = AnimatedLeftRight[i].y;
+        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
+            let currentX = art.AnimatedLeftRight[i].x;
+            let currentY = art.AnimatedLeftRight[i].y;
             if (art.clientX < currentX + 20 && art.clientX > currentX - 20 && art.clientY < currentY + 20 && art.clientY > currentY - 20) {
-                if (NeutralArray.length > 0) {
-                    CircleArray.push(NeutralArray[0]);
-                    NeutralArray.splice(0, 1);
+                if (art.NeutralArray.length > 0) {
+                    art.CircleArray.push(art.NeutralArray[0]);
+                    art.NeutralArray.splice(0, 1);
                 }
-                NeutralArray.push(AnimatedLeftRight[i]);
-                AnimatedLeftRight.splice(i, 1);
+                art.NeutralArray.push(art.AnimatedLeftRight[i]);
+                art.AnimatedLeftRight.splice(i, 1);
                 ObjekteBearbeiten();
             }
         }
-        for (let i = 0; i < AnimatedColor.length; i++) {
-            let currentX = AnimatedColor[i].x;
-            let currentY = AnimatedColor[i].y;
+        for (let i = 0; i < art.AnimatedColor.length; i++) {
+            let currentX = art.AnimatedColor[i].x;
+            let currentY = art.AnimatedColor[i].y;
             if (art.clientX < currentX + 20 && art.clientX > currentX - 20 && art.clientY < currentY + 20 && art.clientY > currentY - 20) {
-                if (NeutralArray.length > 0) {
-                    CircleArray.push(NeutralArray[0]);
-                    NeutralArray.splice(0, 1);
+                if (art.NeutralArray.length > 0) {
+                    art.CircleArray.push(art.NeutralArray[0]);
+                    art.NeutralArray.splice(0, 1);
                 }
-                NeutralArray.push(AnimatedColor[i]);
-                AnimatedColor.splice(i, 1);
+                art.NeutralArray.push(art.AnimatedColor[i]);
+                art.AnimatedColor.splice(i, 1);
                 ObjekteBearbeiten();
             }
         }
         if (art.clientX <= 100 && art.clientY >= 100 && art.clientY <= 200 && ObjektBearbeiten == true) {
             console.log("Color");
-            AnimatedColor.push(NeutralArray[0]);
-            NeutralArray.splice(0);
+            art.AnimatedColor.push(art.NeutralArray[0]);
+            art.NeutralArray.splice(0);
             ObjektBearbeiten = false;
             update();
         }
         if (art.clientX <= 100 && art.clientY <= 100 && ObjektBearbeiten == true) {
-            AnimatedLeftRight.push(NeutralArray[0]);
-            NeutralArray.splice(0);
+            art.AnimatedLeftRight.push(art.NeutralArray[0]);
+            art.NeutralArray.splice(0);
             ObjektBearbeiten = false;
             update();
         }
@@ -217,7 +217,7 @@ var art;
             update();
         }
         if (art.clientX <= 100 && art.clientY <= 300 && art.clientY >= 200 && ObjektBearbeiten == true) {
-            NeutralArray.splice(0);
+            art.NeutralArray.splice(0);
             ObjektBearbeiten = false;
             update();
         }
@@ -254,14 +254,14 @@ var art;
         art.crc.rect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.fillStyle = backgroundColor;
         art.crc.fill();
-        for (let i = 0; i < CircleArray.length; i++) {
-            CircleArray[i].update(0, 0, "red", false);
+        for (let i = 0; i < art.CircleArray.length; i++) {
+            art.CircleArray[i].update(0, 0, "red", false);
         }
-        for (let i = 0; i < AnimatedLeftRight.length; i++) {
-            AnimatedLeftRight[i].update(2, 0, "red", false);
+        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
+            art.AnimatedLeftRight[i].update(2, 0, "red", false);
         }
-        for (let i = 0; i < AnimatedColor.length; i++) {
-            AnimatedColor[i].update(0, 0, art.SwitchColor, false);
+        for (let i = 0; i < art.AnimatedColor.length; i++) {
+            art.AnimatedColor[i].update(0, 0, art.SwitchColor, false);
         }
         for (let i = 0; i < NewPosition.length; i++) {
             NewPosition[i].update(0, 0, "red", false);
