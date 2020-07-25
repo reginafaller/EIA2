@@ -22,7 +22,7 @@ function handleConnect(_e, _client) {
     else {
         console.log("Connected to database!");
         db = _client.db(databaseName);
-        players = db.collection("zauberbild");
+        players = db.collection("zauberbildNeu");
     }
 }
 function insert(_doc) {

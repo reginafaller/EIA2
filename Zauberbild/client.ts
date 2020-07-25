@@ -65,7 +65,7 @@ namespace art{
             ElementNum += 1;
             query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
-        
+        query += "&Anzahl=" + ElementNum;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
