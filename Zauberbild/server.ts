@@ -49,7 +49,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             Database.findAll(findCallback);
             break;
         default:
-            respond(_response, "unknown command: " + command);
+            respond(_response, "unknown command: here" + command);
             break;
     }
     function findCallback(json: string): void {

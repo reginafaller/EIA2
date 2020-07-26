@@ -38,7 +38,7 @@ function handleRequest(_request, _response) {
             Database.findAll(findCallback);
             break;
         default:
-            respond(_response, "unknown command: " + command);
+            respond(_response, "unknown command: here" + command);
             break;
     }
     function findCallback(json) {

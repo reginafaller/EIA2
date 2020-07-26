@@ -19,7 +19,7 @@ var art;
     let gruen = "rgb(0, 255, 0)";
     let purple = "rgb(150, 0, 150)";
     let blue = "rgb(0, 0, 255)";
-    let backgroundColor = blue;
+    art.backgroundColor = blue;
     let changeBackgroundColor = false;
     let ObjektBearbeiten = false;
     let NeuePosition = false;
@@ -53,7 +53,7 @@ var art;
         art.crc = canvas.getContext("2d");
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.rect(0, 0, art.CanvasWidth, art.CanvasHeight);
-        art.crc.fillStyle = backgroundColor;
+        art.crc.fillStyle = art.backgroundColor;
         art.crc.fill();
         addEventListener();
         update();
@@ -223,16 +223,16 @@ var art;
         }
         if (changeBackgroundColor == true) {
             if (art.clientX <= (art.CanvasWidth / 4)) {
-                backgroundColor = rot;
+                art.backgroundColor = rot;
             }
             if (art.clientX <= (art.CanvasWidth / 4) * 2 && art.clientX >= (art.CanvasWidth / 4)) {
-                backgroundColor = gruen;
+                art.backgroundColor = gruen;
             }
             if (art.clientX <= (art.CanvasWidth / 4) * 3 && art.clientX >= (art.CanvasWidth / 4) * 2) {
-                backgroundColor = purple;
+                art.backgroundColor = purple;
             }
             if (art.clientX >= (art.CanvasWidth / 4) * 3) {
-                backgroundColor = blue;
+                art.backgroundColor = blue;
             }
             changeBackgroundColor = false;
             init();
@@ -252,7 +252,7 @@ var art;
         window.setTimeout(update, 1000 / fps);
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.rect(0, 0, art.CanvasWidth, art.CanvasHeight);
-        art.crc.fillStyle = backgroundColor;
+        art.crc.fillStyle = art.backgroundColor;
         art.crc.fill();
         for (let i = 0; i < art.CircleArray.length; i++) {
             art.CircleArray[i].update(0, 0, "red", false);

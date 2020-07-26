@@ -13,7 +13,8 @@ namespace art{
     export function insert(_name: string, _crc: CanvasRenderingContext2D): void {
         let query: string = "command=insert";
         query += "&name=" + _name;
-        query +=
+        query += "&color=" + backgroundColor;
+        query += "&CanvasWidth=" + CanvasWidth;
         for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
             let Element: AnimatedElement = {
                 type: AnimatedLeftRight[i].type,

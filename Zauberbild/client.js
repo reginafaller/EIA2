@@ -4,8 +4,8 @@ var art;
     function insert(_name, _crc) {
         let query = "command=insert";
         query += "&name=" + _name;
-        query +=
-        ;
+        query += "&color=" + art.backgroundColor;
+        query += "&CanvasWidth=" + art.CanvasWidth;
         for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
             let Element = {
                 type: art.AnimatedLeftRight[i].type,

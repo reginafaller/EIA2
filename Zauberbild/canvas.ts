@@ -23,7 +23,7 @@ namespace art {
     let gruen: string = "rgb(0, 255, 0)";
     let purple: string = "rgb(150, 0, 150)";
     let blue: string = "rgb(0, 0, 255)";
-    let backgroundColor: string = blue;
+    export let backgroundColor: string = blue;
     let changeBackgroundColor: boolean = false;
     let ObjektBearbeiten: boolean = false;
     let NeuePosition: boolean = false;
