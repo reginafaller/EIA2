@@ -68,6 +68,8 @@ namespace art{
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         console.log("here2");
         xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
