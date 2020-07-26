@@ -1,21 +1,20 @@
 var art;
 (function (art) {
-    art.ElementNum = 0;
-    //export let NeutralArray: kreis[] = [];
-    //let NewPosition: kreis[] = [];
-    // export let AnimatedColor: kreis[] = [];
+    let ElementNum = 0;
     function insert(_name, _crc) {
         let query = "command=insert";
         query += "&name=" + _name;
+        query +=
+        ;
         for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
             let Element = {
                 type: art.AnimatedLeftRight[i].type,
                 x: art.AnimatedLeftRight[i].x,
                 y: art.AnimatedLeftRight[i].y,
                 array: "AnimatedLeftRight",
-                arrayPos: art.ElementNum,
+                arrayPos: ElementNum,
             };
-            art.ElementNum += 1;
+            ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i = 0; i < art.CircleArray.length; i++) {
@@ -24,9 +23,9 @@ var art;
                 x: art.CircleArray[i].x,
                 y: art.CircleArray[i].y,
                 array: "CircleArray",
-                arrayPos: art.ElementNum,
+                arrayPos: ElementNum,
             };
-            art.ElementNum += 1;
+            ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i = 0; i < art.NeutralArray.length; i++) {
@@ -35,9 +34,9 @@ var art;
                 x: art.NeutralArray[i].x,
                 y: art.NeutralArray[i].y,
                 array: "NeutralArray",
-                arrayPos: art.ElementNum,
+                arrayPos: ElementNum,
             };
-            art.ElementNum += 1;
+            ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i = 0; i < art.AnimatedColor.length; i++) {
@@ -46,12 +45,12 @@ var art;
                 x: art.AnimatedColor[i].x,
                 y: art.AnimatedColor[i].y,
                 array: "AnimatedColor",
-                arrayPos: art.ElementNum,
+                arrayPos: ElementNum,
             };
-            art.ElementNum += 1;
+            ElementNum += 1;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
-        query += "&Anzahl=" + art.ElementNum;
+        query += "&Anzahl=" + ElementNum;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }

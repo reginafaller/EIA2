@@ -8,19 +8,12 @@ namespace art{
         arrayPos: number;
     }
 
-    interface CanvasElement {
-        name: string;
-        BackgroundColor: string;
-
-    }
-   export let ElementNum: number = 0;
-    //export let NeutralArray: kreis[] = [];
-    //let NewPosition: kreis[] = [];
-   // export let AnimatedColor: kreis[] = [];
+   let ElementNum: number = 0;
 
     export function insert(_name: string, _crc: CanvasRenderingContext2D): void {
         let query: string = "command=insert";
         query += "&name=" + _name;
+        query +=
         for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
             let Element: AnimatedElement = {
                 type: AnimatedLeftRight[i].type,
