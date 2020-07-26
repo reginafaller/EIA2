@@ -25,6 +25,9 @@ function handleListen(): void {
 function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
 
+    _response.setHeader("content-type", "text/html; charset=utf-8");
+    _response.setHeader("Access-Control-Allow-Origin", "*");
+
     let query: AssocStringString = <AssocStringString>Url.parse(_request.url, true).query;
     let command: string = query["command"];
 
@@ -60,8 +63,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
 function respond(_response: Http.ServerResponse, _text: string): void {
     console.log("Preparing response: " + _text); 
-    _response.setHeader("content-type", "text/html; charset=utf-8");
-    _response.setHeader("Access-Control-Allow-Origin", "*");
+    
     _response.write(_text);
     _response.end();
 }
