@@ -10,8 +10,8 @@ let players;
 if (process.env.NODE_ENV == "production") {
     // databaseURL = "mongodb+srv://username:password@hostname:port/database";
     //databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
-    //databaseURL = "mongodb+srv://Regina:12345@reginashood-msrks.mongodb.net/zauberbild";
-    databaseURL = "mongodb+srv://reginashood-msrks.mongodb.net/<dbname>";
+    databaseURL = "mongodb+srv://Regina:12345@reginashood-msrks.mongodb.net/zauberbild";
+    //databaseURL = "mongodb+srv://reginashood-msrks.mongodb.net/<dbname>"
     databaseName = "zauberbild";
 }
 // try to connect to database, then activate callback "handleConnect" 
