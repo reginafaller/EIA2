@@ -36,9 +36,12 @@ function handleInsert(_e) {
 function findAll(_callback) {
     var cursor = players.find();
     cursor.toArray(prepareAnswer);
-    function prepareAnswer(_e) {
+    function prepareAnswer(_e, pointArray) {
         if (_e)
             _callback("Error" + _e);
+        else
+            // stringify creates a json-string, passed it back to _callback
+            _callback(JSON.stringify(pointArray));
     }
 }
 exports.findAll = findAll;

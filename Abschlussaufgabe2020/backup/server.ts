@@ -22,17 +22,28 @@ function handleListen(): void {
 function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
 
+    
+
     let query: AssocStringString = <AssocStringString>Url.parse(_request.url, true).query;
     let command: string = query["command"];
 
     switch (command) {
         case "insert":
-        let highscore: Player = {
-            name: query["name"]
-        };
-        Database.insert(highscore);
-        respond(_response, "storing data");
-        break;
+        let ElementNumString: string = query["Anzahl"];
+        let ElementNum: number = parseInt(ElementNumString);
+        for(let i: number = 0; i < ElementNum; i++) {
+            let canvasElements: AnimatedElement = {
+                type: ElementNum + query["Type"],
+                x: ElementNum + query["X"],
+                y: ElementNum + query["y"],
+                array: ElementNum + query["Array"],
+                arrayPos: ElementNum + query["Element"],
+            }
+            console.log(canvasElements);
+        }   
+            
+            Database.insert("canvasElenents");
+            respond(_response,"storing data");
         case "find":
             Database.findAll(findCallback);
             break;

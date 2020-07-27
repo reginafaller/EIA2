@@ -4,53 +4,6 @@ var art;
     function insert(_name) {
         let query = "command=insert";
         query += "&name=" + _name;
-        query += "&color=" + art.backgroundColor;
-        query += "&CanvasWidth=" + art.CanvasWidth;
-        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
-            let Element = {
-                type: art.AnimatedLeftRight[i].type,
-                x: art.AnimatedLeftRight[i].x,
-                y: art.AnimatedLeftRight[i].y,
-                array: "AnimatedLeftRight",
-                arrayPos: ElementNum,
-            };
-            ElementNum += 1;
-            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
-        }
-        for (let i = 0; i < art.CircleArray.length; i++) {
-            let Element = {
-                type: art.CircleArray[i].type,
-                x: art.CircleArray[i].x,
-                y: art.CircleArray[i].y,
-                array: "CircleArray",
-                arrayPos: ElementNum,
-            };
-            ElementNum += 1;
-            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
-        }
-        for (let i = 0; i < art.NeutralArray.length; i++) {
-            let Element = {
-                type: art.NeutralArray[i].type,
-                x: art.NeutralArray[i].x,
-                y: art.NeutralArray[i].y,
-                array: "NeutralArray",
-                arrayPos: ElementNum,
-            };
-            ElementNum += 1;
-            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
-        }
-        for (let i = 0; i < art.AnimatedColor.length; i++) {
-            let Element = {
-                type: art.AnimatedColor[i].type,
-                x: art.AnimatedColor[i].x,
-                y: art.AnimatedColor[i].y,
-                array: "AnimatedColor",
-                arrayPos: ElementNum,
-            };
-            ElementNum += 1;
-            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
-        }
-        query += "&Anzahl=" + ElementNum;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
@@ -75,7 +28,7 @@ var art;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let Bilder = JSON.parse(xhr.response);
+            //let Bilder: AnimatedElement[] = JSON.parse(xhr.response);
             //for (let i:number = 0; i <= 5; i++){
             //}
             //for (let i: number = 0; i <= SpielerListe.length; i++) {

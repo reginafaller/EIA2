@@ -20,12 +20,20 @@ function handleRequest(_request, _response) {
     let command = query["command"];
     switch (command) {
         case "insert":
-            let highscore = {
-                name: query["name"]
-            };
-            Database.insert(highscore);
+            let ElementNumString = query["Anzahl"];
+            let ElementNum = parseInt(ElementNumString);
+            for (let i = 0; i < ElementNum; i++) {
+                let canvasElements = {
+                    type: ElementNum + query["Type"],
+                    x: ElementNum + query["X"],
+                    y: ElementNum + query["y"],
+                    array: ElementNum + query["Array"],
+                    arrayPos: ElementNum + query["Element"],
+                };
+                console.log(canvasElements);
+            }
+            Database.insert("canvasElenents");
             respond(_response, "storing data");
-            break;
         case "find":
             Database.findAll(findCallback);
             break;

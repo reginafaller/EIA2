@@ -29,7 +29,7 @@ function handleConnect(_e: Mongo.MongoError, _client: Mongo.MongoClient): void {
     }
 }
 
-export function insert(_doc: Player): void {
+export function insert(_doc: string): void {
     players.insertOne(_doc, handleInsert);
 }
 
@@ -44,11 +44,9 @@ export function findAll(_callback: Function): void {
     cursor.toArray(prepareAnswer);
 
 
-    function prepareAnswer(_e: Mongo.MongoError, pointArray: Player[]): void {
+    function prepareAnswer(_e: Mongo.MongoError): void {
         if (_e)
             _callback("Error" + _e);
-        else
-            // stringify creates a json-string, passed it back to _callback
-            _callback(JSON.stringify(pointArray));
+        
     }
 }
