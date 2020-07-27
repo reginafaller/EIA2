@@ -10,7 +10,7 @@ namespace art{
 
    let ElementNum: number = 0;
 
-    export function insert(_name: string, _crc: CanvasRenderingContext2D): void {
+    export function insert(_name: string): void {
         let query: string = "command=insert";
         query += "&name=" + _name;
         query += "&color=" + backgroundColor;
@@ -88,9 +88,9 @@ namespace art{
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let Bilder: AnimatedElement[] = JSON.parse(xhr.response);
-            for (let i:number = 0; i <= 5; i++){
+            //for (let i:number = 0; i <= 5; i++){
 
-            }
+            //}
             //for (let i: number = 0; i <= SpielerListe.length; i++) {
             //    let SpielerName: string = SpielerListe[i].name;
             //    let SpielerScore: string = SpielerListe[i].score;

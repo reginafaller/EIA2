@@ -1,3 +1,7 @@
+interface AssocStringString {
+    [key: string]: string;
+}
+
 interface AnimatedElement {
     type: string;
     x: string;

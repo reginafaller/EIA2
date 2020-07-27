@@ -1,7 +1,7 @@
 var art;
 (function (art) {
     let ElementNum = 0;
-    function insert(_name, _crc) {
+    function insert(_name) {
         let query = "command=insert";
         query += "&name=" + _name;
         query += "&color=" + art.backgroundColor;
@@ -76,8 +76,8 @@ var art;
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let Bilder = JSON.parse(xhr.response);
-            for (let i = 0; i <= 5; i++) {
-            }
+            //for (let i:number = 0; i <= 5; i++){
+            //}
             //for (let i: number = 0; i <= SpielerListe.length; i++) {
             //    let SpielerName: string = SpielerListe[i].name;
             //    let SpielerScore: string = SpielerListe[i].score;

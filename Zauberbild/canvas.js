@@ -75,7 +75,7 @@ var art;
     function saveCanvasImage() {
         let bildName = prompt('wie soll ihr Bild heißen?');
         changeBackgroundColor = true;
-        art.insert(bildName, art.crc);
+        art.insert(bildName);
     }
     function ObjekteBearbeiten() {
         ObjektBearbeiten = true;

@@ -82,14 +82,14 @@ namespace art {
         saveImage.addEventListener("click", saveCanvasImage);
     }
 
-    function saveCanvasImage(){
+    function saveCanvasImage():void{
         let bildName: string = prompt('wie soll ihr Bild heißen?');
         changeBackgroundColor = true;
-        insert(bildName, crc);
+        insert(bildName);
     }
 
 
-    function ObjekteBearbeiten() {
+    function ObjekteBearbeiten():void {
         ObjektBearbeiten = true;
         let bewegung = new Image();
         bewegung.src="Assets/move.png";
