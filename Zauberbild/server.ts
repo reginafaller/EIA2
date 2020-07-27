@@ -27,7 +27,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     switch (command) {
         case "insert":
-        let highscore: CanvasElement = {
+        let Canvas: CanvasElement = {
             name: query["name"],
             BackgroundColor: query["bc"],
             CanvasWidth: query["cw"],
@@ -37,14 +37,14 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             array: query["Array"],
             arrayPos: query["Element"],
         };
-        Database.insert(highscore);
-        respond(_response, "storing data");
+        Database.insert(Canvas);
+        respond(_response, "Bild wurde gespeichert");
         break;
         case "find":
             Database.findAll(findCallback);
             break;
         default:
-            respond(_response, "unknown command: here" + command);
+            respond(_response, "unknown command:" + command);
             break;
     }
     function findCallback(json: string): void {

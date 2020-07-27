@@ -47,6 +47,7 @@ var art;
         }
     }
     function init() {
+        //find();
         canvas = document.getElementsByTagName("canvas")[0];
         canvas.width = art.CanvasWidth;
         canvas.height = art.CanvasHeight;
@@ -71,11 +72,88 @@ var art;
         addCube.addEventListener("click", addNewCube);
         let saveImage = document.getElementById("save");
         saveImage.addEventListener("click", saveCanvasImage);
+        let getImage = document.getElementById("find");
+        getImage.addEventListener("click", findCanvasImage);
     }
+    // function restore1():void{
+    //     rebuildCanvas(1)
+    // }
+    // function restore2():void{
+    //     rebuildCanvas(0)
+    // }
+    function rebuildCanvas(_e) {
+        let target = _e.toElement;
+        let id = target.id;
+        console.log(id);
+        let xCoordinates = art.rebuildArray[0].x;
+        let yCoordinates = art.rebuildArray[0].y;
+        let type = art.rebuildArray[0].type;
+        let array = art.rebuildArray[0].array;
+        let OldbackgroundColor = art.rebuildArray[0].BackgroundColor;
+        let CanvasW = art.rebuildArray[0].CanvasWidth;
+        art.backgroundColor = OldbackgroundColor;
+        init();
+        if (CanvasW == "600") {
+            mediumCanvas();
+        }
+        if (CanvasW == "400") {
+            smallCanvas();
+        }
+        //console.log(xCoordinates, yCoordinates, type, array, backgroundColor, CanvasW);
+        for (let i = 0; i < xCoordinates.length; i++) {
+            let NewObject = {
+                type: type[i],
+                x: xCoordinates[i],
+                y: yCoordinates[i],
+                array: array[i],
+                arrayPos: i.toString()
+            };
+            console.log(NewObject);
+            if (NewObject.type == "circle") {
+                let Kreis = new art.kreis();
+                Kreis.x = parseInt(NewObject.x);
+                Kreis.y = parseInt(NewObject.y);
+                if (NewObject.array == "CircleArray") {
+                    art.CircleArray.push(Kreis);
+                }
+                if (NewObject.array == "AnimatedColor") {
+                    art.AnimatedColor.push(Kreis);
+                }
+                if (NewObject.array == "AnimatedLeftRight") {
+                    art.AnimatedLeftRight.push(Kreis);
+                }
+                if (NewObject.array == "NeutralArray") {
+                    art.NeutralArray.push(Kreis);
+                }
+            }
+            else {
+                let Cube = new art.cube();
+                Cube.x = parseInt(NewObject.x);
+                Cube.y = parseInt(NewObject.y);
+                if (NewObject.array == "CircleArray") {
+                    art.CircleArray.push(Cube);
+                }
+                if (NewObject.array == "AnimatedColor") {
+                    art.AnimatedColor.push(Cube);
+                }
+                if (NewObject.array == "AnimatedLeftRight") {
+                    art.AnimatedLeftRight.push(Cube);
+                }
+                if (NewObject.array == "NeutralArray") {
+                    art.NeutralArray.push(Cube);
+                }
+            }
+        }
+    }
+    art.rebuildCanvas = rebuildCanvas;
     function saveCanvasImage() {
         let bildName = prompt('wie soll ihr Bild heißen?');
         changeBackgroundColor = true;
         art.insert(bildName);
+    }
+    function findCanvasImage() {
+        console.log("getting stuff");
+        art.find();
     }
     function ObjekteBearbeiten() {
         ObjektBearbeiten = true;

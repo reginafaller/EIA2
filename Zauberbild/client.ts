@@ -1,14 +1,26 @@
-namespace art{
+namespace art {
 
-   interface AnimatedElement {
+    export interface AnimatedElement {
         type: string;
         x: string;
         y: string;
         array: string;
         arrayPos: string;
     }
+    
+    interface CanvasElement {
+        name: string;
+        BackgroundColor: string;
+        CanvasWidth: string;
+        type: string;
+        x: string;
+        y: string;
+        array: string;
+        arrayPos: string;
+    }
+    export let rebuildArray: CanvasElement[];
 
-  let ElementNum: number = 0;
+    let ElementNum: number = 0;
 
     export function insert(_name: string): void {
         let query: string = "command=insert";
@@ -25,7 +37,7 @@ namespace art{
                 arrayPos: ElementNum.toString(),
             }
             ElementNum += 1;
-            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i: number = 0; i < CircleArray.length; i++) {
             let Element: AnimatedElement = {
@@ -36,7 +48,7 @@ namespace art{
                 arrayPos: ElementNum.toString(),
             }
             ElementNum += 1;
-            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i: number = 0; i < NeutralArray.length; i++) {
             let Element: AnimatedElement = {
@@ -47,7 +59,7 @@ namespace art{
                 arrayPos: ElementNum.toString(),
             }
             ElementNum += 1;
-            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         for (let i: number = 0; i < AnimatedColor.length; i++) {
             let Element: AnimatedElement = {
@@ -58,7 +70,7 @@ namespace art{
                 arrayPos: ElementNum.toString(),
             }
             ElementNum += 1;
-            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         query += "&Anzahl=" + ElementNum;
         console.log(query);
@@ -80,7 +92,7 @@ namespace art{
         }
     }
 
-    function find(): void {
+    export function find(): void {
         let query: string = "command=find";
         sendRequest(query, handleFindResponse);
     }
@@ -88,16 +100,20 @@ namespace art{
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //let Bilder: AnimatedElement[] = JSON.parse(xhr.response);
-            //for (let i:number = 0; i <= 5; i++){
-
-            //}
-            //for (let i: number = 0; i <= SpielerListe.length; i++) {
-            //    let SpielerName: string = SpielerListe[i].name;
-            //    let SpielerScore: string = SpielerListe[i].score;
-            //    document.getElementById("output").innerHTML = "Name: " + SpielerName + " Score: " + SpielerScore;
-            //}
-            console.log("ich bin fertisch")
+            //console.log(xhr.response);
+            rebuildArray = JSON.parse(xhr.response);
+            console.log(rebuildArray);
+            for(let i:number = 0; i<= 2; i++){
+                //document.getElementById("pic1").innerText = rebuildArray[0].name;
+                //document.getElementById("pic2").innerText = rebuildArray[1].name;
+                   let button: HTMLButtonElement = <HTMLButtonElement>document.createElement("BUTTON");
+                   button.innerText = rebuildArray[i].name;
+                   button.addEventListener("click", rebuildCanvas);
+                  button.setAttribute("id",i.toString())
+                  document.getElementById("output").appendChild(button); 
+                }    
         }
+        console.log("ich bin fertisch")
     }
+
 }

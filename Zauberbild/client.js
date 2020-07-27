@@ -72,19 +72,24 @@ var art;
         let query = "command=find";
         sendRequest(query, handleFindResponse);
     }
+    art.find = find;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //let Bilder: AnimatedElement[] = JSON.parse(xhr.response);
-            //for (let i:number = 0; i <= 5; i++){
-            //}
-            //for (let i: number = 0; i <= SpielerListe.length; i++) {
-            //    let SpielerName: string = SpielerListe[i].name;
-            //    let SpielerScore: string = SpielerListe[i].score;
-            //    document.getElementById("output").innerHTML = "Name: " + SpielerName + " Score: " + SpielerScore;
-            //}
-            console.log("ich bin fertisch");
+            //console.log(xhr.response);
+            art.rebuildArray = JSON.parse(xhr.response);
+            console.log(art.rebuildArray);
+            for (let i = 0; i <= 2; i++) {
+                //document.getElementById("pic1").innerText = rebuildArray[0].name;
+                //document.getElementById("pic2").innerText = rebuildArray[1].name;
+                let button = document.createElement("BUTTON");
+                button.innerText = art.rebuildArray[i].name;
+                button.addEventListener("click", art.rebuildCanvas);
+                button.setAttribute("id", i.toString());
+                document.getElementById("output").appendChild(button);
+            }
         }
+        console.log("ich bin fertisch");
     }
 })(art || (art = {}));
 //# sourceMappingURL=client.js.map

@@ -150,8 +150,6 @@ namespace fisch {
         }
     }
 
-
-
     function kies(_x: number, _y: number, _z: string) {
         let stein: Path2D = new Path2D();
         stein.moveTo(_x, _y);

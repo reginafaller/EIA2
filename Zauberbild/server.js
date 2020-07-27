@@ -20,7 +20,7 @@ function handleRequest(_request, _response) {
     let command = query["command"];
     switch (command) {
         case "insert":
-            let highscore = {
+            let Canvas = {
                 name: query["name"],
                 BackgroundColor: query["bc"],
                 CanvasWidth: query["cw"],
@@ -30,14 +30,14 @@ function handleRequest(_request, _response) {
                 array: query["Array"],
                 arrayPos: query["Element"],
             };
-            Database.insert(highscore);
-            respond(_response, "storing data");
+            Database.insert(Canvas);
+            respond(_response, "Bild wurde gespeichert");
             break;
         case "find":
             Database.findAll(findCallback);
             break;
         default:
-            respond(_response, "unknown command: here" + command);
+            respond(_response, "unknown command:" + command);
             break;
     }
     function findCallback(json) {

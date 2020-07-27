@@ -32,9 +32,9 @@ namespace art {
     export let CanvasWidth: number = 600;
     export let CanvasHeight: number = 600;
 
-    function MoveObject(_event:MouseEvent):void{
-        if(isMoving){
-            NeutralArray[0].update(0,0,"red", true);
+    function MoveObject(_event: MouseEvent): void {
+        if (isMoving) {
+            NeutralArray[0].update(0, 0, "red", true);
             clientX = _event.x;
             clientY = _event.y;
         }
@@ -42,7 +42,7 @@ namespace art {
 
     function SetPosition(_event: MouseEvent): void {
         if (isMoving) {
-            NeutralArray[0].update(0,0,"red", true);
+            NeutralArray[0].update(0, 0, "red", true);
             clientX = _event.x;
             clientY = _event.y;
             CircleArray.push(NeutralArray[0]);
@@ -54,6 +54,7 @@ namespace art {
     }
 
     function init(): void {
+        //find();
         canvas = document.getElementsByTagName("canvas")[0];
         canvas.width = CanvasWidth;
         canvas.height = CanvasHeight;
@@ -66,6 +67,7 @@ namespace art {
         addEventListener();
         update();
     }
+
 
     function addEventListener() {
         let button: HTMLImageElement = <HTMLImageElement>document.getElementById("backgroundColor");
@@ -80,32 +82,110 @@ namespace art {
         addCube.addEventListener("click", addNewCube);
         let saveImage: HTMLImageElement = <HTMLImageElement>document.getElementById("save");
         saveImage.addEventListener("click", saveCanvasImage);
+        let getImage: HTMLImageElement = <HTMLImageElement>document.getElementById("find");
+        getImage.addEventListener("click", findCanvasImage);
     }
 
-    function saveCanvasImage():void{
+    // function restore1():void{
+    //     rebuildCanvas(1)
+    // }
+    // function restore2():void{
+    //     rebuildCanvas(0)
+    // }
+
+    export function rebuildCanvas(_e: MouseEvent): void {
+
+        let target = _e.toElement;
+        let id: string = target.id;
+        console.log(id);
+        let xCoordinates: string = rebuildArray[0].x;
+        let yCoordinates: string = rebuildArray[0].y;
+        let type: string = rebuildArray[0].type;
+        let array: string = rebuildArray[0].array;
+        let OldbackgroundColor: string = rebuildArray[0].BackgroundColor;
+        let CanvasW: string = rebuildArray[0].CanvasWidth;
+        backgroundColor = OldbackgroundColor;
+        init();
+
+        if(CanvasW == "600"){
+            mediumCanvas();
+        }if (CanvasW == "400") {smallCanvas();}
+        //console.log(xCoordinates, yCoordinates, type, array, backgroundColor, CanvasW);
+        for (let i: number = 0; i < xCoordinates.length; i++) {
+            let NewObject: AnimatedElement = {
+                type: type[i],
+                x: xCoordinates[i],
+                y: yCoordinates[i],
+                array: array[i],
+                arrayPos: i.toString()
+            }
+            console.log(NewObject);
+            if (NewObject.type == "circle") {
+                let Kreis: kreis = new kreis();
+                Kreis.x = parseInt(NewObject.x);
+                Kreis.y = parseInt(NewObject.y);
+                if (NewObject.array == "CircleArray") {
+                    CircleArray.push(Kreis);
+                }
+                if (NewObject.array == "AnimatedColor") {
+                    AnimatedColor.push(Kreis);
+                }
+                if (NewObject.array == "AnimatedLeftRight") {
+                    AnimatedLeftRight.push(Kreis);
+                }
+                if (NewObject.array == "NeutralArray") {
+                    NeutralArray.push(Kreis);
+                }
+            }
+            else {
+                let Cube: kreis = new cube();
+                Cube.x = parseInt(NewObject.x);
+                Cube.y = parseInt(NewObject.y);
+                if (NewObject.array == "CircleArray") {
+                    CircleArray.push(Cube);
+                }
+                if (NewObject.array == "AnimatedColor") {
+                    AnimatedColor.push(Cube);
+                }
+                if (NewObject.array == "AnimatedLeftRight") {
+                    AnimatedLeftRight.push(Cube);
+                }
+                if (NewObject.array == "NeutralArray") {
+                    NeutralArray.push(Cube);
+                }
+            }
+        }
+    }
+
+    function saveCanvasImage(): void {
         let bildName: string = prompt('wie soll ihr Bild heißen?');
         changeBackgroundColor = true;
         insert(bildName);
     }
 
+    function findCanvasImage(): void {
+        console.log("getting stuff");
+        find();
+    }
 
-    function ObjekteBearbeiten():void {
+
+    function ObjekteBearbeiten(): void {
         ObjektBearbeiten = true;
         let bewegung = new Image();
-        bewegung.src="Assets/move.png";
-        crc.drawImage(bewegung,0,0,100,100);
+        bewegung.src = "Assets/move.png";
+        crc.drawImage(bewegung, 0, 0, 100, 100);
 
         let farbe = new Image();
-        farbe.src="Assets/farbwechsel.png";
-        crc.drawImage(farbe,0,100,100,100);
+        farbe.src = "Assets/farbwechsel.png";
+        crc.drawImage(farbe, 0, 100, 100, 100);
 
         let deleteO = new Image();
-        deleteO.src="Assets/entfernen.png";
-        crc.drawImage(deleteO,0,200,100,100);
+        deleteO.src = "Assets/entfernen.png";
+        crc.drawImage(deleteO, 0, 200, 100, 100);
 
         let newPosition = new Image();
-        newPosition.src="Assets/NeuePosition.png";
-        crc.drawImage(newPosition,0,300,100,100);
+        newPosition.src = "Assets/NeuePosition.png";
+        crc.drawImage(newPosition, 0, 300, 100, 100);
     }
 
     function smallCanvas() {
@@ -137,10 +217,10 @@ namespace art {
         Kreis.update(0, 0, "red", false);
     }
 
-    function addNewCube():void {
+    function addNewCube(): void {
         let Cube: kreis = new cube();
         CircleArray.push(Cube);
-        Cube.update(0,0,"red", false);
+        Cube.update(0, 0, "red", false);
     }
 
     function ChangeBackground(): void {
@@ -171,7 +251,7 @@ namespace art {
     }
 
     function changeColor(_event: MouseEvent) {
-        
+
         clientX = _event.clientX;
         clientY = _event.clientY;
         //Durch alle automatisch platzierten Objekte
@@ -179,9 +259,9 @@ namespace art {
             let currentX = CircleArray[i].x;
             let currentY = CircleArray[i].y;
             if (clientX < currentX + 40 && clientX > currentX - 40 && clientY < currentY + 40 && clientY > currentY - 40) {
-                if(NeutralArray.length > 0){
+                if (NeutralArray.length > 0) {
                     CircleArray.push(NeutralArray[0]);
-                    NeutralArray.splice(0,1);
+                    NeutralArray.splice(0, 1);
                 }
                 NeutralArray.push(CircleArray[i]);
                 CircleArray.splice(i, 1);
@@ -193,9 +273,9 @@ namespace art {
             let currentX = AnimatedLeftRight[i].x;
             let currentY = AnimatedLeftRight[i].y;
             if (clientX < currentX + 20 && clientX > currentX - 20 && clientY < currentY + 20 && clientY > currentY - 20) {
-                if(NeutralArray.length > 0){
+                if (NeutralArray.length > 0) {
                     CircleArray.push(NeutralArray[0]);
-                    NeutralArray.splice(0,1);
+                    NeutralArray.splice(0, 1);
                 }
                 NeutralArray.push(AnimatedLeftRight[i]);
                 AnimatedLeftRight.splice(i, 1);
@@ -206,9 +286,9 @@ namespace art {
             let currentX = AnimatedColor[i].x;
             let currentY = AnimatedColor[i].y;
             if (clientX < currentX + 20 && clientX > currentX - 20 && clientY < currentY + 20 && clientY > currentY - 20) {
-                if(NeutralArray.length > 0){
+                if (NeutralArray.length > 0) {
                     CircleArray.push(NeutralArray[0]);
-                    NeutralArray.splice(0,1);
+                    NeutralArray.splice(0, 1);
                 }
                 NeutralArray.push(AnimatedColor[i]);
                 AnimatedColor.splice(i, 1);
@@ -284,7 +364,5 @@ namespace art {
         }
         farbZaehler += 1;
     }
-
-    
 
 }

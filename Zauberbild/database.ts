@@ -44,7 +44,7 @@ export function findAll(_callback: Function): void {
     cursor.toArray(prepareAnswer);
 
 
-    function prepareAnswer(_e: Mongo.MongoError, pointArray: Object[]): void {
+    function prepareAnswer(_e: Mongo.MongoError, pointArray: CanvasElement[]): void {
         if (_e)
             _callback("Error" + _e);
         else
