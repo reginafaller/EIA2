@@ -21,7 +21,14 @@ function handleRequest(_request, _response) {
     switch (command) {
         case "insert":
             let highscore = {
-                name: query["name"]
+                name: query["name"],
+                BackgroundColor: query["bc"],
+                CanvasWidth: query["cw"],
+                type: query["Type"],
+                x: query["X"],
+                y: query["Y"],
+                array: query["Array"],
+                arrayPos: query["Element"],
             };
             Database.insert(highscore);
             respond(_response, "storing data");

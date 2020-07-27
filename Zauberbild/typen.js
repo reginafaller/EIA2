@@ -1,12 +1,1 @@
-//interface AnimatedElement {
-//    type: string;
-//    x: string;
-//    y: string;
-//     array: string;
-//     arrayPos: string;
-// }
-// interface CanvasElement {
-//     name: string;
-//     BackgroundColor: string;
-// }
 //# sourceMappingURL=typen.js.map

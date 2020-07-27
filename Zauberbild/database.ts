@@ -29,7 +29,7 @@ function handleConnect(_e: Mongo.MongoError, _client: Mongo.MongoClient): void {
     }
 }
 
-export function insert(_doc: Player): void {
+export function insert(_doc: CanvasElement): void {
     players.insertOne(_doc, handleInsert);
 }
 
@@ -44,7 +44,7 @@ export function findAll(_callback: Function): void {
     cursor.toArray(prepareAnswer);
 
 
-    function prepareAnswer(_e: Mongo.MongoError, pointArray: Player[]): void {
+    function prepareAnswer(_e: Mongo.MongoError, pointArray: Object[]): void {
         if (_e)
             _callback("Error" + _e);
         else

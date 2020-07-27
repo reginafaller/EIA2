@@ -27,8 +27,15 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     switch (command) {
         case "insert":
-        let highscore: Player = {
-            name: query["name"]
+        let highscore: CanvasElement = {
+            name: query["name"],
+            BackgroundColor: query["bc"],
+            CanvasWidth: query["cw"],
+            type: query["Type"],
+            x: query["X"],
+            y: query["Y"],
+            array: query["Array"],
+            arrayPos: query["Element"],
         };
         Database.insert(highscore);
         respond(_response, "storing data");

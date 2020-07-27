@@ -2,19 +2,65 @@ namespace art{
 
    interface AnimatedElement {
         type: string;
-        x: number;
-        y: number;
+        x: string;
+        y: string;
         array: string;
-        arrayPos: number;
+        arrayPos: string;
     }
 
-   let ElementNum: number = 0;
+  let ElementNum: number = 0;
 
     export function insert(_name: string): void {
         let query: string = "command=insert";
         query += "&name=" + _name;
-        
-        
+        query += "&bc=" + backgroundColor;
+        query += "&cw" + CanvasWidth;
+
+        for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
+            let Element: Object = {
+                type: AnimatedLeftRight[i].type,
+                x: AnimatedLeftRight[i].x.toString(),
+                y: AnimatedLeftRight[i].y.toString(),
+                array: "AnimatedLeftRight",
+                arrayPos: ElementNum.toString(),
+            }
+            ElementNum += 1;
+            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i: number = 0; i < CircleArray.length; i++) {
+            let Element: AnimatedElement = {
+                type: CircleArray[i].type,
+                x: CircleArray[i].x.toString(),
+                y: CircleArray[i].y.toString(),
+                array: "CircleArray",
+                arrayPos: ElementNum.toString(),
+            }
+            ElementNum += 1;
+            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i: number = 0; i < NeutralArray.length; i++) {
+            let Element: AnimatedElement = {
+                type: NeutralArray[i].type,
+                x: NeutralArray[i].x.toString(),
+                y: NeutralArray[i].y.toString(),
+                array: "NeutralArray",
+                arrayPos: ElementNum.toString(),
+            }
+            ElementNum += 1;
+            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i: number = 0; i < AnimatedColor.length; i++) {
+            let Element: AnimatedElement = {
+                type: AnimatedColor[i].type,
+                x: AnimatedColor[i].x.toString(),
+                y: AnimatedColor[i].y.toString(),
+                array: "AnimatedColor",
+                arrayPos: ElementNum.toString(),
+            }
+            ElementNum += 1;
+            query += "&Element="  + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        query += "&Anzahl=" + ElementNum;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }

@@ -4,6 +4,53 @@ var art;
     function insert(_name) {
         let query = "command=insert";
         query += "&name=" + _name;
+        query += "&bc=" + art.backgroundColor;
+        query += "&cw" + art.CanvasWidth;
+        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
+            let Element = {
+                type: art.AnimatedLeftRight[i].type,
+                x: art.AnimatedLeftRight[i].x.toString(),
+                y: art.AnimatedLeftRight[i].y.toString(),
+                array: "AnimatedLeftRight",
+                arrayPos: ElementNum.toString(),
+            };
+            ElementNum += 1;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i = 0; i < art.CircleArray.length; i++) {
+            let Element = {
+                type: art.CircleArray[i].type,
+                x: art.CircleArray[i].x.toString(),
+                y: art.CircleArray[i].y.toString(),
+                array: "CircleArray",
+                arrayPos: ElementNum.toString(),
+            };
+            ElementNum += 1;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i = 0; i < art.NeutralArray.length; i++) {
+            let Element = {
+                type: art.NeutralArray[i].type,
+                x: art.NeutralArray[i].x.toString(),
+                y: art.NeutralArray[i].y.toString(),
+                array: "NeutralArray",
+                arrayPos: ElementNum.toString(),
+            };
+            ElementNum += 1;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        for (let i = 0; i < art.AnimatedColor.length; i++) {
+            let Element = {
+                type: art.AnimatedColor[i].type,
+                x: art.AnimatedColor[i].x.toString(),
+                y: art.AnimatedColor[i].y.toString(),
+                array: "AnimatedColor",
+                arrayPos: ElementNum.toString(),
+            };
+            ElementNum += 1;
+            query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
+        }
+        query += "&Anzahl=" + ElementNum;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
