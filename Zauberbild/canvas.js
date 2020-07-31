@@ -5,7 +5,6 @@ var art;
     document.addEventListener("mousemove", MoveObject);
     document.addEventListener("mouseup", SetPosition);
     art.serverAddress = "https://fallerr.herokuapp.com/";
-    let canvas;
     art.CircleArray = [];
     art.NeutralArray = [];
     art.SwitchColor = "green";
@@ -47,11 +46,10 @@ var art;
         }
     }
     function init() {
-        //find();
-        canvas = document.getElementsByTagName("canvas")[0];
-        canvas.width = art.CanvasWidth;
-        canvas.height = art.CanvasHeight;
-        art.crc = canvas.getContext("2d");
+        art.canvas = document.getElementsByTagName("canvas")[0];
+        art.canvas.width = art.CanvasWidth;
+        art.canvas.height = art.CanvasHeight;
+        art.crc = art.canvas.getContext("2d");
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.rect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.fillStyle = art.backgroundColor;
@@ -75,24 +73,35 @@ var art;
         let getImage = document.getElementById("find");
         getImage.addEventListener("click", findCanvasImage);
     }
-    // function restore1():void{
-    //     rebuildCanvas(1)
-    // }
-    // function restore2():void{
-    //     rebuildCanvas(0)
-    // }
+    function clearArrays() {
+        for (let i = 0; i < art.CircleArray.length; i++) {
+            art.CircleArray.pop();
+        }
+        for (let i = 0; i < art.AnimatedColor.length; i++) {
+            art.AnimatedColor.pop();
+        }
+        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
+            art.AnimatedLeftRight.pop();
+        }
+        for (let i = 0; i < art.NeutralArray.length; i++) {
+            art.NeutralArray.pop();
+        }
+        for (let i = 0; i < NewPosition.length; i++) {
+            NewPosition.pop();
+        }
+        art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
+    }
     function rebuildCanvas(_e) {
-        let target = _e.toElement;
-        let id = target.id;
-        console.log(id);
-        let xCoordinates = art.rebuildArray[0].x;
-        let yCoordinates = art.rebuildArray[0].y;
-        let type = art.rebuildArray[0].type;
-        let array = art.rebuildArray[0].array;
-        let OldbackgroundColor = art.rebuildArray[0].BackgroundColor;
-        let CanvasW = art.rebuildArray[0].CanvasWidth;
+        let id = this.id;
+        let xCoordinates = art.rebuildArray[id].x;
+        let yCoordinates = art.rebuildArray[id].y;
+        let type = art.rebuildArray[id].type;
+        let array = art.rebuildArray[id].array;
+        let OldbackgroundColor = art.rebuildArray[id].BackgroundColor;
+        let CanvasW = art.rebuildArray[id].CanvasWidth;
         art.backgroundColor = OldbackgroundColor;
-        init();
+        clearArrays();
+        //init();
         if (CanvasW == "600") {
             mediumCanvas();
         }
@@ -144,6 +153,8 @@ var art;
                 }
             }
         }
+        //clearArrays();
+        //document.getElementById("output").innerHTML = "";
     }
     art.rebuildCanvas = rebuildCanvas;
     function saveCanvasImage() {
@@ -153,6 +164,7 @@ var art;
     }
     function findCanvasImage() {
         console.log("getting stuff");
+        clearArrays();
         art.find();
     }
     function ObjekteBearbeiten() {
@@ -173,23 +185,23 @@ var art;
     function smallCanvas() {
         art.CanvasWidth = 400;
         art.CanvasHeight = 400;
-        canvas.width = art.CanvasWidth;
-        canvas.height = art.CanvasHeight;
+        art.canvas.width = art.CanvasWidth;
+        art.canvas.height = art.CanvasHeight;
         ChangeCanvasSize(art.CanvasWidth, art.CanvasHeight);
         init();
     }
     function mediumCanvas() {
         art.CanvasWidth = 600;
         art.CanvasHeight = 600;
-        canvas.width = art.CanvasWidth;
-        canvas.height = art.CanvasHeight;
+        art.canvas.width = art.CanvasWidth;
+        art.canvas.height = art.CanvasHeight;
         ChangeCanvasSize(art.CanvasWidth, art.CanvasHeight);
         init();
     }
     function ChangeCanvasSize(_w, _h) {
-        canvas = document.getElementsByTagName("canvas")[0];
-        canvas.width = _w;
-        canvas.height = _h;
+        art.canvas = document.getElementsByTagName("canvas")[0];
+        art.canvas.width = _w;
+        art.canvas.height = _h;
     }
     function addNewCircle() {
         let Kreis = new art.kreis();

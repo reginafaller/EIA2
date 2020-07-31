@@ -6,8 +6,10 @@ namespace art {
     export let serverAddress: string = "https://fallerr.herokuapp.com/";
     //import { insert } from "./database";
 
+    //hintergrundfarbe aendert sich, aber Objekte werden nicht neu gezeichnet
+
     export let crc: CanvasRenderingContext2D;
-    let canvas: HTMLCanvasElement;
+    export let canvas: HTMLCanvasElement;
     export let CircleArray: kreis[] = [];
     export let NeutralArray: kreis[] = [];
     export let SwitchColor: string = "green";
@@ -54,7 +56,6 @@ namespace art {
     }
 
     function init(): void {
-        //find();
         canvas = document.getElementsByTagName("canvas")[0];
         canvas.width = CanvasWidth;
         canvas.height = CanvasHeight;
@@ -86,30 +87,42 @@ namespace art {
         getImage.addEventListener("click", findCanvasImage);
     }
 
-    // function restore1():void{
-    //     rebuildCanvas(1)
-    // }
-    // function restore2():void{
-    //     rebuildCanvas(0)
-    // }
+    function clearArrays(): void {
+        for (let i: number = 0; i < CircleArray.length; i++) {
+            CircleArray.pop();
+        }
+        for (let i: number = 0; i < AnimatedColor.length; i++) {
+            AnimatedColor.pop();
+        }
+        for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
+            AnimatedLeftRight.pop();
+        }
+        for (let i: number = 0; i < NeutralArray.length; i++) {
+            NeutralArray.pop();
+        }
+        for (let i: number = 0; i < NewPosition.length; i++) {
+            NewPosition.pop();
+        }
+
+        crc.clearRect(0, 0, CanvasWidth, CanvasHeight);
+
+    }
 
     export function rebuildCanvas(_e: MouseEvent): void {
-
-        let target = _e.toElement;
-        let id: string = target.id;
-        console.log(id);
-        let xCoordinates: string = rebuildArray[0].x;
-        let yCoordinates: string = rebuildArray[0].y;
-        let type: string = rebuildArray[0].type;
-        let array: string = rebuildArray[0].array;
-        let OldbackgroundColor: string = rebuildArray[0].BackgroundColor;
-        let CanvasW: string = rebuildArray[0].CanvasWidth;
+        let id = this.id;
+        let xCoordinates: string = rebuildArray[id].x;
+        let yCoordinates: string = rebuildArray[id].y;
+        let type: string = rebuildArray[id].type;
+        let array: string = rebuildArray[id].array;
+        let OldbackgroundColor: string = rebuildArray[id].BackgroundColor;
+        let CanvasW: string = rebuildArray[id].CanvasWidth;
         backgroundColor = OldbackgroundColor;
-        init();
+        clearArrays();
+        //init();
 
-        if(CanvasW == "600"){
+        if (CanvasW == "600") {
             mediumCanvas();
-        }if (CanvasW == "400") {smallCanvas();}
+        } if (CanvasW == "400") { smallCanvas(); }
         //console.log(xCoordinates, yCoordinates, type, array, backgroundColor, CanvasW);
         for (let i: number = 0; i < xCoordinates.length; i++) {
             let NewObject: AnimatedElement = {
@@ -155,6 +168,8 @@ namespace art {
                 }
             }
         }
+        //clearArrays();
+        //document.getElementById("output").innerHTML = "";
     }
 
     function saveCanvasImage(): void {
@@ -165,6 +180,7 @@ namespace art {
 
     function findCanvasImage(): void {
         console.log("getting stuff");
+        clearArrays();
         find();
     }
 

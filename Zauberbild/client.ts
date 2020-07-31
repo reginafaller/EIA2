@@ -21,12 +21,13 @@ namespace art {
     export let rebuildArray: CanvasElement[];
 
     let ElementNum: number = 0;
+    let buttonExists: boolean = false;
 
     export function insert(_name: string): void {
         let query: string = "command=insert";
         query += "&name=" + _name;
         query += "&bc=" + backgroundColor;
-        query += "&cw" + CanvasWidth;
+        query += "&cw=" + canvas.width.toString();
 
         for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
             let Element: Object = {
@@ -103,14 +104,15 @@ namespace art {
             //console.log(xhr.response);
             rebuildArray = JSON.parse(xhr.response);
             console.log(rebuildArray);
-            for(let i:number = 0; i<= 2; i++){
-                //document.getElementById("pic1").innerText = rebuildArray[0].name;
-                //document.getElementById("pic2").innerText = rebuildArray[1].name;
-                   let button: HTMLButtonElement = <HTMLButtonElement>document.createElement("BUTTON");
-                   button.innerText = rebuildArray[i].name;
-                   button.addEventListener("click", rebuildCanvas);
-                  button.setAttribute("id",i.toString())
-                  document.getElementById("output").appendChild(button); 
+            if(buttonExists == false){
+            for(let i:number = 0; i<= rebuildArray.length; i++){
+                buttonExists = true;
+                let button: HTMLButtonElement = <HTMLButtonElement>document.createElement("BUTTON");
+                button.innerText = rebuildArray[i].name;
+                button.addEventListener("click", rebuildCanvas);
+                button.setAttribute("id",i.toString())
+                document.getElementById("output").appendChild(button);
+                } 
                 }    
         }
         console.log("ich bin fertisch")

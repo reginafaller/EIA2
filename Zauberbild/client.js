@@ -1,11 +1,12 @@
 var art;
 (function (art) {
     let ElementNum = 0;
+    let buttonExists = false;
     function insert(_name) {
         let query = "command=insert";
         query += "&name=" + _name;
         query += "&bc=" + art.backgroundColor;
-        query += "&cw" + art.CanvasWidth;
+        query += "&cw=" + art.canvas.width.toString();
         for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
             let Element = {
                 type: art.AnimatedLeftRight[i].type,
@@ -79,14 +80,15 @@ var art;
             //console.log(xhr.response);
             art.rebuildArray = JSON.parse(xhr.response);
             console.log(art.rebuildArray);
-            for (let i = 0; i <= 2; i++) {
-                //document.getElementById("pic1").innerText = rebuildArray[0].name;
-                //document.getElementById("pic2").innerText = rebuildArray[1].name;
-                let button = document.createElement("BUTTON");
-                button.innerText = art.rebuildArray[i].name;
-                button.addEventListener("click", art.rebuildCanvas);
-                button.setAttribute("id", i.toString());
-                document.getElementById("output").appendChild(button);
+            if (buttonExists == false) {
+                for (let i = 0; i <= art.rebuildArray.length; i++) {
+                    buttonExists = true;
+                    let button = document.createElement("BUTTON");
+                    button.innerText = art.rebuildArray[i].name;
+                    button.addEventListener("click", art.rebuildCanvas);
+                    button.setAttribute("id", i.toString());
+                    document.getElementById("output").appendChild(button);
+                }
             }
         }
         console.log("ich bin fertisch");
