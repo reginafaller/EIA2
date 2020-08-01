@@ -215,7 +215,7 @@ var art;
         for (let i = 0; i < art.CircleArray.length; i++) {
             let currentX = art.CircleArray[i].x;
             let currentY = art.CircleArray[i].y;
-            if (art.clientX < currentX + 40 && art.clientX > currentX - 40 && art.clientY < currentY + 40 && art.clientY > currentY - 40) {
+            if (art.clientX < currentX + 20 && art.clientX > currentX - 20 && art.clientY < currentY + 20 && art.clientY > currentY - 20) {
                 if (art.NeutralArray.length > 0) {
                     art.CircleArray.push(art.NeutralArray[0]);
                     art.NeutralArray.splice(0, 1);

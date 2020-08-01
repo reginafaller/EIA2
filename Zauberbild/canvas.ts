@@ -172,7 +172,7 @@ namespace art {
         crc.drawImage(newPosition, 0, 300, 100, 100);
     }
 
-    function smallCanvas() {
+    function smallCanvas():void {
         CanvasWidth = 400;
         CanvasHeight = 400;
         canvas.width = CanvasWidth;
@@ -241,7 +241,7 @@ namespace art {
         for (let i: number = 0; i < CircleArray.length; i++) {
             let currentX = CircleArray[i].x;
             let currentY = CircleArray[i].y;
-            if (clientX < currentX + 40 && clientX > currentX - 40 && clientY < currentY + 40 && clientY > currentY - 40) {
+            if (clientX < currentX + 20 && clientX > currentX - 20 && clientY < currentY + 20 && clientY > currentY - 20) {
                 if (NeutralArray.length > 0) {
                     CircleArray.push(NeutralArray[0]);
                     NeutralArray.splice(0, 1);
