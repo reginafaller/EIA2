@@ -1,5 +1,4 @@
 namespace art {
-
     export interface AnimatedElement {
         type: string;
         x: string;
@@ -21,7 +20,7 @@ namespace art {
     export let rebuildArray: CanvasElement[];
 
     let ElementNum: number = 0;
-    let buttonExists: boolean = false;
+    export let buttonExists: boolean = false;
 
     export function insert(_name: string): void {
         let query: string = "command=insert";
@@ -101,9 +100,7 @@ namespace art {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //console.log(xhr.response);
             rebuildArray = JSON.parse(xhr.response);
-            console.log(rebuildArray);
             if(buttonExists == false){
             for(let i:number = 0; i<= rebuildArray.length; i++){
                 buttonExists = true;
@@ -115,7 +112,6 @@ namespace art {
                 } 
                 }    
         }
-        console.log("ich bin fertisch")
     }
 
 }

@@ -1,38 +1,9 @@
 namespace art {
     document.addEventListener("DOMContentLoaded", init);
     document.addEventListener("mousedown", changeColor);
-    document.addEventListener("mousemove", MoveObject)
+    document.addEventListener("mousemove", MoveObject);
     document.addEventListener("mouseup", SetPosition);
-    export let serverAddress: string = "https://fallerr.herokuapp.com/";
-    //import { insert } from "./database";
 
-    //hintergrundfarbe aendert sich, aber Objekte werden nicht neu gezeichnet
-
-    export let crc: CanvasRenderingContext2D;
-    export let canvas: HTMLCanvasElement;
-    export let CircleArray: kreis[] = [];
-    export let NeutralArray: kreis[] = [];
-    export let SwitchColor: string = "green";
-    export let AnimatedLeftRight: kreis[] = [];
-    let NewPosition: kreis[] = [];
-    export let AnimatedColor: kreis[] = [];
-    let fps: number = 30;
-    let farbZaehler: number = 0;
-    let isMoving: boolean = false;
-
-
-    let rot: string = "rgb(255, 0, 0)";
-    let gruen: string = "rgb(0, 255, 0)";
-    let purple: string = "rgb(150, 0, 150)";
-    let blue: string = "rgb(0, 0, 255)";
-    export let backgroundColor: string = blue;
-    let changeBackgroundColor: boolean = false;
-    let ObjektBearbeiten: boolean = false;
-    let NeuePosition: boolean = false;
-    export let clientX: number = 0;
-    export let clientY: number = 0;
-    export let CanvasWidth: number = 600;
-    export let CanvasHeight: number = 600;
 
     function MoveObject(_event: MouseEvent): void {
         if (isMoving) {
@@ -88,19 +59,19 @@ namespace art {
     }
 
     function clearArrays(): void {
-        for (let i: number = 0; i < CircleArray.length; i++) {
+        for (let i: number = 0; i <= CircleArray.length; i++) {
             CircleArray.pop();
         }
-        for (let i: number = 0; i < AnimatedColor.length; i++) {
+        for (let i: number = 0; i <= AnimatedColor.length; i++) {
             AnimatedColor.pop();
         }
-        for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
+        for (let i: number = 0; i <= AnimatedLeftRight.length; i++) {
             AnimatedLeftRight.pop();
         }
-        for (let i: number = 0; i < NeutralArray.length; i++) {
+        for (let i: number = 0; i <= NeutralArray.length; i++) {
             NeutralArray.pop();
         }
-        for (let i: number = 0; i < NewPosition.length; i++) {
+        for (let i: number = 0; i <= NewPosition.length; i++) {
             NewPosition.pop();
         }
 
@@ -118,12 +89,10 @@ namespace art {
         let CanvasW: string = rebuildArray[id].CanvasWidth;
         backgroundColor = OldbackgroundColor;
         clearArrays();
-        //init();
 
         if (CanvasW == "600") {
             mediumCanvas();
         } if (CanvasW == "400") { smallCanvas(); }
-        //console.log(xCoordinates, yCoordinates, type, array, backgroundColor, CanvasW);
         for (let i: number = 0; i < xCoordinates.length; i++) {
             let NewObject: AnimatedElement = {
                 type: type[i],
@@ -132,7 +101,6 @@ namespace art {
                 array: array[i],
                 arrayPos: i.toString()
             }
-            console.log(NewObject);
             if (NewObject.type == "circle") {
                 let Kreis: kreis = new kreis();
                 Kreis.x = parseInt(NewObject.x);
@@ -168,8 +136,9 @@ namespace art {
                 }
             }
         }
-        //clearArrays();
-        //document.getElementById("output").innerHTML = "";
+
+        document.getElementById("output").innerHTML = "";
+        buttonExists = false;
     }
 
     function saveCanvasImage(): void {
@@ -179,7 +148,6 @@ namespace art {
     }
 
     function findCanvasImage(): void {
-        console.log("getting stuff");
         clearArrays();
         find();
     }
@@ -270,7 +238,6 @@ namespace art {
 
         clientX = _event.clientX;
         clientY = _event.clientY;
-        //Durch alle automatisch platzierten Objekte
         for (let i: number = 0; i < CircleArray.length; i++) {
             let currentX = CircleArray[i].x;
             let currentY = CircleArray[i].y;
@@ -284,7 +251,7 @@ namespace art {
                 ObjekteBearbeiten();
             }
         }
-        //Durch alle mit Bewegung
+
         for (let i: number = 0; i < AnimatedLeftRight.length; i++) {
             let currentX = AnimatedLeftRight[i].x;
             let currentY = AnimatedLeftRight[i].y;
@@ -313,7 +280,6 @@ namespace art {
         }
 
         if (clientX <= 100 && clientY >= 100 && clientY <= 200 && ObjektBearbeiten == true) {
-            console.log("Color");
             AnimatedColor.push(NeutralArray[0]);
             NeutralArray.splice(0);
             ObjektBearbeiten = false;
@@ -360,7 +326,6 @@ namespace art {
         if (changeBackgroundColor || ObjektBearbeiten || NeuePosition) { return; }
         if (SwitchColor == "green" && (farbZaehler % 2) == 0) { SwitchColor = "red" }
         if (SwitchColor == "red" && (farbZaehler % 2) != 0) { SwitchColor = "green" }
-        //console.log(farbZaehler);
         window.setTimeout(update, 1000 / fps);
         crc.clearRect(0, 0, CanvasWidth, CanvasHeight);
         crc.rect(0, 0, CanvasWidth, CanvasHeight);

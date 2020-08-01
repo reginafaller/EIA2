@@ -4,44 +4,22 @@ var art;
     document.addEventListener("mousedown", changeColor);
     document.addEventListener("mousemove", MoveObject);
     document.addEventListener("mouseup", SetPosition);
-    art.serverAddress = "https://fallerr.herokuapp.com/";
-    art.CircleArray = [];
-    art.NeutralArray = [];
-    art.SwitchColor = "green";
-    art.AnimatedLeftRight = [];
-    let NewPosition = [];
-    art.AnimatedColor = [];
-    let fps = 30;
-    let farbZaehler = 0;
-    let isMoving = false;
-    let rot = "rgb(255, 0, 0)";
-    let gruen = "rgb(0, 255, 0)";
-    let purple = "rgb(150, 0, 150)";
-    let blue = "rgb(0, 0, 255)";
-    art.backgroundColor = blue;
-    let changeBackgroundColor = false;
-    let ObjektBearbeiten = false;
-    let NeuePosition = false;
-    art.clientX = 0;
-    art.clientY = 0;
-    art.CanvasWidth = 600;
-    art.CanvasHeight = 600;
     function MoveObject(_event) {
-        if (isMoving) {
+        if (art.isMoving) {
             art.NeutralArray[0].update(0, 0, "red", true);
             art.clientX = _event.x;
             art.clientY = _event.y;
         }
     }
     function SetPosition(_event) {
-        if (isMoving) {
+        if (art.isMoving) {
             art.NeutralArray[0].update(0, 0, "red", true);
             art.clientX = _event.x;
             art.clientY = _event.y;
             art.CircleArray.push(art.NeutralArray[0]);
             art.NeutralArray.splice(0);
-            isMoving = false;
-            ObjektBearbeiten = false;
+            art.isMoving = false;
+            art.ObjektBearbeiten = false;
             update();
         }
     }
@@ -74,20 +52,20 @@ var art;
         getImage.addEventListener("click", findCanvasImage);
     }
     function clearArrays() {
-        for (let i = 0; i < art.CircleArray.length; i++) {
+        for (let i = 0; i <= art.CircleArray.length; i++) {
             art.CircleArray.pop();
         }
-        for (let i = 0; i < art.AnimatedColor.length; i++) {
+        for (let i = 0; i <= art.AnimatedColor.length; i++) {
             art.AnimatedColor.pop();
         }
-        for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
+        for (let i = 0; i <= art.AnimatedLeftRight.length; i++) {
             art.AnimatedLeftRight.pop();
         }
-        for (let i = 0; i < art.NeutralArray.length; i++) {
+        for (let i = 0; i <= art.NeutralArray.length; i++) {
             art.NeutralArray.pop();
         }
-        for (let i = 0; i < NewPosition.length; i++) {
-            NewPosition.pop();
+        for (let i = 0; i <= art.NewPosition.length; i++) {
+            art.NewPosition.pop();
         }
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
     }
@@ -101,14 +79,12 @@ var art;
         let CanvasW = art.rebuildArray[id].CanvasWidth;
         art.backgroundColor = OldbackgroundColor;
         clearArrays();
-        //init();
         if (CanvasW == "600") {
             mediumCanvas();
         }
         if (CanvasW == "400") {
             smallCanvas();
         }
-        //console.log(xCoordinates, yCoordinates, type, array, backgroundColor, CanvasW);
         for (let i = 0; i < xCoordinates.length; i++) {
             let NewObject = {
                 type: type[i],
@@ -117,7 +93,6 @@ var art;
                 array: array[i],
                 arrayPos: i.toString()
             };
-            console.log(NewObject);
             if (NewObject.type == "circle") {
                 let Kreis = new art.kreis();
                 Kreis.x = parseInt(NewObject.x);
@@ -153,22 +128,21 @@ var art;
                 }
             }
         }
-        //clearArrays();
-        //document.getElementById("output").innerHTML = "";
+        document.getElementById("output").innerHTML = "";
+        art.buttonExists = false;
     }
     art.rebuildCanvas = rebuildCanvas;
     function saveCanvasImage() {
         let bildName = prompt('wie soll ihr Bild heißen?');
-        changeBackgroundColor = true;
+        art.changeBackgroundColor = true;
         art.insert(bildName);
     }
     function findCanvasImage() {
-        console.log("getting stuff");
         clearArrays();
         art.find();
     }
     function ObjekteBearbeiten() {
-        ObjektBearbeiten = true;
+        art.ObjektBearbeiten = true;
         let bewegung = new Image();
         bewegung.src = "Assets/move.png";
         art.crc.drawImage(bewegung, 0, 0, 100, 100);
@@ -214,31 +188,30 @@ var art;
         Cube.update(0, 0, "red", false);
     }
     function ChangeBackground() {
-        changeBackgroundColor = true;
+        art.changeBackgroundColor = true;
         farbauswahl();
     }
     function farbauswahl() {
         let redRec = new Path2D();
         redRec.rect(0, 0, (art.CanvasWidth / 4), art.CanvasHeight);
-        art.crc.fillStyle = rot;
+        art.crc.fillStyle = art.rot;
         art.crc.fill(redRec);
         let greenRec = new Path2D();
         greenRec.rect((art.CanvasWidth / 4) * 1, 0, (art.CanvasWidth / 4), art.CanvasHeight);
-        art.crc.fillStyle = gruen;
+        art.crc.fillStyle = art.gruen;
         art.crc.fill(greenRec);
         let purpleRec = new Path2D();
         purpleRec.rect((art.CanvasWidth / 4) * 2, 0, (art.CanvasWidth / 4), art.CanvasHeight);
-        art.crc.fillStyle = purple;
+        art.crc.fillStyle = art.purple;
         art.crc.fill(purpleRec);
         let blueRec = new Path2D();
         blueRec.rect((art.CanvasWidth / 4) * 3, 0, (art.CanvasWidth / 4), art.CanvasHeight);
-        art.crc.fillStyle = blue;
+        art.crc.fillStyle = art.blue;
         art.crc.fill(blueRec);
     }
     function changeColor(_event) {
         art.clientX = _event.clientX;
         art.clientY = _event.clientY;
-        //Durch alle automatisch platzierten Objekte
         for (let i = 0; i < art.CircleArray.length; i++) {
             let currentX = art.CircleArray[i].x;
             let currentY = art.CircleArray[i].y;
@@ -252,7 +225,6 @@ var art;
                 ObjekteBearbeiten();
             }
         }
-        //Durch alle mit Bewegung
         for (let i = 0; i < art.AnimatedLeftRight.length; i++) {
             let currentX = art.AnimatedLeftRight[i].x;
             let currentY = art.AnimatedLeftRight[i].y;
@@ -279,57 +251,55 @@ var art;
                 ObjekteBearbeiten();
             }
         }
-        if (art.clientX <= 100 && art.clientY >= 100 && art.clientY <= 200 && ObjektBearbeiten == true) {
-            console.log("Color");
+        if (art.clientX <= 100 && art.clientY >= 100 && art.clientY <= 200 && art.ObjektBearbeiten == true) {
             art.AnimatedColor.push(art.NeutralArray[0]);
             art.NeutralArray.splice(0);
-            ObjektBearbeiten = false;
+            art.ObjektBearbeiten = false;
             update();
         }
-        if (art.clientX <= 100 && art.clientY <= 100 && ObjektBearbeiten == true) {
+        if (art.clientX <= 100 && art.clientY <= 100 && art.ObjektBearbeiten == true) {
             art.AnimatedLeftRight.push(art.NeutralArray[0]);
             art.NeutralArray.splice(0);
-            ObjektBearbeiten = false;
+            art.ObjektBearbeiten = false;
             update();
         }
-        if (art.clientX <= 100 && art.clientY <= 400 && art.clientY >= 300 && ObjektBearbeiten == true) {
-            isMoving = true;
+        if (art.clientX <= 100 && art.clientY <= 400 && art.clientY >= 300 && art.ObjektBearbeiten == true) {
+            art.isMoving = true;
             update();
         }
-        if (art.clientX <= 100 && art.clientY <= 300 && art.clientY >= 200 && ObjektBearbeiten == true) {
+        if (art.clientX <= 100 && art.clientY <= 300 && art.clientY >= 200 && art.ObjektBearbeiten == true) {
             art.NeutralArray.splice(0);
-            ObjektBearbeiten = false;
+            art.ObjektBearbeiten = false;
             update();
         }
-        if (changeBackgroundColor == true) {
+        if (art.changeBackgroundColor == true) {
             if (art.clientX <= (art.CanvasWidth / 4)) {
-                art.backgroundColor = rot;
+                art.backgroundColor = art.rot;
             }
             if (art.clientX <= (art.CanvasWidth / 4) * 2 && art.clientX >= (art.CanvasWidth / 4)) {
-                art.backgroundColor = gruen;
+                art.backgroundColor = art.gruen;
             }
             if (art.clientX <= (art.CanvasWidth / 4) * 3 && art.clientX >= (art.CanvasWidth / 4) * 2) {
-                art.backgroundColor = purple;
+                art.backgroundColor = art.purple;
             }
             if (art.clientX >= (art.CanvasWidth / 4) * 3) {
-                art.backgroundColor = blue;
+                art.backgroundColor = art.blue;
             }
-            changeBackgroundColor = false;
+            art.changeBackgroundColor = false;
             init();
         }
     }
     function update() {
-        if (changeBackgroundColor || ObjektBearbeiten || NeuePosition) {
+        if (art.changeBackgroundColor || art.ObjektBearbeiten || art.NeuePosition) {
             return;
         }
-        if (art.SwitchColor == "green" && (farbZaehler % 2) == 0) {
+        if (art.SwitchColor == "green" && (art.farbZaehler % 2) == 0) {
             art.SwitchColor = "red";
         }
-        if (art.SwitchColor == "red" && (farbZaehler % 2) != 0) {
+        if (art.SwitchColor == "red" && (art.farbZaehler % 2) != 0) {
             art.SwitchColor = "green";
         }
-        //console.log(farbZaehler);
-        window.setTimeout(update, 1000 / fps);
+        window.setTimeout(update, 1000 / art.fps);
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.rect(0, 0, art.CanvasWidth, art.CanvasHeight);
         art.crc.fillStyle = art.backgroundColor;
@@ -343,10 +313,10 @@ var art;
         for (let i = 0; i < art.AnimatedColor.length; i++) {
             art.AnimatedColor[i].update(0, 0, art.SwitchColor, false);
         }
-        for (let i = 0; i < NewPosition.length; i++) {
-            NewPosition[i].update(0, 0, "red", false);
+        for (let i = 0; i < art.NewPosition.length; i++) {
+            art.NewPosition[i].update(0, 0, "red", false);
         }
-        farbZaehler += 1;
+        art.farbZaehler += 1;
     }
 })(art || (art = {}));
 //# sourceMappingURL=canvas.js.map

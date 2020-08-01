@@ -1,7 +1,7 @@
 var art;
 (function (art) {
     let ElementNum = 0;
-    let buttonExists = false;
+    art.buttonExists = false;
     function insert(_name) {
         let query = "command=insert";
         query += "&name=" + _name;
@@ -77,12 +77,10 @@ var art;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //console.log(xhr.response);
             art.rebuildArray = JSON.parse(xhr.response);
-            console.log(art.rebuildArray);
-            if (buttonExists == false) {
+            if (art.buttonExists == false) {
                 for (let i = 0; i <= art.rebuildArray.length; i++) {
-                    buttonExists = true;
+                    art.buttonExists = true;
                     let button = document.createElement("BUTTON");
                     button.innerText = art.rebuildArray[i].name;
                     button.addEventListener("click", art.rebuildCanvas);
@@ -91,7 +89,6 @@ var art;
                 }
             }
         }
-        console.log("ich bin fertisch");
     }
 })(art || (art = {}));
 //# sourceMappingURL=client.js.map
