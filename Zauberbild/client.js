@@ -52,13 +52,11 @@ var art;
             query += "&Element=" + Element.arrayPos + "&Array=" + Element.array + "&Type=" + Element.type + "&X=" + Element.x + "&Y=" + Element.y;
         }
         query += "&Anzahl=" + ElementNum;
-        console.log(query);
         sendRequest(query, handleInsertResponse);
     }
     art.insert = insert;
     function sendRequest(_query, _callback) {
         let xhr = new XMLHttpRequest();
-        console.log("here2");
         xhr.open("GET", art.serverAddress + "?" + _query, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();

@@ -94,7 +94,7 @@ namespace art {
             mediumCanvas();
         } if (CanvasW == "400") { smallCanvas(); }
         for (let i: number = 0; i < xCoordinates.length; i++) {
-            let NewObject: AnimatedElement = {
+            let NewObject: Object = {
                 type: type[i],
                 x: xCoordinates[i],
                 y: yCoordinates[i],
