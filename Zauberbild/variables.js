@@ -22,6 +22,5 @@ var art;
     art.clientY = 0;
     art.CanvasWidth = 600;
     art.CanvasHeight = 600;
-    console.log("hi");
 })(art || (art = {}));
 //# sourceMappingURL=variables.js.map

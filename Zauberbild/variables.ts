@@ -26,7 +26,6 @@ namespace art{
     export let clientY: number = 0;
     export let CanvasWidth: number = 600;
     export let CanvasHeight: number = 600;
-    console.log("hi");
 
     
 }

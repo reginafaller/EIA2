@@ -6,8 +6,8 @@ namespace art {
         array: string;
         arrayPos: string;
     }
-    
-    interface CanvasElement {
+
+    export interface CanvasElement {
         name: string;
         BackgroundColor: string;
         CanvasWidth: string;
@@ -99,16 +99,16 @@ namespace art {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             rebuildArray = JSON.parse(xhr.response);
-            if(buttonExists == false){
-            for(let i:number = 0; i<= rebuildArray.length; i++){
-                buttonExists = true;
-                let button: HTMLButtonElement = <HTMLButtonElement>document.createElement("BUTTON");
-                button.innerText = rebuildArray[i].name;
-                button.addEventListener("click", rebuildCanvas);
-                button.setAttribute("id",i.toString())
-                document.getElementById("output").appendChild(button);
-                } 
-                }    
+            if (buttonExists == false) {
+                for (let i: number = 0; i <= rebuildArray.length; i++) {
+                    let button: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
+                    button.innerText = rebuildArray[i].name;
+                    button.addEventListener("click", rebuildCanvas);
+                    button.setAttribute("id", i.toString())
+                    document.getElementById("output").appendChild(button);
+                    buttonExists = true;
+                }
+            }
         }
     }
 

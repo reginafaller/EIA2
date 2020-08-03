@@ -78,12 +78,12 @@ var art;
             art.rebuildArray = JSON.parse(xhr.response);
             if (art.buttonExists == false) {
                 for (let i = 0; i <= art.rebuildArray.length; i++) {
-                    art.buttonExists = true;
-                    let button = document.createElement("BUTTON");
+                    let button = document.createElement("button");
                     button.innerText = art.rebuildArray[i].name;
                     button.addEventListener("click", art.rebuildCanvas);
                     button.setAttribute("id", i.toString());
                     document.getElementById("output").appendChild(button);
+                    art.buttonExists = true;
                 }
             }
         }
