@@ -101,6 +101,7 @@ namespace art {
             rebuildArray = JSON.parse(xhr.response);
             if (buttonExists == false) {
                 for (let i: number = 0; i <= rebuildArray.length; i++) {
+                    if (rebuildArray[i].name == "null"|| rebuildArray[i].name == "") { return; }
                     let button: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
                     button.innerText = rebuildArray[i].name;
                     button.addEventListener("click", rebuildCanvas);

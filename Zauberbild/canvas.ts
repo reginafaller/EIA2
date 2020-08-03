@@ -60,19 +60,19 @@ namespace art {
 
     function clearArrays(): void {
         for (let i: number = 0; i <= CircleArray.length; i++) {
-            CircleArray.pop();
+            CircleArray.splice(0, CircleArray.length);
         }
         for (let i: number = 0; i <= AnimatedColor.length; i++) {
-            AnimatedColor.pop();
+            AnimatedColor.splice(0, AnimatedColor.length);
         }
         for (let i: number = 0; i <= AnimatedLeftRight.length; i++) {
-            AnimatedLeftRight.pop();
+            AnimatedLeftRight.splice(0, AnimatedLeftRight.length);
         }
         for (let i: number = 0; i <= NeutralArray.length; i++) {
-            NeutralArray.pop();
+            NeutralArray.splice(0, NeutralArray.length);
         }
         for (let i: number = 0; i <= NewPosition.length; i++) {
-            NewPosition.pop();
+            NewPosition.splice(0, NewPosition.length);
         }
 
         crc.clearRect(0, 0, CanvasWidth, CanvasHeight);

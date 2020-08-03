@@ -78,6 +78,9 @@ var art;
             art.rebuildArray = JSON.parse(xhr.response);
             if (art.buttonExists == false) {
                 for (let i = 0; i <= art.rebuildArray.length; i++) {
+                    if (art.rebuildArray[i].name == "null" || art.rebuildArray[i].name == "") {
+                        return;
+                    }
                     let button = document.createElement("button");
                     button.innerText = art.rebuildArray[i].name;
                     button.addEventListener("click", art.rebuildCanvas);

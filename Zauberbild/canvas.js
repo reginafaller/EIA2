@@ -53,19 +53,19 @@ var art;
     }
     function clearArrays() {
         for (let i = 0; i <= art.CircleArray.length; i++) {
-            art.CircleArray.pop();
+            art.CircleArray.splice(0, art.CircleArray.length);
         }
         for (let i = 0; i <= art.AnimatedColor.length; i++) {
-            art.AnimatedColor.pop();
+            art.AnimatedColor.splice(0, art.AnimatedColor.length);
         }
         for (let i = 0; i <= art.AnimatedLeftRight.length; i++) {
-            art.AnimatedLeftRight.pop();
+            art.AnimatedLeftRight.splice(0, art.AnimatedLeftRight.length);
         }
         for (let i = 0; i <= art.NeutralArray.length; i++) {
-            art.NeutralArray.pop();
+            art.NeutralArray.splice(0, art.NeutralArray.length);
         }
         for (let i = 0; i <= art.NewPosition.length; i++) {
-            art.NewPosition.pop();
+            art.NewPosition.splice(0, art.NewPosition.length);
         }
         art.crc.clearRect(0, 0, art.CanvasWidth, art.CanvasHeight);
     }
