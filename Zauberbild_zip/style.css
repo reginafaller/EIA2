@@ -1,0 +1,13 @@
+img {
+    display: inline-block;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-end;
+    align-content: flex-start;
+    width: 20%;
+}
+
+#canvas {
+    float: left;
+}
