@@ -12,6 +12,8 @@ namespace newYear {
         drawBackground();
         imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
         //firework.draw()
+        let saveImage: HTMLImageElement = <HTMLImageElement>document.getElementById("save");
+        saveImage.addEventListener("click", saveCanvasImage);
         update();
     }
 
@@ -28,6 +30,11 @@ namespace newYear {
             crc.fill(star);
         }
     }
+
+    function saveCanvasImage(): void {
+        let bildName: string = prompt('wie soll ihr Bild heißen?');
+        insert(bildName);
+    }
     
     function getRandomInt(max:number) {
         return Math.floor(Math.random() * Math.floor(max));
@@ -43,7 +50,6 @@ namespace newYear {
     }
 
     export function getCoordinates(x:number, y:number){
-        console.log("placeItHere")
         if (currentStyle == "line"){
         let firework: Firework = new Firework(pickedColor, numberOfParticles, x, y - 120);
         allFireworks.push(firework);
@@ -53,7 +59,8 @@ namespace newYear {
         allFireworks.push(firework);
         }
         waitForOrigin = false;
-        //crc.clearRect()
+        //setting back to default
+
         update();
     }
 
